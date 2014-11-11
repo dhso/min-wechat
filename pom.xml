@@ -109,6 +109,6 @@
 		</testResources>
 		<!-- directory>${project.basedir}/target</directory -->
 		<directory>${project.basedir}/webapp/WEB-INF/target</directory><!-- v i -->
-		<finalName>jfinal_weixin</finalName>
+		<finalName>min_wechat</finalName>
 	</build>
 </project>
