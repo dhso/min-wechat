@@ -2,8 +2,8 @@
     <wb-module deploy-name="min_wechat">
         <wb-resource deploy-path="/" source-path="/webapp/WEB-INF/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="java-output-path" value="/min_wechat/webapp/WEB-INF/classes"/>
         <property name="context-root" value="min_wechat"/>
     </wb-module>
