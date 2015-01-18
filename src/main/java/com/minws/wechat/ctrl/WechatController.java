@@ -134,7 +134,7 @@ public class WechatController extends WeixinController {
 	 */
 	protected void processInFollowEvent(InFollowEvent inFollowEvent) {
 		OutTextMsg outMsg = new OutTextMsg(inFollowEvent);
-		outMsg.setContent("感谢关注 JFinal Weixin 极速开发，为您节约更多时间，去陪恋人、家人和朋友 :) \n\n\n " + ProsMap.getStrPro("msg.helpStr"));
+		outMsg.setContent(ProsMap.getStrPro("msg.welcomeStr"));
 		// 如果为取消关注事件，将无法接收到传回的信息
 		render(outMsg);
 	}
