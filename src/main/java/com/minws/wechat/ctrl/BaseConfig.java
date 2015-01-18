@@ -45,6 +45,6 @@ public class BaseConfig extends JFinalConfig {
 	}
 
 	public static void main(String[] args) {
-		JFinal.start("webapp", 80, "/", 5);
+		JFinal.start("src/main/webapp", 80, "/", 5);
 	}
 }
