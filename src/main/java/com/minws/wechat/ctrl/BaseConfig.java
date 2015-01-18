@@ -25,12 +25,12 @@ public class BaseConfig extends JFinalConfig {
 
 	public void configRoute(Routes rs) {
 		rs.add(ProsMap.getStrPro("wx.wechatPath"), WechatController.class);
-		rs.add(ProsMap.getStrPro("wx.wechatApiPath"), ApiController.class, ProsMap.getStrPro("wx.wechatApiPath"));
+		rs.add(ProsMap.getStrPro("wx.apiPath"), ApiController.class, ProsMap.getStrPro("wx.apiPath"));
 	}
 
 	public void configPlugin(Plugins ps) {
-		C3p0Plugin c3p0Plugin = new C3p0Plugin(ProsMap.getStrPro("wx.jdbcUrl"), ProsMap.getStrPro("wx.user"), ProsMap.getStrPro("wx.password").trim());
-		ps.add(c3p0Plugin);
+		//C3p0Plugin c3p0Plugin = new C3p0Plugin(ProsMap.getStrPro("wx.jdbcUrl"), ProsMap.getStrPro("wx.user"), ProsMap.getStrPro("wx.password").trim());
+		//ps.add(c3p0Plugin);
 
 		EhCachePlugin ecp = new EhCachePlugin();
 		ps.add(ecp);

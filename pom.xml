@@ -14,12 +14,18 @@
 	</properties>
 	<profiles>
 		<profile>
-			<id>min_wechat_dev</id>
+			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<log.context.name>min_wechat_dev</log.context.name>
+				<log4j.rootLogger>DEBUG, stdout</log4j.rootLogger>
+			</properties>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<properties>
+				<log4j.rootLogger>DEBUG, aceAppender</log4j.rootLogger>
 			</properties>
 		</profile>
 	</profiles>
@@ -109,6 +115,25 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>17.0</version>
+		</dependency>
+		<!-- httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+		<!-- ace libs -->
+		<dependency>
+			<groupId>com.alibaba.appengine</groupId>
+			<artifactId>services-api</artifactId>
+			<version>1.4.24</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.21</version>
 		</dependency>
 	</dependencies>
 
