@@ -3,6 +3,12 @@ wx.user = root
 wx.password =
 wx.devMode = true
 
+wx.proxy.open = true
+wx.proxy.http.host = proxy.ace.aliyun.com
+wx.proxy.http.port = 3128
+wx.proxy.auth.username = 1194709104218733_default_-6
+wx.proxy.auth.password = rb6e475twf
+
 
 wx.url=http://sso-ws.aliapp.com/wechat
 wx.token=eastbride

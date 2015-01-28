@@ -11,6 +11,7 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;
 import com.jfinal.ext.plugin.config.ConfigPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
+import com.minws.wechat.frame.kit.HttpKit;
 import com.minws.wechat.sdk.api.ApiConfig;
 import com.minws.wechat.sdk.api.MenuApi;
 
@@ -37,7 +38,7 @@ public class BaseConfig extends JFinalConfig {
 	public void configPlugin(Plugins ps) {
 		EhCachePlugin ecp = new EhCachePlugin();
 		ps.add(ecp);
-		ps.add(new ConfigPlugin().addResource("message_zh.txt"));
+		ps.add(new ConfigPlugin("message_zh.txt", "config.txt"));
 	}
 
 	@Override
@@ -57,11 +58,9 @@ public class BaseConfig extends JFinalConfig {
 
 	@Override
 	public void afterJFinalStart() {
+		HttpKit.setProxy(getProperty("wx.proxy.http.host"), getProperty("wx.proxy.http.port"), getProperty("wx.proxy.auth.username"), getProperty("wx.proxy.auth.password"));
 		super.afterJFinalStart();
 		MenuApi.createMenu(getProperty("wx.menus"));
-		// HttpUtils.setProxy(ProsMap.getStrPro("tps.local.proxy.http.host"),
-		// ProsMap.getStrPro("tps.local.proxy.http.port"),
-		// ProsMap.getStrPro("tps.local.proxy.auth.username"),
-		// ProsMap.getStrPro("tps.local.proxy.auth.password"));
+
 	}
 }
