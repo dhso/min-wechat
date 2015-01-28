@@ -1,6 +1,7 @@
-wx.jdbcUrl = jdbc:mysql://127.0.0.1/jfinal_weixin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-wx.user = root
-wx.password =
+wx.jdbcDriver = com.mysql.jdbc.Driver
+wx.jdbcUrl = jdbc:mysql://aliyunmysql01.mysql.rds.aliyuncs.com:3306/tps
+wx.jdbcUser = mysql_admin
+wx.jdbcPassword = 923389
 wx.devMode = true
 
 wx.proxy.open = true
