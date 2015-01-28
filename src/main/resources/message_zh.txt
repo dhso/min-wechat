@@ -1,0 +1,2 @@
+msg.helpStr = 帮助
+msg.welcomeStr = 东方新娘婚纱摄影 欢迎您！\n么么哒~

@@ -6,7 +6,7 @@
 
 package com.minws.wechat.ctrl;
 
-import com.minws.wechat.frame.util.ProsMap;
+import com.jfinal.ext.plugin.config.ConfigKit;
 import com.minws.wechat.sdk.msg.in.InImageMsg;
 import com.minws.wechat.sdk.msg.in.InLinkMsg;
 import com.minws.wechat.sdk.msg.in.InLocationMsg;
@@ -43,7 +43,7 @@ public class WechatController extends WeixinController {
 		// 帮助提示
 		if ("help".equalsIgnoreCase(msgContent)) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
-			outMsg.setContent(ProsMap.getStrPro("msg.helpStr"));
+			outMsg.setContent(ConfigKit.getStr("msg.helpStr"));
 			render(outMsg);
 		}
 		// 图文消息测试
@@ -70,7 +70,7 @@ public class WechatController extends WeixinController {
 		// 其它文本消息直接返回原值 + 帮助提示
 		else {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
-			outMsg.setContent("\t文本消息已成功接收，内容为： " + inTextMsg.getContent() + "\n\n" + ProsMap.getStrPro("msg.helpStr"));
+			outMsg.setContent("\t文本消息已成功接收，内容为： " + inTextMsg.getContent() + "\n\n" + ConfigKit.getStr("msg.helpStr"));
 			render(outMsg);
 		}
 	}
@@ -134,7 +134,7 @@ public class WechatController extends WeixinController {
 	 */
 	protected void processInFollowEvent(InFollowEvent inFollowEvent) {
 		OutTextMsg outMsg = new OutTextMsg(inFollowEvent);
-		outMsg.setContent(ProsMap.getStrPro("msg.welcomeStr"));
+		outMsg.setContent(ConfigKit.getStr("msg.welcomeStr"));
 		// 如果为取消关注事件，将无法接收到传回的信息
 		render(outMsg);
 	}

@@ -7,44 +7,61 @@ import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
-import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.ext.handler.UrlSkipHandler;
+import com.jfinal.ext.plugin.config.ConfigPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
-import com.minws.wechat.frame.util.ProsMap;
 import com.minws.wechat.sdk.api.ApiConfig;
+import com.minws.wechat.sdk.api.MenuApi;
 
 public class BaseConfig extends JFinalConfig {
 
+	@Override
 	public void configConstant(Constants cs) {
+		loadPropertyFile("config.txt");
 		// 配置微信 API 相关常量
-		ApiConfig.setDevMode(ProsMap.getBooPro("wx.devMode"));
-		ApiConfig.setUrl(ProsMap.getStrPro("wx.url"));
-		ApiConfig.setToken(ProsMap.getStrPro("wx.token"));
-		ApiConfig.setAppId(ProsMap.getStrPro("wx.appId"));
-		ApiConfig.setAppSecret(ProsMap.getStrPro("wx.appSecret"));
+		ApiConfig.setDevMode(getPropertyToBoolean("wx.devMode"));
+		ApiConfig.setUrl(getProperty("wx.url"));
+		ApiConfig.setToken(getProperty("wx.token"));
+		ApiConfig.setAppId(getProperty("wx.appId"));
+		ApiConfig.setAppSecret(getProperty("wx.appSecret"));
 	}
 
+	@Override
 	public void configRoute(Routes rs) {
-		rs.add(ProsMap.getStrPro("wx.wechatPath"), WechatController.class);
-		rs.add(ProsMap.getStrPro("wx.apiPath"), ApiController.class, ProsMap.getStrPro("wx.apiPath"));
+		rs.add(getProperty("wx.wechatPath"), WechatController.class);
+		rs.add(getProperty("wx.apiPath"), ApiController.class, getProperty("wx.apiPath"));
 	}
 
+	@Override
 	public void configPlugin(Plugins ps) {
-		//C3p0Plugin c3p0Plugin = new C3p0Plugin(ProsMap.getStrPro("wx.jdbcUrl"), ProsMap.getStrPro("wx.user"), ProsMap.getStrPro("wx.password").trim());
-		//ps.add(c3p0Plugin);
-
 		EhCachePlugin ecp = new EhCachePlugin();
 		ps.add(ecp);
+		ps.add(new ConfigPlugin().addResource("message_zh.txt"));
 	}
 
+	@Override
 	public void configInterceptor(Interceptors me) {
 
 	}
 
+	@Override
 	public void configHandler(Handlers me) {
-
+		me.add(new UrlSkipHandler(".*/static/.*", false));
+		me.add(new ContextPathHandler("baseUrl"));
 	}
 
 	public static void main(String[] args) {
 		JFinal.start("src/main/webapp", 80, "/", 5);
+	}
+
+	@Override
+	public void afterJFinalStart() {
+		super.afterJFinalStart();
+		MenuApi.createMenu(getProperty("wx.menus"));
+		// HttpUtils.setProxy(ProsMap.getStrPro("tps.local.proxy.http.host"),
+		// ProsMap.getStrPro("tps.local.proxy.http.port"),
+		// ProsMap.getStrPro("tps.local.proxy.auth.username"),
+		// ProsMap.getStrPro("tps.local.proxy.auth.password"));
 	}
 }
