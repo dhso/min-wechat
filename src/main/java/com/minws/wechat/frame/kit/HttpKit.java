@@ -94,9 +94,6 @@ public class HttpKit extends org.apache.commons.lang3.StringUtils {
 		System.getProperties().put("proxySet", "true");
 		System.getProperties().put("proxyHost", proxyHost);
 		System.getProperties().put("proxyPort", proxyPort);
-		//System.setProperty("http.proxyHost", proxyHost);
-		//System.setProperty("http.proxyPort", proxyPort);
-		//System.setProperty("http.nonProxyHosts", "localhost|127.0.0.1");
 		Authenticator.setDefault(new MyAuthenticator(proxyUser, proxyPassword));
 	}
 
