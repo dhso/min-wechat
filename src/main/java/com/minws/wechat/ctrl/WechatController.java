@@ -6,7 +6,10 @@
 
 package com.minws.wechat.ctrl;
 
+import java.io.IOException;
+
 import com.jfinal.ext.plugin.config.ConfigKit;
+import com.minws.wechat.frame.sdk.simsimi.SimsimiSdk;
 import com.minws.wechat.sdk.msg.in.InImageMsg;
 import com.minws.wechat.sdk.msg.in.InLinkMsg;
 import com.minws.wechat.sdk.msg.in.InLocationMsg;
@@ -70,7 +73,11 @@ public class WechatController extends WeixinController {
 		// 其它文本消息直接返回原值 + 帮助提示
 		else {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
-			outMsg.setContent("\t文本消息已成功接收，内容为： " + inTextMsg.getContent() + "\n\n" + ConfigKit.getStr("msg.helpStr"));
+			try {
+				outMsg.setContent(SimsimiSdk.askSimsimi(inTextMsg.getContent()));
+			} catch (IOException e) {
+				outMsg.setContent("小黄鸡被大象打嘴巴了，不能说话了，555~~~");
+			}
 			render(outMsg);
 		}
 	}
