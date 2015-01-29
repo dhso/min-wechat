@@ -58,7 +58,8 @@ public class BaseConfig extends JFinalConfig {
 
 	@Override
 	public void afterJFinalStart() {
-		HttpKit.setProxy(getProperty("wx.proxy.http.host"), getProperty("wx.proxy.http.port"), getProperty("wx.proxy.auth.username"), getProperty("wx.proxy.auth.password"));
+		if (getPropertyToBoolean("wx.proxy.open", false))
+			HttpKit.setProxy(getProperty("wx.proxy.http.host"), getProperty("wx.proxy.http.port"), getProperty("wx.proxy.auth.username"), getProperty("wx.proxy.auth.password"));
 		super.afterJFinalStart();
 		MenuApi.createMenu(getProperty("wx.menus"));
 
