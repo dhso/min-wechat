@@ -32,6 +32,7 @@ public class BaseConfig extends JFinalConfig {
 	public void configRoute(Routes rs) {
 		rs.add(getProperty("wx.wechatPath"), WechatController.class);
 		rs.add(getProperty("wx.apiPath"), ApiController.class, getProperty("wx.apiPath"));
+		rs.add(getProperty("wx.frontPath"), FrontController.class, getProperty("wx.frontPagePath"));
 	}
 
 	@Override

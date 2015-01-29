@@ -16,8 +16,10 @@ wx.token=eastbride
 
 wx.wechatPath = /wechat
 wx.apiPath = /api
+wx.frontPath = /front
+wx.frontPagePath = /_front
 
 wx.appId = wxbbaed5839238c4eb
 wx.appSecret = 064682c9add7e6756f9f435c904825a9
 
-wx.menus = { "button": [ { "name": "菜单", "sub_button": [ { "type": "click", "name": "帮助", "key": "M1_1_HELP" }, { "type": "view", "name": "搜索", "url": "http://m.baidu.com/" } ] }, { "name": "优惠资讯", "sub_button": [ { "type": "view", "name": "优惠活动", "url": "http://www.soso.com/" }, { "type": "view", "name": "婚礼百科", "url": "http://v.qq.com/" }, { "type": "view", "name": "客片展示", "url": "http://v.qq.com/" } ] }, { "name": "服务", "sub_button": [ { "type": "view", "name": "搜索", "url": "http://www.soso.com/" }, { "type": "view", "name": "视频", "url": "http://v.qq.com/" } ] } ] }
+wx.menus = { "button": [ { "name": "菜单", "sub_button": [ { "type": "click", "name": "帮助", "key": "M1_1_HELP" }, { "type": "view", "name": "搜索", "url": "http://m.baidu.com/" } ] }, { "name": "优惠资讯", "sub_button": [ { "type": "view", "name": "优惠活动", "url": "http://www.soso.com/" }, { "type": "view", "name": "婚礼百科", "url": "http://v.qq.com/" }, { "type": "view", "name": "客片展示", "url": "http://v.qq.com/" } ] }, { "name": "导航", "sub_button": [ { "type": "view", "name": "步行来这", "url": "http://sso-ws.aliapp.com/front/mapByWalk" }, { "type": "view", "name": "公交车到这", "url": "http://sso-ws.aliapp.com/front/mapByBus" }, { "type": "view", "name": "开车到这", "url": "http://sso-ws.aliapp.com/front/mapByCar" } ] } ] }
