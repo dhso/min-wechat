@@ -110,7 +110,7 @@ public class BaseConfig extends JFinalConfig {
 	@Override
 	public void afterJFinalStart() {
 		if (getPropertyToBoolean("wx.proxy.open", false))
-			HttpKit.setProxy(getProperty("wx.proxy.http.host"), getProperty("wx.proxy.http.port"), getProperty("wx.proxy.auth.username"), getProperty("wx.proxy.auth.password"));
+			//HttpKit.setProxy(getProperty("wx.proxy.http.host"), getProperty("wx.proxy.http.port"), getProperty("wx.proxy.auth.username"), getProperty("wx.proxy.auth.password"));
 		super.afterJFinalStart();
 		// MenuApi.createMenu(getProperty("wx.menus"));
 		FreeMarkerRender.getConfiguration().setSharedVariable("shiro", new FreemarketShiroTags());

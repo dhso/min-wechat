@@ -12,4 +12,8 @@ public class Config extends Model<Config> {
 		return Config.dao.findFirst("select cfg.value from config as cfg where cfg.key = ?", key);
 	}
 
+	public boolean updateValueByKey(String key, String value) {
+		return Config.dao.findFirst("select * from config as cfg where cfg.key = ?", key).set("value", value).update();
+	}
+
 }

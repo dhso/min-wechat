@@ -94,3 +94,9 @@
 .icon-more{
     background:url('icons/more.png') no-repeat center center;
 }
+.icon-user-login{
+    background:url('icons/user_login.gif') no-repeat center center;
+}
+.icon-user-logout{
+    background:url('icons/user_logout.gif') no-repeat center center;
+}
