@@ -1,0 +1,22 @@
+<ehcache name="shiro-retry">
+    <diskStore path="java.io.tmpdir/shiro-model"/>
+
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"	
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"/>
+
+    <!-- article -->
+    <cache name="articleList"
+			maxElementsInMemory="1000"
+			eternal="true"
+			overflowToDisk="false">
+    </cache>
+    
+</ehcache>

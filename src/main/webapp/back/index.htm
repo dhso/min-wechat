@@ -1,0 +1,68 @@
+<#assign head_title = "后台管理">
+<!DOCTYPE html>
+<html lang="en">
+<head><#include "common/head.htm" encoding="UTF-8"></head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false" style="overflow:hidden">
+        <div class="panel-header" style="padding:0;border-width:1px 0;text-align:center">
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-back'" style="position:absolute;left:3px;top:3px">Back</a>
+            <span class="panel-title" style="line-height:32px">${head_title}</span>
+        	<div style="float:right;padding:2px 5px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"></a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-more',plain:true" onclick="showmenu(this)"></a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div data-options="region:'center',border:false" style="padding:20px">
+    	<div style="padding:5px 0;">
+			<a href="${baseUrl}/back/manageWechatMenu" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
+    	</div>
+    </div>
+    <div id="mm" class="easyui-menu" style="width:150px;">
+        <div data-options="iconCls:'icon-undo'">Undo</div>
+        <div data-options="iconCls:'icon-redo'">Redo</div>
+        <div class="menu-sep"></div>
+        <div>Cut</div>
+        <div>Copy</div>
+        <div>Paste</div>
+        <div class="menu-sep"></div>
+        <div>Toolbar</div>
+        <div data-options="iconCls:'icon-remove'">Delete</div>
+        <div>Select All</div>
+    </div>
+    
+    <div data-options="region:'south',border:false" style="background:#f0f0f0;overflow:hidden;">
+		<div class="panel-header" style="height:12px;width:100%"></div>
+    </div>
+<#include "common/foot.htm" encoding="UTF-8">
+	 <script>
+	 	
+        function showmenu(el){
+            var pos = $(el).offset();
+            $('#mm').menu('show',{
+                left:pos.left+$(el).outerWidth()-$('#mm').outerWidth(),
+                top:pos.top+$(el).outerHeight()
+            });
+        }
+    </script>
+    <style scoped>
+        .panel-title{
+            text-align:center;
+            font-size:14px;
+            font-weight:bold;
+            text-shadow:0 -1px rgba(0,0,0,0.3);
+        }
+        .big-menu{
+        	width: 25%;
+			margin: 10px;
+			}
+    </style>
+</body>
+</html>

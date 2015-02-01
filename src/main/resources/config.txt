@@ -1,5 +1,5 @@
 wx.jdbcDriver = com.mysql.jdbc.Driver
-wx.jdbcUrl = jdbc:mysql://aliyunmysql01.mysql.rds.aliyuncs.com:3306/tps
+wx.jdbcUrl = jdbc:mysql://rdszjqbmqrqy2in.mysql.rds.aliyuncs.com:3306/re4591m0i5dm04kj
 wx.jdbcUser = mysql_admin
 wx.jdbcPassword = 923389
 wx.devMode = true
@@ -13,11 +13,6 @@ wx.proxy.auth.password = rb6e475twf
 
 wx.url=http://eastbride-wechat.aliapp.com/wechat
 wx.token=eastbride
-
-wx.wechatPath = /wechat
-wx.apiPath = /api
-wx.frontPath = /front
-wx.frontPagePath = /_front
 
 wx.appId = wxbbaed5839238c4eb
 wx.appSecret = 064682c9add7e6756f9f435c904825a9

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="hadong">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>后台登录</title>
+        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/appjs/app.min.css">
+        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/frozen.css">
+        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/global.css">
+</head>
+<body>
+	<div class="app-page" data-page="loginPage">
+		<div class="app-topbar">
+			<div class="app-title">登录</div>
+		</div>
+		<div class="app-content">
+			<div class="contact">
+				<#if errorMsg??>
+				<div class="ui-tips ui-tips-warn">
+				    <i></i>${errorMsg}
+				</div>
+				</#if>
+				<div class="ui-form ui-border-t">
+				    <form id="loginForm" action="${baseUrl}/security/signin" method="post" >
+				        <div class="ui-form-item ui-form-item-pure ui-border-b">
+				            <input type="text" name="username" placeholder="用户名" value="<#if username??>${username}</#if>">
+				            <a href="#" class="ui-icon-close"></a>
+				        </div>
+				        <div class="ui-form-item ui-form-item-pure ui-border-b">
+				            <input type="password" name="password" placeholder="密码">
+				            <a href="#" class="ui-icon-close"></a>
+				        </div>
+				        <div class="ui-form-item ui-form-item-switch ui-border-b">
+					        <span>记住我</span>
+					        <label for="#" class="ui-switch">
+					            <input type="checkbox" name="rememberMe" <#if rememberMe??&&rememberMe>checked</#if>/>
+					        </label>
+					    </div>
+					    <div class="ui-btn-wrap">
+						    <button class="ui-btn-lg" type="submit">登录</button>
+						</div>
+				    </form>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="${baseUrl}/static/frozenui/lib/zepto.min.js"></script>
+    <script src="${baseUrl}/static/frozenui/js/frozen.js"></script>
+    <script src="${baseUrl}/static/appjs/app.min.js"></script>
+    
+    <script>
+	    try {
+	        App.restore();
+	      } catch (err) {
+	        App.load('loginPage');
+	      }
+    </script>
+</body>
+</html>

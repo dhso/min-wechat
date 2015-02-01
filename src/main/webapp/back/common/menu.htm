@@ -1,0 +1,27 @@
+<div class="easyui-accordion" data-options="fit:true,border:false">
+	<div title="东方新娘" data-options="selected:true" style="padding: 10px;">
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="addTabPanel('#mainTabContain','优惠活动','articleList?categoryId=1',false)">优惠活动</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="addTabPanel('#mainTabContain','婚礼百科','articleList?categoryId=2',false)">婚礼百科</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="addTabPanel('#mainTabContain','客片展示','pictureList?categoryId=3',false)">客片展示</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="addTabPanel('#mainTabContain','选择套餐','packages',false)">选择套餐</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="addTabPanel('#mainTabContain','操作指南','articleList?categoryId=4',false)">操作指南</a></p>
+	</div>
+	
+	<div title="尊贵客户" data-options="selected:true" style="padding: 10px;">
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true">订单详情</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true">个人中心</a></p>
+	</div>
+	<div title="业务管理" data-options="selected:true" style="padding: 10px;">
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true">订单管理</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true">客户管理</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true">套餐管理</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="addTabPanel('#mainTabContain','新闻管理','articleManage',false)">新闻管理</a></p>
+	</div>
+	<@shiro.hasRole name="admin">
+	<div title="后台管理" style="padding: 10px;">
+		content</div>
+	<div title="设置" style="padding: 10px">
+		<a>安全设置</a>
+	</div>
+	</@shiro.hasRole>
+</div>
