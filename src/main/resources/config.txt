@@ -16,5 +16,3 @@ wx.token=eastbride
 
 wx.appId = wxbbaed5839238c4eb
 wx.appSecret = 064682c9add7e6756f9f435c904825a9
-
-wx.menus = { "button": [{ "type": "view", "name": "进入商城", "url": "http://shop.minws.com" }, { "name": "优惠资讯", "sub_button": [ { "type": "view", "name": "优惠活动", "url": "http://www.soso.com/" }, { "type": "view", "name": "婚礼百科", "url": "http://v.qq.com/" }, { "type": "view", "name": "客片展示", "url": "http://v.qq.com/" } ] }, { "name": "地图导航", "sub_button": [ { "type": "view", "name": "步行来这", "url": "http://eastbride-wechat.aliapp.com/front/mapByWalk" }, { "type": "view", "name": "公交车来这", "url": "http://eastbride-wechat.aliapp.com/front/mapByBus" }, { "type": "view", "name": "开车来这", "url": "http://eastbride-wechat.aliapp.com/front/mapByCar" } ] } ] }

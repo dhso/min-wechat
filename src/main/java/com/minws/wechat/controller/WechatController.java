@@ -168,7 +168,19 @@ public class WechatController extends WeixinController {
 	 * 实现父类抽方法，处理自定义菜单事件
 	 */
 	protected void processInMenuEvent(InMenuEvent inMenuEvent) {
-		renderOutTextMsg("processInMenuEvent() 方法测试成功");
+		String msgEvent = inMenuEvent.getEvent().trim();
+		String msgEventKey = inMenuEvent.getEventKey().trim();
+
+		if ("click".equalsIgnoreCase(msgEvent)) {
+			if ("CK_SHOP".equalsIgnoreCase(msgEventKey)) {
+				OutNewsMsg outMsg = new OutNewsMsg(inMenuEvent);
+				outMsg.addNews("东方新娘微信商城", "点击进入，开启幸福购物世界^_^", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", "http://shop.minws.com/index.php?g=App&m=Index&a=index&from=wechat&uid=" + inMenuEvent.getFromUserName());
+				render(outMsg);
+			}
+		} else if ("view".equalsIgnoreCase(msgEvent)) {
+
+		}
+
 	}
 
 	/**
