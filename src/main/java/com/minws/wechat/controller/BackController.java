@@ -31,7 +31,7 @@ public class BackController extends Controller {
 				setAttr("errorMsg", new ErrorMsg("alert-error", "菜单更新失败！"));
 			}
 		}
-		String wechatMenuJson = Config.dao.getValueByKey("wechat_menu").get("value", "");
+		String wechatMenuJson = Config.dao.getValueByKey("wechat_menu");
 		WechatMenu wechatMenu = new ObjectMapper().readValue(wechatMenuJson, WechatMenu.class);
 		setAttr("wechatMenuJson", wechatMenuJson);
 		setAttr("wechatMenu", wechatMenu);

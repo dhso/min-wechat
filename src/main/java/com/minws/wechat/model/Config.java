@@ -8,8 +8,8 @@ import com.jfinal.plugin.activerecord.Model;
 public class Config extends Model<Config> {
 	public static final Config dao = new Config();
 
-	public Config getValueByKey(String key) {
-		return Config.dao.findFirst("select cfg.value from config as cfg where cfg.key = ?", key);
+	public String getValueByKey(String key) {
+		return Config.dao.findFirst("select cfg.value from config as cfg where cfg.key = ?", key).get("value", "");
 	}
 
 	public boolean updateValueByKey(String key, String value) {

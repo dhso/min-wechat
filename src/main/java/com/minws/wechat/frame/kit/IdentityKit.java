@@ -28,6 +28,13 @@ public class IdentityKit {
 	}
 
 	/**
+	 * 封装JDK自带的UUID, 通过当前时间生成.
+	 */
+	public static String uuid4() {
+		return Long.toString(System.currentTimeMillis());
+	}
+
+	/**
 	 * 使用SecureRandom随机生成Long.
 	 */
 	public static long randomLong() {
