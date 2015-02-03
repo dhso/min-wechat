@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/frozen.css">
         <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/global.css">
         <script type="text/javascript">
-        	var appurl = ${baseUrl};
+        	var appurl = "${baseUrl}";
         </script>
 </head>
 <body class="sanckbg mode_webapp">
@@ -48,7 +48,7 @@
 						<#list shop_good as good>
 						<dd menu="${good.menu_id}">
 							<div class="tupian">
-								<img src="${good.image}" onclick="showDetail('${good.id}');">\
+								<img src="${good.image}" onclick="showDetail('${good.id}');">
 								<a href="javascript:doProduct('${good.id}','${good.name}','${good.price}');" class="add">
 								<p class="dish2">${good.name}</p>
 								<p class="price2">￥${good.price}</p>
@@ -117,7 +117,7 @@
 										<td width="80px"><label for="name" class="ui-input-text">联系人：</label></td>
 										<td>
 											<div class="ui-input-text">
-												<input id="name" name="name" placeholder="" value="${user.username}" type="text" class="ui-input-text">
+												<input id="name" name="name" placeholder="" value="<#if user??&&user.username??>${user.username}</#if>" type="text" class="ui-input-text">
 											</div>
 										</td>
 									</tr>
@@ -126,7 +126,7 @@
 										<td width="80px"><label for="phone" class="ui-input-text">联系电话：</label></td>
 										<td>
 											<div class="ui-input-text">
-												<input id="phone" name="phone" placeholder="" value="${user.phone}" type="tel" class="ui-input-text">
+												<input id="phone" name="phone" placeholder="" value="<#if user??&&user.phone??>${user.phone}</#if>" type="tel" class="ui-input-text">
 											</div>
 										</td>
 									</tr>
@@ -142,7 +142,7 @@
 									<tr>
 										<td width="80px"><label for="address"
 											class="ui-input-text">地址：</label></td>
-										<td><textarea id="address" name="address" placeholder="" value="" class="ui-input-text">${user.address}</textarea>
+										<td><textarea id="address" name="address" placeholder="" value="" class="ui-input-text"><#if user??&&user.address??>${user.address}</#if></textarea>
 										</td>
 									</tr>
 									<tr>

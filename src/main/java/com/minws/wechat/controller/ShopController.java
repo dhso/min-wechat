@@ -1,10 +1,10 @@
 package com.minws.wechat.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.minws.wechat.entity.Shop;
@@ -44,14 +44,18 @@ public class ShopController extends Controller {
 	}
 
 	@ActionKey("/order/addOrder")
-	public void addOrder() {
+	public void addOrder() throws JsonProcessingException, IOException {
 		String uid = getPara("uid", "");
 		String cartData = getPara("cartData", "");
 		String totalPrice = getPara("totalPrice", "");
-		List userData = getPara("userData").;
-		
+		JsonNode userData = new ObjectMapper().readTree(getPara("userData"));
+		String username = userData.get(0).get("value").asText();
+		String phone = userData.get(1).get("value").asText();
+		String payStyle = userData.get(2).get("value").asText();
+		String address = userData.get(3).get("value").asText();
+		String note = userData.get(4).get("value").asText();
 		if (StringKit.isNotBlank(uid)) {
-			renderJson(ShopOrder.dao.addOrderByUid(uid, totalPrice, note, payStyle, cartData));
+			ShopOrder.dao.addOrderByUid(uid, totalPrice, note, payStyle, cartData, username, phone, address);
 		} else {
 			renderText("uid is empty!");
 		}
