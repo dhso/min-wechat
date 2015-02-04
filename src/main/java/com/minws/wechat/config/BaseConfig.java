@@ -31,6 +31,7 @@ import com.minws.wechat.controller.ShopController;
 import com.minws.wechat.controller.WechatController;
 import com.minws.wechat.frame.kit.HttpKit;
 import com.minws.wechat.frame.plugin.shiro.FreemarketShiroTags;
+import com.minws.wechat.frame.sdk.alipay.ctrl.AlipayController;
 import com.minws.wechat.sdk.api.ApiConfig;
 
 public class BaseConfig extends JFinalConfig {
@@ -69,6 +70,7 @@ public class BaseConfig extends JFinalConfig {
 		rs.add("/front", FrontController.class, "/front");
 		rs.add("/shop", ShopController.class, "/shop");
 		rs.add("/back", BackController.class, "/back");
+		rs.add("/alipay", AlipayController.class, "/alipay");
 	}
 
 	@Override
@@ -80,13 +82,13 @@ public class BaseConfig extends JFinalConfig {
 		// 配置数据库连接池插件
 		DruidPlugin druidPlugin = new DruidPlugin(getProperty("wx.jdbcUrl"), getProperty("wx.jdbcUser"), getProperty("wx.jdbcPassword"), getProperty("wx.jdbcDriver"));
 		druidPlugin.addFilter(new StatFilter());
-		ps.add(druidPlugin);
+		//ps.add(druidPlugin);
 		// 添加自动绑定model与表插件
 		AutoTableBindPlugin autoTableBindPlugin = new AutoTableBindPlugin(druidPlugin, SimpleNameStyles.LOWER_UNDERLINE);
 		autoTableBindPlugin.setShowSql(true);
 		autoTableBindPlugin.setContainerFactory(new CaseInsensitiveContainerFactory());
 		// autoTableBindPlugin.setAutoScan(false);
-		ps.add(autoTableBindPlugin);
+		//ps.add(autoTableBindPlugin);
 		// 添加资源文件
 		ps.add(new ConfigPlugin("message_zh.txt", "config.txt"));
 	}

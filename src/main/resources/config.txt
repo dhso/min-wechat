@@ -4,7 +4,7 @@ wx.jdbcUser = mysql_admin
 wx.jdbcPassword = 923389
 wx.devMode = true
 
-wx.proxy.open = true
+#wx.proxy.open = true
 wx.proxy.http.host = proxy.ace.aliyun.com
 wx.proxy.http.port = 3128
 wx.proxy.auth.username = 1194709104218733_default_-6
@@ -13,6 +13,11 @@ wx.proxy.auth.password = rb6e475twf
 
 wx.url=http://eastbride-wechat.aliapp.com/wechat
 wx.token=eastbride
-
 wx.appId = wxbbaed5839238c4eb
 wx.appSecret = 064682c9add7e6756f9f435c904825a9
+
+wx.alipay.user = dhso@163.com
+wx.alipay.partner = 2088102221655815
+wx.alipay.key = fd48ig23w67gyjoc08c82sji3eabe8ie
+wx.alipay.private_key = fd48ig23w67gyjoc08c82sji3eabe8ie
+wx.alipay.ali_public_key = fd48ig23w67gyjoc08c82sji3eabe8ie
