@@ -20,9 +20,9 @@ public class ShopOrder extends Model<ShopOrder> {
 
 	@Before(Tx.class)
 	public boolean addOrderByUid(String uid, String totalPrice, String note, String payStyle, String cartData, String username, String phone, String address) {
-		if (null == ShopUser.dao.getIdByUid(uid)) {
+		if (null == ShopUser.dao.getUserByUid(uid)) {
 			ShopUser.dao.addUser(uid, username, phone, address);
 		}
-		return new ShopOrder().set("user_id", ShopUser.dao.getIdByUid(uid)).set("order_id", IdentityKit.uuid4()).set("totalprice", totalPrice).set("note", note).set("pay_style", payStyle).set("pay_status", "0").set("order_status", "0").set("create_dt", new Date()).set("cartdata", cartData).save();
+		return new ShopOrder().set("user_id", ShopUser.dao.getUserByUid(uid).get("id")).set("order_id", IdentityKit.uuid4()).set("totalprice", totalPrice).set("note", note).set("pay_style", payStyle).set("pay_status", "0").set("order_status", "0").set("create_dt", new Date()).set("cartdata", cartData).save();
 	}
 }

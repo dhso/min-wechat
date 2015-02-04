@@ -9,7 +9,7 @@ public class Config extends Model<Config> {
 	public static final Config dao = new Config();
 
 	public String getValueByKey(String key) {
-		return Config.dao.findFirst("select cfg.value from config as cfg where cfg.key = ?", key).get("value", "");
+		return Config.dao.findFirst("select cfg.value from config as cfg where cfg.key = ?", key).get("value", null);
 	}
 
 	public boolean updateValueByKey(String key, String value) {

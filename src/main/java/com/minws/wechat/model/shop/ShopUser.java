@@ -12,10 +12,6 @@ public class ShopUser extends Model<ShopUser> {
 		return ShopUser.dao.findFirst("select * from shop_user as su where su.uid = ?", uid);
 	}
 
-	public String getIdByUid(String uid) {
-		return ShopUser.dao.findFirst("select * from shop_user as su where su.uid = ?", uid).get("id", null);
-	}
-
 	public Boolean addUser(String uid, String username, String phone, String address) {
 		return new ShopUser().set("uid", uid).set("username", username).set("phone", phone).set("address", address).save();
 	}

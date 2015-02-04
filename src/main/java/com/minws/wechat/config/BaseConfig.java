@@ -82,13 +82,13 @@ public class BaseConfig extends JFinalConfig {
 		// 配置数据库连接池插件
 		DruidPlugin druidPlugin = new DruidPlugin(getProperty("wx.jdbcUrl"), getProperty("wx.jdbcUser"), getProperty("wx.jdbcPassword"), getProperty("wx.jdbcDriver"));
 		druidPlugin.addFilter(new StatFilter());
-		//ps.add(druidPlugin);
+		ps.add(druidPlugin);
 		// 添加自动绑定model与表插件
 		AutoTableBindPlugin autoTableBindPlugin = new AutoTableBindPlugin(druidPlugin, SimpleNameStyles.LOWER_UNDERLINE);
 		autoTableBindPlugin.setShowSql(true);
 		autoTableBindPlugin.setContainerFactory(new CaseInsensitiveContainerFactory());
 		// autoTableBindPlugin.setAutoScan(false);
-		//ps.add(autoTableBindPlugin);
+		ps.add(autoTableBindPlugin);
 		// 添加资源文件
 		ps.add(new ConfigPlugin("message_zh.txt", "config.txt"));
 	}

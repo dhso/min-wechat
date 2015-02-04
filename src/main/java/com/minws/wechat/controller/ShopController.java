@@ -3,8 +3,6 @@ package com.minws.wechat.controller;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.minws.wechat.entity.Shop;
@@ -33,9 +31,9 @@ public class ShopController extends Controller {
 
 	}
 
-	@ActionKey("/order/getOrders")
+	@ActionKey("/shop/order/getOrders")
 	public void getOrders() {
-		String uid = getPara("uid", "");
+		String uid = getSessionAttr("uid");
 		if (StringKit.isNotBlank(uid)) {
 			renderJson(ShopOrder.dao.getOrdersByUid(uid));
 		} else {
@@ -43,17 +41,16 @@ public class ShopController extends Controller {
 		}
 	}
 
-	@ActionKey("/order/addOrder")
+	@ActionKey("/shop/order/addOrder")
 	public void addOrder() throws JsonProcessingException, IOException {
-		String uid = getPara("uid", "");
+		String uid = getSessionAttr("uid");
 		String cartData = getPara("cartData", "");
 		String totalPrice = getPara("totalPrice", "");
-		JsonNode userData = new ObjectMapper().readTree(getPara("userData"));
-		String username = userData.get(0).get("value").asText();
-		String phone = userData.get(1).get("value").asText();
-		String payStyle = userData.get(2).get("value").asText();
-		String address = userData.get(3).get("value").asText();
-		String note = userData.get(4).get("value").asText();
+		String username = getPara("userData[0][value]", "");
+		String phone = getPara("userData[1][value]", "");
+		String payStyle = getPara("userData[2][value]", "");
+		String address = getPara("userData[3][value]", "");
+		String note = getPara("userData[4][value]", "");
 		if (StringKit.isNotBlank(uid)) {
 			ShopOrder.dao.addOrderByUid(uid, totalPrice, note, payStyle, cartData, username, phone, address);
 		} else {
