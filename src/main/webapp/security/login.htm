@@ -1,63 +1,71 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="author" content="hadong">
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="width=device-width, user-scalable=no"/>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <title>后台登录</title>
-        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/appjs/app.min.css">
-        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/frozen.css">
-        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/global.css">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="shortcut icon" href="${baseUrl}/static/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="${baseUrl}/static/easyui/themes/bootstrap/easyui.css">
+	<style type="text/css">
+	.login-pannel{
+		margin:200px auto;
+	}
+	.error{
+		background-color: #fcf8e3;
+		border: 1px solid #fbeed5;
+		color: #c09853;
+		text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+		padding: 5px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	</style>
 </head>
 <body>
-	<div class="app-page" data-page="loginPage">
-		<div class="app-topbar">
-			<div class="app-title">登录</div>
-		</div>
-		<div class="app-content">
-			<div class="contact">
-				<#if errorMsg??>
-				<div class="ui-tips ui-tips-warn">
-				    <i></i>${errorMsg}
-				</div>
-				</#if>
-				<div class="ui-form ui-border-t">
-				    <form id="loginForm" action="${baseUrl}/security/signin" method="post" >
-				        <div class="ui-form-item ui-form-item-pure ui-border-b">
-				            <input type="text" name="username" placeholder="用户名" value="<#if username??>${username}</#if>">
-				            <a href="#" class="ui-icon-close"></a>
-				        </div>
-				        <div class="ui-form-item ui-form-item-pure ui-border-b">
-				            <input type="password" name="password" placeholder="密码">
-				            <a href="#" class="ui-icon-close"></a>
-				        </div>
-				        <div class="ui-form-item ui-form-item-switch ui-border-b">
-					        <span>记住我</span>
-					        <label for="#" class="ui-switch">
-					            <input type="checkbox" name="rememberMe" <#if rememberMe??&&rememberMe>checked</#if>/>
-					        </label>
-					    </div>
-					    <div class="ui-btn-wrap">
-						    <button class="ui-btn-lg" type="submit">登录</button>
-						</div>
-				    </form>
-				</div>
-			</div>
-		</div>
-	</div>
-    <script src="${baseUrl}/static/frozenui/lib/zepto.min.js"></script>
-    <script src="${baseUrl}/static/frozenui/js/frozen.js"></script>
-    <script src="${baseUrl}/static/appjs/app.min.js"></script>
-    
+    <div class="easyui-panel" title="登录" style="width:260px;" data-options="cls:'login-pannel'">
+        <div style="padding:10px">
+        <form id="login_form" action="${baseUrl}/security/signin" method="post">
+            <table cellpadding="5">
+            	<#if errorMsg??>
+                <tr>
+                	<td colspan=2 class="error">
+	                	<span>${errorMsg}</span>
+					</td>
+                </tr>
+                </#if>
+                <tr>
+                    <td>用户:</td>
+                    <td><input class="easyui-textbox" type="text" name="username" id="username" data-options="required:true,missingMessage:'请输入用户名/手机号'" value="<#if username??>${username}</#if>"></input></td>
+                </tr>
+                <tr>
+                    <td>密码:</td>
+                    <td><input class="easyui-textbox" type="password" name="password" id="password" data-options="required:true,missingMessage:'请输入密码'"></input></td>
+                </tr>
+                <tr>
+                	<td colspan=2>
+                		<input type="checkbox" name="rememberMe" id="rememberMe" <#if rememberMe??&&rememberMe>checked</#if> /><label for="rememberMe">记住我</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                		<button type="submit" class="easyui-linkbutton">登录</button>
+						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+					</td>
+                </tr>
+            </table>
+        </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="${baseUrl}/static/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="${baseUrl}/static/easyui/jquery.easyui.min.js"></script>
     <script>
-	    try {
-	        App.restore();
-	      } catch (err) {
-	        App.load('loginPage');
-	      }
+	    $(document).ready(function() {
+			if(!$("#username").val()){
+				$("#username").parent().find("input.textbox-text").focus();
+			}else{
+				$("#password").parent().find("input.textbox-text").focus();
+			}
+		});
+	    
+        function clearForm(){
+            $('#login_form').form('clear');
+        }
     </script>
 </body>
 </html>
