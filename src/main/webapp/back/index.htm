@@ -1,68 +1,42 @@
-<#assign head_title = "后台管理">
+<#assign head_title = "首页">
 <!DOCTYPE html>
 <html lang="en">
-<head><#include "common/head.htm" encoding="UTF-8"></head>
-<body class="easyui-layout">
-	<div data-options="region:'north',border:false" style="overflow:hidden">
-        <div class="panel-header" style="padding:0;border-width:1px 0;text-align:center">
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-back'" style="position:absolute;left:3px;top:3px">Back</a>
-            <span class="panel-title" style="line-height:32px">${head_title}</span>
-        	<div style="float:right;padding:2px 5px">
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"></a>
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-more',plain:true" onclick="showmenu(this)"></a>
+<head><#include "common/head.htm" encoding="UTF-8">
+</head>
+<body>
+	<div class="easyui-layout"  data-options="fit:true,border:true">
+        <div data-options="region:'north'" style="height:80px;">
+        	<div class="row layer-top">
+				<div class="span4 logo"></div>
+				<div class="span4"></div>
+				<div class="span4 t-right f-right">
+				<span>主题：</span><select id="chooseTheme" style="width:120px"></select>
+				 		<p class="blank-split"></p>
+				 		<span>亲爱的 <@shiro.principal/><@shiro.hasRole name="admin"> (管理员)</@shiro.hasRole> 你好!</span>
+				  	<@shiro.authenticated>
+				&nbsp;<a href="${baseUrl}/security/signout">退出</a>
+				</@shiro.authenticated>
+				<@shiro.notAuthenticated>
+					&nbsp;<a href="${baseUrl}/security/signin">登录</a>
+				</@shiro.notAuthenticated>
+				</div>
+			</div>
+		</div>
+        
+        <div data-options="region:'west',split:false" title="菜单" style="width:100px;">
+            <#include "common/menu.htm" encoding="UTF-8">
+        </div>
+        <div data-options="region:'east',split:false" title="我的信息" style="width:202px;">
+            <div class="easyui-calendar" id="myCalendar"></div>
+        </div>
+        <div data-options="region:'south',split:false" style="height:50px;"></div>
+        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+            <div class="easyui-tabs" data-options="fit:true,border:false,plain:true" id="mainTabContain">
+                <div title="东方新娘" data-options="href:'welcome'" style="padding:10px"></div>
             </div>
-            <div style="clear:both"></div>
         </div>
     </div>
-    <div data-options="region:'center',border:false" style="padding:20px">
-    	<div style="padding:5px 0;">
-			<a href="${baseUrl}/back/manageWechatMenu" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-			<a href="#" class="easyui-linkbutton big-menu" data-options="size:'large'">微信菜单</a>
-    	</div>
-    </div>
-    <div id="mm" class="easyui-menu" style="width:150px;">
-        <div data-options="iconCls:'icon-undo'">Undo</div>
-        <div data-options="iconCls:'icon-redo'">Redo</div>
-        <div class="menu-sep"></div>
-        <div>Cut</div>
-        <div>Copy</div>
-        <div>Paste</div>
-        <div class="menu-sep"></div>
-        <div>Toolbar</div>
-        <div data-options="iconCls:'icon-remove'">Delete</div>
-        <div>Select All</div>
-    </div>
-    
-    <div data-options="region:'south',border:false" style="background:#f0f0f0;overflow:hidden;">
-		<div class="panel-header" style="height:12px;width:100%"></div>
-    </div>
-<#include "common/foot.htm" encoding="UTF-8">
-	 <script>
-	 	
-        function showmenu(el){
-            var pos = $(el).offset();
-            $('#mm').menu('show',{
-                left:pos.left+$(el).outerWidth()-$('#mm').outerWidth(),
-                top:pos.top+$(el).outerHeight()
-            });
-        }
-    </script>
-    <style scoped>
-        .panel-title{
-            text-align:center;
-            font-size:14px;
-            font-weight:bold;
-            text-shadow:0 -1px rgba(0,0,0,0.3);
-        }
-        .big-menu{
-        	width: 25%;
-			margin: 10px;
-			}
-    </style>
+	<div class="m-foot"><#include "common/foot.htm" encoding="UTF-8">
+	</div>
 </body>
 </html>

@@ -1,29 +1,11 @@
-<div data-options="region:'south',border:false" style="overflow:hidden;">
-	<div class="panel-header" style="padding:0;border-width:1px 0;">
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-user-login',plain:true"><@shiro.principal/></a>
-		<div style="float:right;padding:0 5px">
-			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-more',plain:true" onclick="showmenu(this)"></a>
-		</div>
-		<div style="clear:both"></div>
-	</div>
-</div>
-<div id="user_menu" class="easyui-menu" style="width:150px;">
-    <div data-options="iconCls:'icon-user-logout',href:'${baseUrl}/security/signout'">登出</div>
-    <div class="menu-sep"></div>
-    <div data-options="iconCls:'icon-tip'">帮助</div>
-</div>
-<script type="text/javascript" src="${baseUrl}/static/easyui/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${baseUrl}/static/bootstrap/js/bootstrap.min.js">
-<script type="text/javascript" src="${baseUrl}/static/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="static/js/back.js"></script>
+<!-- <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101167626" charset="utf-8"></script> -->
 <script>
 	$(document).ready(function() {
 
 	});
-	function showmenu(el){
-        var pos = $(el).offset();
-        $('#user_menu').menu('show',{
-            left:pos.left+$(el).outerWidth()-$('#user_menu').outerWidth(),
-            top:pos.top-$(el).outerHeight()-40
-        });
-    }
 </script>

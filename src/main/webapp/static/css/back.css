@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+	outline: none;
+}
+body {
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-attachment: fixed;
+	font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande",
+		"Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB",
+		"Hiragino Sans GB W3", "Microsoft YaHei UI", "Microsoft YaHei",
+		"WenQuanYi Micro Hei", sans-serif;
+}
+.f-right{
+	float:right;
+}
+.t-right{
+	text-align: right;
+}
+/* 分页 */
+.paginationBar{
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+	background-color: #ffffff;
+}
+.paginationBarSplit{
+	height: 40px;
+}
+/* 布局-顶部 */
+.layer-top div{
+	height: 60px;
+	margin: 10px 0 5px 0;
+}
+.layer-top div.logo{
+	margin-left: 30px;
+	background-image: url("../img/logo.png");
+	background-repeat: no-repeat ;
+	background-size: contain;
+}
+
+/* 套餐packages */
+.packages li{
+	width: 300px!important;
+	margin: 10px!important;
+}
+/* 文章列表 articleList */
+.articleList{
+	margin:10px!important;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #E0ECFF;
+}
+.articleList .media-heading h5{
+	margin: 0;
+}
+.articleList .media-footing{
+	padding-top: 5px;
+}
+/* 图片列表 pictureList */
+.pictureList li{
+	width: 262px!important;
+	margin:10px!important;
+}
+.m-content, .m-foot, .navigation-bar-content {
+	width: 998px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.blank-split {
+	height: 10px;
+}
+
+.list-across {
+	display: inline-block !important;
+	width: 329px !important;
+}
+
+.list-article {
+	width: 100% !important;
+	height: 120px !important;
+}
+
+.metro .listview .list-article img {
+	display: block;
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-right: 10px;
+	border-width: 0;
+	border-radius: 5px;
+}
+
+.metro .listview .list-article .list-content {
+	font-size: 10px;
+	display: block;
+	height: 100px;
+}
+
+.metro .listview .list-article .list-content:after {
+	content: "...";
+}
+
+.pagination-right {
+	margin-bottom: 40px !important;
+}
+
+.pagination-right ul {
+	float: right;
+}

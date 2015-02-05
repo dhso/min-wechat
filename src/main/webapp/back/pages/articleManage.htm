@@ -1,0 +1,18 @@
+<#list articlePage.list as articleList>
+<div class="media articleList">
+	<div class="media-body">
+		<div class="media-heading">
+			<h5><i class="icon-fire"></i> ${articleList.title}</h5>
+		</div>
+		<div class="media-bodying">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${articleList.content}
+		</div>
+		<div class="media-footing">
+			<span><i class="icon-user"></i> ${articleList.writer}</span>&nbsp;&nbsp;
+			<span><i class="icon-time"></i> ${articleList.update_dt}</span>
+		</div>
+	</div>
+</div>
+</#list>
+<div class="paginationBarSplit"></div>
+<div class="easyui-pagination paginationBar" goto="articleList?categoryId=${categoryId}" data-options="total:${articlePage.totalRow},pageSize:${articlePage.pageSize},pageNumber:${articlePage.pageNumber},beforePageText:'页码',afterPageText:'/ {pages}',displayMsg:'{from} ~ {to} 条记录 | 共 {total} 条'"></div>
