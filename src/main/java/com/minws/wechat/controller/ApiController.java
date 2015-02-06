@@ -1,9 +1,9 @@
 package com.minws.wechat.controller;
 
 import com.jfinal.core.Controller;
-import com.minws.wechat.sdk.api.ApiResult;
-import com.minws.wechat.sdk.api.MenuApi;
-import com.minws.wechat.sdk.api.UserApi;
+import com.minws.wechat.frame.sdk.wechat.api.ApiResult;
+import com.minws.wechat.frame.sdk.wechat.api.MenuApi;
+import com.minws.wechat.frame.sdk.wechat.api.UserApi;
 
 public class ApiController extends Controller {
 

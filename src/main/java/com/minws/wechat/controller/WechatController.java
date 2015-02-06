@@ -10,23 +10,23 @@ import java.io.IOException;
 
 import com.jfinal.ext.plugin.config.ConfigKit;
 import com.minws.wechat.frame.sdk.simsimi.SimsimiSdk;
-import com.minws.wechat.sdk.msg.in.InImageMsg;
-import com.minws.wechat.sdk.msg.in.InLinkMsg;
-import com.minws.wechat.sdk.msg.in.InLocationMsg;
-import com.minws.wechat.sdk.msg.in.InTextMsg;
-import com.minws.wechat.sdk.msg.in.InVideoMsg;
-import com.minws.wechat.sdk.msg.in.InVoiceMsg;
-import com.minws.wechat.sdk.msg.in.event.InFollowEvent;
-import com.minws.wechat.sdk.msg.in.event.InLocationEvent;
-import com.minws.wechat.sdk.msg.in.event.InMenuEvent;
-import com.minws.wechat.sdk.msg.in.event.InQrCodeEvent;
-import com.minws.wechat.sdk.msg.in.speech_recognition.InSpeechRecognitionResults;
-import com.minws.wechat.sdk.msg.out.OutImageMsg;
-import com.minws.wechat.sdk.msg.out.OutMusicMsg;
-import com.minws.wechat.sdk.msg.out.OutNewsMsg;
-import com.minws.wechat.sdk.msg.out.OutTextMsg;
-import com.minws.wechat.sdk.msg.out.OutVoiceMsg;
-import com.minws.wechat.sdk.weixin.WeixinController;
+import com.minws.wechat.frame.sdk.wechat.msg.in.InImageMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.in.InLinkMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.in.InLocationMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.in.InTextMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.in.InVideoMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.in.InVoiceMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.in.event.InFollowEvent;
+import com.minws.wechat.frame.sdk.wechat.msg.in.event.InLocationEvent;
+import com.minws.wechat.frame.sdk.wechat.msg.in.event.InMenuEvent;
+import com.minws.wechat.frame.sdk.wechat.msg.in.event.InQrCodeEvent;
+import com.minws.wechat.frame.sdk.wechat.msg.in.speech_recognition.InSpeechRecognitionResults;
+import com.minws.wechat.frame.sdk.wechat.msg.out.OutImageMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.out.OutMusicMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.out.OutNewsMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.out.OutTextMsg;
+import com.minws.wechat.frame.sdk.wechat.msg.out.OutVoiceMsg;
+import com.minws.wechat.frame.sdk.wechat.weixin.WeixinController;
 
 /**
  * 将此 UiController 在YourJFinalConfig 中注册路由， 并设置好weixin开发者中心的 URL 与 token ，使 URL

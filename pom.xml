@@ -167,6 +167,12 @@
 			<artifactId>ehcache-core</artifactId>
 			<version>2.6.10</version>
 		</dependency>
+		<!-- qiniu -->
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>sdk</artifactId>
+			<version>6.1.7</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>

@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfinal.core.Controller;
 import com.minws.wechat.entity.ErrorMsg;
 import com.minws.wechat.entity.WechatMenu;
+import com.minws.wechat.frame.sdk.wechat.api.MenuApi;
 import com.minws.wechat.model.Config;
-import com.minws.wechat.sdk.api.MenuApi;
 
 public class BackController extends Controller {
 

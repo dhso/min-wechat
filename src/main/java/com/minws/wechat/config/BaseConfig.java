@@ -32,7 +32,7 @@ import com.minws.wechat.controller.WechatController;
 import com.minws.wechat.frame.kit.HttpKit;
 import com.minws.wechat.frame.plugin.shiro.FreemarketShiroTags;
 import com.minws.wechat.frame.sdk.alipay.ctrl.AlipayController;
-import com.minws.wechat.sdk.api.ApiConfig;
+import com.minws.wechat.frame.sdk.wechat.api.ApiConfig;
 
 public class BaseConfig extends JFinalConfig {
 
