@@ -42,15 +42,15 @@ public class StringKit extends org.apache.commons.lang3.StringUtils {
 			return "";
 		}
 		String regxpForHtml = "<.*>";
-		Pattern pattern = Pattern.compile(regxpForHtml);   
-        Matcher matcher = pattern.matcher(html);   
-        StringBuffer sb = new StringBuffer();   
-        boolean result = matcher.find();   
-        while (result) {   
-            matcher.appendReplacement(sb, "");   
-            result = matcher.find();   
-        }   
-        matcher.appendTail(sb);
+		Pattern pattern = Pattern.compile(regxpForHtml);
+		Matcher matcher = pattern.matcher(html);
+		StringBuffer sb = new StringBuffer();
+		boolean result = matcher.find();
+		while (result) {
+			matcher.appendReplacement(sb, "");
+			result = matcher.find();
+		}
+		matcher.appendTail(sb);
 		return sb.toString();
 	}
 
@@ -181,6 +181,22 @@ public class StringKit extends org.apache.commons.lang3.StringUtils {
 			}
 		}
 		return map;
+	}
+
+	/**
+	 * 正则表达式
+	 * 
+	 * @param resource
+	 * @param pattern
+	 * @return
+	 */
+	public static String regex(String resource, String pattern) {
+		Matcher mat = Pattern.compile(pattern).matcher(resource);
+		String result = null;
+		while (mat.find()) {
+			result = mat.group(1);
+		}
+		return result;
 	}
 
 }
