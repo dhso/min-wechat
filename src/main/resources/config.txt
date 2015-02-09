@@ -1,27 +1,31 @@
+#数据库配置
 wx.jdbcDriver = com.mysql.jdbc.Driver
 wx.jdbcUrl = jdbc:mysql://rdszjqbmqrqy2in.mysql.rds.aliyuncs.com:3306/re4591m0i5dm04kj
 wx.jdbcUser = mysql_admin
 wx.jdbcPassword = 923389
 wx.devMode = true
 
+#代理配置
 #wx.proxy.open = true
 wx.proxy.http.host = proxy.ace.aliyun.com
 wx.proxy.http.port = 3128
 wx.proxy.auth.username = 1194709104218733_default_-6
 wx.proxy.auth.password = rb6e475twf
 
-
+#微信配置
 wx.url=http://eastbride-wechat.aliapp.com/wechat
 wx.token=eastbride
 wx.appId = wxbbaed5839238c4eb
 wx.appSecret = 064682c9add7e6756f9f435c904825a9
 
+#支付宝配置
 wx.alipay.user = dhso@163.com
 wx.alipay.partner = 2088102221655815
 wx.alipay.key = fd48ig23w67gyjoc08c82sji3eabe8ie
 wx.alipay.private_key = fd48ig23w67gyjoc08c82sji3eabe8ie
 wx.alipay.ali_public_key = fd48ig23w67gyjoc08c82sji3eabe8ie
 
+#七牛云配置
 wx.qiniu.ak = s4qqqDqXBOcvFKUDsAIDPk1X7p1df1XKAv-2rhU6
 wx.qiniu.sk = PKnBKg_fcc3otG0C_0WPPvW3COLTxW6FaWrJ1bUw
 wx.qiniu.bucket = min-tps
