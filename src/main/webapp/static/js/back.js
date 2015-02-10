@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#myCalendar').calendar({
+	$('#systemCalendar').calendar({
 		formatter:formatDay,
 		border:false,
 		width:200,
@@ -36,26 +36,12 @@ function changeThemeFun(themeName) {
 		}
 	$('#chooseThemeMenu').menu('setIcon', {
 		target : $('#chooseThemeMenu div[title=' + themeName + ']')[0],
-		iconCls : 'tick'
+		iconCls : 'icon-ok'
 	});
 	var $easyuiTheme = $('#easyuiThemeLink');
 	var url = $easyuiTheme.attr('href');
 	var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
 	$easyuiTheme.attr('href', href);
-	/*var $iframe = $('iframe');
-	if ($iframe.length > 0) {
-		for ( var i = 0; i < $iframe.length; i++) {
-			var ifr = $iframe[i];
-			try {
-				$(ifr).contents().find('#easyuiThemeLink').attr('href', href);
-			} catch (e) {
-				try {
-					ifr.contentWindow.document.getElementById('easyuiThemeLink').href = href;
-				} catch (e) {
-				}
-			}
-		}
-	}*/
 	$.cookie('easyuiThemeName', themeName, {
 		expires : 7
 	});

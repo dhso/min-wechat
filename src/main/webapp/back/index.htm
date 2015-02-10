@@ -10,37 +10,35 @@
         	<div class="row layer-top">
 				<div class="span4 logo"></div>
 				<div class="span4"></div>
-				<div class="span4 t-right f-right">
-				<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#chooseThemeMenu',iconCls:'cog'">更换皮肤</a>
-				<div id="chooseThemeMenu" style="width: 120px; display: none;">
+				<div class="span4 t-right f-right" style="margin-right:5px;">
+				<span>亲爱的 <@shiro.principal/><@shiro.hasRole name="admin"> (管理员)</@shiro.hasRole> 你好!</span>
+				<p class="blank-split"></p>
+				<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#chooseThemeMenu',iconCls:'icon-cog'">更换皮肤</a>
+				<div id="chooseThemeMenu" style="width:88px!important; display: none;">
 					<div onclick="changeThemeFun('default');" title="default">default</div>
 					<div onclick="changeThemeFun('gray');" title="gray">gray</div>
 					<div onclick="changeThemeFun('metro');" title="metro">metro</div>
 					<div onclick="changeThemeFun('bootstrap');" title="bootstrap">bootstrap</div>
 					<div onclick="changeThemeFun('black');" title="black">black</div>
 				</div>
-				 		<p class="blank-split"></p>
-				 		<span>亲爱的 <@shiro.principal/><@shiro.hasRole name="admin"> (管理员)</@shiro.hasRole> 你好!</span>
-				  	<@shiro.authenticated>
-				&nbsp;<a href="${baseUrl}/security/signout">退出</a>
-				</@shiro.authenticated>
-				<@shiro.notAuthenticated>
-					&nbsp;<a href="${baseUrl}/security/signin">登录</a>
-				</@shiro.notAuthenticated>
+				<@shiro.authenticated><a href="${baseUrl}/security/signout" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-off'">退出</a>	</@shiro.authenticated>
+				<@shiro.notAuthenticated><a href="${baseUrl}/security/signin" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-off'">登录</a></@shiro.notAuthenticated>
 				</div>
 			</div>
 		</div>
         
-        <div data-options="region:'west',split:false" title="菜单" style="width:100px;">
+        <div data-options="region:'west',split:false" title="功能菜单" style="width:120px;">
             <#include "common/menu.htm" encoding="UTF-8">
         </div>
-        <div data-options="region:'east',split:false" title="我的信息" style="width:202px;">
-            <div class="easyui-calendar" id="myCalendar"></div>
+        <div data-options="region:'east',split:false" title="侧边栏" style="width:202px;">
+            <div class="easyui-calendar" id="systemCalendar"></div>
+			<div class="easyui-panel wechatQRCode" title="微信二维码" data-options="border:false,iconCls:'icon-qrcode',height:60">
+			</div>
         </div>
         <div data-options="region:'south',split:false" style="height:50px;"></div>
-        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+        <div data-options="region:'center',title:'欢迎进入管理后台'">
             <div class="easyui-tabs" data-options="fit:true,border:false,plain:true" id="mainTabContain">
-                <div title="东方新娘" data-options="href:'welcome'" style="padding:10px"></div>
+                <div title="首页" data-options="href:'welcome'" style="padding:10px"></div>
             </div>
         </div>
     </div>
