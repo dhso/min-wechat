@@ -35,7 +35,7 @@ $(document).ready(function() {
 //更换主题
 function onChangeTheme(theme) {
     var link = $('head').find('link[css="easyui"]');
-    link.attr('href', 'static/easyui/themes/' + theme + '/easyui.css');
+    link.attr('href', baseUrl+'/static/easyui/themes/' + theme + '/easyui.css');
 }
 //我的日历
 var d1 = Math.floor((Math.random()*30)+1);

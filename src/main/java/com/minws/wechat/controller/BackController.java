@@ -7,11 +7,15 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.ehcache.CacheInterceptor;
+import com.jfinal.plugin.ehcache.CacheName;
 import com.minws.wechat.entity.ErrorMsg;
 import com.minws.wechat.entity.WechatMenu;
 import com.minws.wechat.frame.sdk.wechat.api.MenuApi;
 import com.minws.wechat.model.Config;
+import com.minws.wechat.model.back.Article;
 
 public class BackController extends Controller {
 
@@ -20,6 +24,41 @@ public class BackController extends Controller {
 		render("index.htm");
 	}
 
+	public void welcome() {
+		render("pages/welcome.htm");
+	}
+
+	public void packages() {
+		render("pages/packages.htm");
+	}
+
+	@Before(CacheInterceptor.class)
+	@CacheName("articleList")
+	public void articleList() {
+		Integer categoryId = getParaToInt("categoryId", 1);
+		Integer pageNumber = getParaToInt("pageNumber", 1);
+		Integer pageSize = getParaToInt("pageSize", 10);
+		setAttr("articlePage", Article.dao.findArticlesByCategoryId(categoryId, pageNumber, pageSize));
+		setAttr("categoryId", categoryId);
+		render("pages/articleList.htm");
+	}
+
+	public void articleManage() {
+		Integer categoryId = getParaToInt("categoryId", 1);
+		Integer pageNumber = getParaToInt("pageNumber", 1);
+		Integer pageSize = getParaToInt("pageSize", 10);
+		setAttr("articlePage", Article.dao.findAllArticles(pageNumber, pageSize));
+		setAttr("categoryId", categoryId);
+		render("pages/articleList.htm");
+	}
+
+	public void pictureList() {
+		Integer categoryId = getParaToInt("categoryId", 1);
+		Integer pageNumber = getParaToInt("pageNumber", 1);
+		Integer pageSize = getParaToInt("pageSize", 10);
+		render("pages/pictureList.htm");
+	}
+	
 	@RequiresRoles("admin")
 	public void manageWechatMenu() throws JsonParseException, JsonMappingException, IOException {
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {

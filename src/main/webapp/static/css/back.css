@@ -20,6 +20,10 @@ body {
 .t-right{
 	text-align: right;
 }
+.textbox-text-readonly{
+	cursor: pointer!important;
+	background-color: #fff!important;
+}
 /* 分页 */
 .paginationBar{
 	position: absolute;
