@@ -21,6 +21,7 @@ public class BackController extends Controller {
 
 	@RequiresRoles("admin")
 	public void index() {
+		setAttr("easyuiThemeName", getCookie("easyuiThemeName", "default"));
 		render("index.htm");
 	}
 
@@ -58,7 +59,7 @@ public class BackController extends Controller {
 		Integer pageSize = getParaToInt("pageSize", 10);
 		render("pages/pictureList.htm");
 	}
-	
+
 	@RequiresRoles("admin")
 	public void manageWechatMenu() throws JsonParseException, JsonMappingException, IOException {
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {

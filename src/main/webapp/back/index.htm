@@ -11,7 +11,14 @@
 				<div class="span4 logo"></div>
 				<div class="span4"></div>
 				<div class="span4 t-right f-right">
-				<span>主题：</span><select id="chooseTheme" style="width:120px"></select>
+				<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#chooseThemeMenu',iconCls:'cog'">更换皮肤</a>
+				<div id="chooseThemeMenu" style="width: 120px; display: none;">
+					<div onclick="changeThemeFun('default');" title="default">default</div>
+					<div onclick="changeThemeFun('gray');" title="gray">gray</div>
+					<div onclick="changeThemeFun('metro');" title="metro">metro</div>
+					<div onclick="changeThemeFun('bootstrap');" title="bootstrap">bootstrap</div>
+					<div onclick="changeThemeFun('black');" title="black">black</div>
+				</div>
 				 		<p class="blank-split"></p>
 				 		<span>亲爱的 <@shiro.principal/><@shiro.hasRole name="admin"> (管理员)</@shiro.hasRole> 你好!</span>
 				  	<@shiro.authenticated>

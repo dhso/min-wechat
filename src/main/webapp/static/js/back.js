@@ -1,15 +1,4 @@
-var themes = [{ value: 'default', text: 'Default' }, { value: 'gray', text: 'Gray' }, { value: 'metro', text: 'Metro' }, { value: 'bootstrap', text: 'Bootstrap' }, { value: 'black', text: 'Black'}];
 $(document).ready(function() {
-	$('#chooseTheme').combobox({
-	    data: themes,
-	    editable: false,
-	    panelHeight: 'auto',
-	    onChange: onChangeTheme,
-	    onLoadSuccess: function () {
-	        $(this).combobox('setValue', 'default');
-	    }
-	});
-
 	$('#myCalendar').calendar({
 		formatter:formatDay,
 		border:false,
@@ -32,11 +21,46 @@ $(document).ready(function() {
 	});
 });
 
-//更换主题
-function onChangeTheme(theme) {
-    var link = $('head').find('link[css="easyui"]');
-    link.attr('href', baseUrl+'/static/easyui/themes/' + theme + '/easyui.css');
-}
+/**
+ * 
+ * @requires jQuery,EasyUI,jQuery cookie plugin
+ * 更换EasyUI主题的方法
+ * @param themeName 主题名称
+ */
+function changeThemeFun(themeName) {
+	if ($.cookie('easyuiThemeName')) {
+		$('#chooseThemeMenu').menu('setIcon', {
+			target : $('#chooseThemeMenu div[title=' + $.cookie('easyuiThemeName') + ']')[0],
+			iconCls : 'emptyIcon'
+			});
+		}
+	$('#chooseThemeMenu').menu('setIcon', {
+		target : $('#chooseThemeMenu div[title=' + themeName + ']')[0],
+		iconCls : 'tick'
+	});
+	var $easyuiTheme = $('#easyuiThemeLink');
+	var url = $easyuiTheme.attr('href');
+	var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
+	$easyuiTheme.attr('href', href);
+	/*var $iframe = $('iframe');
+	if ($iframe.length > 0) {
+		for ( var i = 0; i < $iframe.length; i++) {
+			var ifr = $iframe[i];
+			try {
+				$(ifr).contents().find('#easyuiThemeLink').attr('href', href);
+			} catch (e) {
+				try {
+					ifr.contentWindow.document.getElementById('easyuiThemeLink').href = href;
+				} catch (e) {
+				}
+			}
+		}
+	}*/
+	$.cookie('easyuiThemeName', themeName, {
+		expires : 7
+	});
+};
+
 //我的日历
 var d1 = Math.floor((Math.random()*30)+1);
 var d2 = Math.floor((Math.random()*30)+1);
