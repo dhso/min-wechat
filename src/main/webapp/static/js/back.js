@@ -67,14 +67,26 @@ function addTabPanel(contain,title,href,reload){
 	if(existTabPanel){
 		$(contain).tabs('select',title);
 		if(reload){
-			$(contain).tabs('getSelected').panel('refresh', href);
+			if(href && href.indexOf('http') == 0){
+				
+			}else{
+				$(contain).tabs('getSelected').panel('refresh', href);
+			}
 		}
 	}else{
-		$(contain).tabs('add',{
-	        title: title,
-	        href: href,
-	        closable: true
-	    });
+		if(href && href.indexOf('http') == 0){
+			$(contain).tabs('add',{
+		        title: title,
+		        content: '<iframe src="' + href + '" frameborder="0" style="border:0;width:100%;height:98%;" security="restricted" sandbox="" ></iframe>',
+		        closable: true
+		    });
+		}else{
+			$(contain).tabs('add',{
+		        title: title,
+		        href: href,
+		        closable: true
+		    });
+		}
 	}
 }
 //删除tabPanel
