@@ -1,5 +1,5 @@
-<ehcache name="shiro-retry">
-    <diskStore path="java.io.tmpdir/shiro-ehcache-retry"/>
+<ehcache name="ehcache-shiro-retry">
+    <diskStore path="java.io.tmpdir/ehcache-shiro-retry"/>
 
     <defaultCache
             maxElementsInMemory="10000"

@@ -73,7 +73,7 @@ public class BackController extends Controller {
 		}
 		String wechatMenuJson = Config.dao.getValueByKey("wechat_menu");
 		WechatMenu wechatMenu = new ObjectMapper().readValue(wechatMenuJson, WechatMenu.class);
-		setAttr("wechatMenuJson", new ObjectMapper().writeValueAsString(wechatMenu.getButton()));
+		setAttr("wechatMenuJson", wechatMenuJson);
 		setAttr("wechatMenu", wechatMenu);
 		render("manageWechatMenu.htm");
 	}

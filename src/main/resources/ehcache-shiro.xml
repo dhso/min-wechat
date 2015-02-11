@@ -1,5 +1,5 @@
-<ehcache name="shiro">
-    <diskStore path="java.io.tmpdir/shiro-ehcache"/>
+<ehcache name="ehcache-shiro">
+    <diskStore path="java.io.tmpdir/ehcache-shiro"/>
 
     <defaultCache
             maxElementsInMemory="10000"
