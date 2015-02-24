@@ -1,0 +1,26 @@
+<div style="margin:10px">
+	<p>菜单结构：</p>
+	<ul class="easyui-tree">
+		<li>
+			<span>菜单</span>
+			<#if wechatMenu??>
+			<#list wechatMenu.button as buttonList>
+			<ul>
+				<li data-options="state:'opened'"><span>${buttonList.name}</span>
+					<#if buttonList.sub_button??>
+					<ul>
+					<#list buttonList.sub_button as subButtonList>
+						<li><span>${subButtonList.name}</span></li>
+					</#list>
+					</ul>
+					</#if>
+				</li>
+			</ul>
+			</#list>
+			</#if>
+		</li>
+	</ul>
+	<hr/>
+	<p>生成代码：</p>
+	<pre>${wechatMenuJson}</pre>
+</div>

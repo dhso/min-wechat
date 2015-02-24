@@ -1,6 +1,8 @@
 package com.minws.wechat.config;
 
 import com.alibaba.druid.filter.stat.StatFilter;
+import com.alibaba.druid.util.JdbcConstants;
+import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -18,6 +20,7 @@ import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
 import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.IErrorRenderFactory;
@@ -81,6 +84,9 @@ public class BaseConfig extends JFinalConfig {
 		ps.add(new EhCachePlugin(BaseConfig.class.getClassLoader().getResource("ehcache-model.xml")));
 		// 配置数据库连接池插件
 		DruidPlugin druidPlugin = new DruidPlugin(getProperty("wx.jdbcUrl"), getProperty("wx.jdbcUser"), getProperty("wx.jdbcPassword"), getProperty("wx.jdbcDriver"));
+		WallFilter wallFilter = new WallFilter();
+		wallFilter.setDbType(JdbcConstants.MYSQL);
+		druidPlugin.addFilter(wallFilter);
 		druidPlugin.addFilter(new StatFilter());
 		ps.add(druidPlugin);
 		// 添加自动绑定model与表插件
@@ -105,6 +111,7 @@ public class BaseConfig extends JFinalConfig {
 	public void configHandler(Handlers me) {
 		me.add(new UrlSkipHandler(".*/static/.*", false));
 		me.add(new ContextPathHandler("baseUrl"));
+		me.add(new DruidStatViewHandler("/druid"));
 	}
 
 	public static void main(String[] args) {
