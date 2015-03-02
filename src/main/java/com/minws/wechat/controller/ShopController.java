@@ -53,6 +53,7 @@ public class ShopController extends Controller {
 		String note = getPara("userData[4][value]", "");
 		if (StringKit.isNotBlank(uid)) {
 			ShopOrder.dao.addOrderByUid(uid, totalPrice, note, payStyle, cartData, username, phone, address);
+			renderNull();
 		} else {
 			renderText("uid is empty!");
 		}

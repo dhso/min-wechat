@@ -52,26 +52,27 @@ $(document).ready(function () {
 					var json = eval(response); 
 					var html = '';
 					var order_status = '';
+					var pay_status = '';
 					
 					$.each(json, function (index, value) {
 						var pay = '';
 						var order = '';
-						if (value.order_status == '0'){
+						if (value.ORDER_STATUS == '0'){
 							order_status = 'no';
 							order = '未发货';
-						}else if ( value.order_status == '1'){
+						}else if ( value.ORDER_STATUS == '1'){
 							order_status = 'ok';
 							order = '已发货';
 						}
 						
-						if (value.pay_status == '0'){
+						if (value.PAY_STATUS == '0'){
 							pay_status = 'no';
 							pay = '未支付';
-						}else if ( value.pay_status == '1'){
+						}else if ( value.PAY_STATUS == '1'){
 							pay_status = 'ok';
 							pay = '已支付';
 						}
-						html += '<tr><td>'+value.orderid+'</td><td class="cc">'+value.totalprice+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+						html += '<tr><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
 					});
 					$('#orderlistinsert').empty();
 					$('#orderlistinsert').append( html );					
@@ -218,26 +219,27 @@ function submitOrder () {
 						var json = eval(response); 
 						var html = '';
 						var order_status = '';
+						var pay_status = '';
 						
 						$.each(json, function (index, value) {
 							var pay = '';
 							var order = '';
-							if (value.order_status == '0'){
+							if (value.ORDER_STATUS == '0'){
 								order_status = 'no';
 								order = '未发货';
-							}else if ( value.order_status == '1'){
+							}else if ( value.ORDER_STATUS == '1'){
 								order_status = 'ok';
 								order = '已发货';
 							}
 							
-							if (value.pay_status == '0'){
+							if (value.PAY_STATUS == '0'){
 								pay_status = 'no';
 								pay = '未支付';
-							}else if ( value.pay_status == '1'){
+							}else if ( value.PAY_STATUS == '1'){
 								pay_status = 'ok';
 								pay = '已支付';
 							}
-							html += '<tr><td>'+value.orderid+'</td><td class="cc">'+value.totalprice+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+							html += '<tr><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
 						});
 						$('#orderlistinsert').empty();
 						$('#orderlistinsert').append( html );
