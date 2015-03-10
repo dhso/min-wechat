@@ -272,3 +272,42 @@ INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.6.17 - MySQL Community Server (GPL)
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.1.0.4867
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Dumping structure for table tps.customers
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `card_id` bigint(20) DEFAULT '0',
+  `card_status` int(1) NOT NULL DEFAULT '1',
+  `name` varchar(50) NOT NULL DEFAULT '1',
+  `gender` varchar(50) NOT NULL DEFAULT '1',
+  `brithdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `mobile` varchar(20) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `qq` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `identity_card` varchar(20) DEFAULT NULL,
+  `zip_code` varchar(10) DEFAULT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `create_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+

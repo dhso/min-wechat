@@ -28,6 +28,7 @@ import com.jfinal.render.RedirectRender;
 import com.jfinal.render.Render;
 import com.minws.wechat.controller.ApiController;
 import com.minws.wechat.controller.BackController;
+import com.minws.wechat.controller.CustomerController;
 import com.minws.wechat.controller.FrontController;
 import com.minws.wechat.controller.SecurityController;
 import com.minws.wechat.controller.ShopController;
@@ -72,6 +73,7 @@ public class BaseConfig extends JFinalConfig {
 		rs.add("/security", SecurityController.class, "/security");
 		rs.add("/front", FrontController.class, "/front");
 		rs.add("/shop", ShopController.class, "/shop");
+		rs.add("/customer", CustomerController.class, "/customer");
 		rs.add("/back", BackController.class, "/back");
 		rs.add("/alipay", AlipayController.class, "/alipay");
 	}

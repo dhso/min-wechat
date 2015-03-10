@@ -14,7 +14,7 @@
 	</div>
 	<div title="业务管理" data-options="selected:true,iconCls:'icon-th'" style="padding: 10px;">
 		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-hand-right'">订单管理</a></p>
-		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-hand-right'">客户管理</a></p>
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-hand-right'" onclick="addTabPanel('#mainTabContain','新建客户','${baseUrl}/customer/newCustomer',false)">新建客户</a></p>
 		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-hand-right'">套餐管理</a></p>
 		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-hand-right'" onclick="addTabPanel('#mainTabContain','新闻管理','articleManage',false)">新闻管理</a></p>
 	</div>
