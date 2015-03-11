@@ -1,5 +1,41 @@
 <div style="margin: 10px">
-	<div class="easyui-panel" style="padding:5px;">
-        <a href="#" class="easyui-linkbutton" data-options="plain:true"><i class="add user icon"></i>新建客户</a>
-    </div>
+	<div class="easyui-panel" style="padding: 5px;">
+		<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'fa fa-user-plus'" onclick="$('#newCustomerWindow').window('open')">新建客户</a>
+	</div>
+	<div id="newCustomerWindow" class="easyui-window" title="新建客户" data-options="modal:true,closed:true,iconCls:'fa fa-user-plus'" style="width: 800px; height: 600px; padding: 10px;">
+		<div class="ui warning form segment">
+			<div class="ui warning message">
+				<div class="header">Could you check something!</div>
+				<ul class="list">
+					<li>You forgot your <b>first name</b></li>
+					<li>And also your <b>last name</b></li>
+				</ul>
+			</div>
+			<div class="two error fields">
+				<div class="field">
+					<label>First Name</label> <input placeholder="First Name"
+						type="text">
+					<div class="ui red pointing above ui label">Enter a first
+						name</div>
+				</div>
+				<div class="field">
+					<label>Last Name</label> <input placeholder="Last Name" type="text">
+					<div class="ui red pointing above ui label">Enter a last name</div>
+				</div>
+			</div>
+			<div class="field">
+				<label>Username</label> <input placeholder="Username" type="text">
+			</div>
+			<div class="field">
+				<label>Password</label> <input type="password">
+			</div>
+			<div class="inline field">
+				<div class="ui checkbox">
+					<input type="checkbox"> <label>I agree to the Terms
+						and Conditions</label>
+				</div>
+			</div>
+			<div class="ui blue submit button">Submit</div>
+		</div>
+	</div>
 </div>

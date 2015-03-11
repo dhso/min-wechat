@@ -36,7 +36,7 @@ function changeThemeFun(themeName) {
 		}
 	$('#chooseThemeMenu').menu('setIcon', {
 		target : $('#chooseThemeMenu div[title=' + themeName + ']')[0],
-		iconCls : 'icon-ok'
+		iconCls : 'fa fa-check'
 	});
 	var $easyuiTheme = $('#easyuiThemeLink');
 	var url = $easyuiTheme.attr('href');
