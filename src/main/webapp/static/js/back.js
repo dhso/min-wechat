@@ -19,6 +19,15 @@ $(document).ready(function() {
 			}
 		}
 	});
+	//初始化主题选择
+	var easyuiThemeName = $.cookie('easyuiThemeName');
+	if (!easyuiThemeName){
+		easyuiThemeName = 'default';
+	}
+	$('#chooseThemeMenu').menu('setIcon', {
+		target : $('#chooseThemeMenu div[title=' + easyuiThemeName + ']')[0],
+		iconCls : 'fa fa-check'
+	});
 });
 
 /**
@@ -32,16 +41,21 @@ function changeThemeFun(themeName) {
 		$('#chooseThemeMenu').menu('setIcon', {
 			target : $('#chooseThemeMenu div[title=' + $.cookie('easyuiThemeName') + ']')[0],
 			iconCls : 'emptyIcon'
-			});
-		}
+		});
+	}else{
+		$('#chooseThemeMenu').menu('setIcon', {
+			target : $('#chooseThemeMenu div[title="default"]')[0],
+			iconCls : 'emptyIcon'
+		});
+	}
 	$('#chooseThemeMenu').menu('setIcon', {
 		target : $('#chooseThemeMenu div[title=' + themeName + ']')[0],
 		iconCls : 'fa fa-check'
 	});
-	var $easyuiTheme = $('#easyuiThemeLink');
-	var url = $easyuiTheme.attr('href');
+	var easyuiTheme = $('#easyuiThemeLink');
+	var url = easyuiTheme.attr('href');
 	var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
-	$easyuiTheme.attr('href', href);
+	easyuiTheme.attr('href', href);
 	$.cookie('easyuiThemeName', themeName, {
 		expires : 7
 	});
