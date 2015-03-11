@@ -35,17 +35,25 @@ body {
 	height: 40px;
 }
 /* 布局-顶部 */
-.layer-top div{
-	height: 60px;
-	margin: 10px 0 5px 0;
-}
-.layer-top div.logo{
+.logo-div{
+	height: 78px;
 	margin-left: 30px;
 	background-image: url("../img/logo.png");
 	background-repeat: no-repeat ;
 	background-size: contain;
 }
-
+.settings-div{
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+	right: 10px;
+}
+.loginInfo-div{
+	position: absolute;
+	top: 10px;
+	margin: 0;
+	right: 10px;
+}
 /* 套餐packages */
 .packages li{
 	width: 300px!important;
