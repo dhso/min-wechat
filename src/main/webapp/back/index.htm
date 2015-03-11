@@ -6,27 +6,26 @@
 </head>
 <body>
 	<div class="easyui-layout"  data-options="fit:true,border:true">
-        <div data-options="region:'north'" style="height:80px;">
-        	<div class="row layer-top">
-				<div class="span4 logo"></div>
-				<div class="span4"></div>
-				<div class="span4 t-right f-right" style="margin-right:5px;">
-				<span>亲爱的 <@shiro.principal/><@shiro.hasRole name="admin"> (管理员)</@shiro.hasRole> 你好!</span>
-				<p class="blank-split"></p>
-				<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#chooseThemeMenu',iconCls:'icon-cog'">更换皮肤</a>
-				<div id="chooseThemeMenu" style="width:88px!important; display: none;">
-					<div onclick="changeThemeFun('default');" title="default">default</div>
-					<div onclick="changeThemeFun('gray');" title="gray">gray</div>
-					<div onclick="changeThemeFun('metro');" title="metro">metro</div>
-					<div onclick="changeThemeFun('bootstrap');" title="bootstrap">bootstrap</div>
-					<div onclick="changeThemeFun('black');" title="black">black</div>
+        <div data-options="region:'north'" style="height:80px">
+        	<div class="ui grid" style="width:100%">
+				<div class="left floated wide column" style="width:240px;">
+					<div class="logo"> </div>
 				</div>
-				<@shiro.authenticated><a href="${baseUrl}/security/signout" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-off'">退出</a>	</@shiro.authenticated>
-				<@shiro.notAuthenticated><a href="${baseUrl}/security/signin" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-off'">登录</a></@shiro.notAuthenticated>
+				<div class="right floated wide column" style="width:240px;">
+					<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#chooseThemeMenu'"><i class="setting icon"></i>更换皮肤</a>
+					<div id="chooseThemeMenu" style="width:88px!important; display: none;">
+						<div onclick="changeThemeFun('default');" title="default">default</div>
+						<div onclick="changeThemeFun('gray');" title="gray">gray</div>
+						<div onclick="changeThemeFun('metro');" title="metro">metro</div>
+						<div onclick="changeThemeFun('bootstrap');" title="bootstrap">bootstrap</div>
+						<div onclick="changeThemeFun('black');" title="black">black</div>
+					</div>
+					<@shiro.authenticated><a href="${baseUrl}/security/signout" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-off'">退出</a>	</@shiro.authenticated>
+					<@shiro.notAuthenticated><a href="${baseUrl}/security/signin" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-off'">登录</a></@shiro.notAuthenticated>
+			    	<p style="padding-top: 20px;">亲爱的 <@shiro.principal/><@shiro.hasRole name="admin"> (管理员)</@shiro.hasRole> 你好!</p>
 				</div>
 			</div>
 		</div>
-        
         <div data-options="region:'west',split:false" title="功能菜单" style="width:120px;">
             <#include "common/menu.htm" encoding="UTF-8">
         </div>

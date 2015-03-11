@@ -61,34 +61,45 @@ function formatDay(date){
     }
     return d;
 }
+//处理提示
+function showProgress(title, text){
+	parent.$.messager.progress({
+		title : title,
+		text : text
+	});
+}
+function closeProgress(){
+	parent.$.messager.progress('close');
+}
+
 //添加tabPanel
-function addTabPanel(contain,title,href,reload){
+function addTabPanel(contain,title,href){
+	showProgress('提示','正在处理中，请耐心等待...');
 	var existTabPanel = $(contain).tabs('exists',title);
 	if(existTabPanel){
-		$(contain).tabs('select',title);
-		if(reload){
-			if(href && href.indexOf('http') == 0){
-				
-			}else{
-				$(contain).tabs('getSelected').panel('refresh', href);
-			}
-		}
+		$(contain).tabs('close',title);
+	}
+	if(href && href.indexOf('http') == 0){
+		$(contain).tabs('add',{
+	        title: title,
+	        content: '<iframe src="' + href + '" frameborder="0" style="border:0;width:100%;height:98%;" security="restricted" sandbox="" ></iframe>',
+	        closable: true,
+	        onLoad:function(){
+	        	closeProgress();
+	        }
+	    });
 	}else{
-		if(href && href.indexOf('http') == 0){
-			$(contain).tabs('add',{
-		        title: title,
-		        content: '<iframe src="' + href + '" frameborder="0" style="border:0;width:100%;height:98%;" security="restricted" sandbox="" ></iframe>',
-		        closable: true
-		    });
-		}else{
-			$(contain).tabs('add',{
-		        title: title,
-		        href: href,
-		        closable: true
-		    });
-		}
+		$(contain).tabs('add',{
+	        title: title,
+	        href: href,
+	        closable: true,
+	        onLoad:function(){
+	        	closeProgress();
+	        }
+	    });
 	}
 }
+
 //删除tabPanel
 function removeTabPanel(contain){
     var tab = $(contain).tabs('getSelected');

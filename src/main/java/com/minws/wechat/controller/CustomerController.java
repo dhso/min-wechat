@@ -13,8 +13,8 @@ import com.minws.wechat.validator.CustomerValidator;
 public class CustomerController extends Controller {
 
 	@RequiresRoles("admin")
-	public void listAll() {
-
+	public void index() {
+		render("manageCustomer.htm");
 	}
 
 	/**
