@@ -33,6 +33,6 @@ public class Customer extends Model<Customer> {
 	 * @param address
 	 */
 	public boolean newCustomer(String card_id, String name, String gender, Date brithdate, String mobile, String telephone, String qq, String email, String identity_card, String zip_code, String address) {
-		return Customer.dao.set("card_id", card_id).set("name", name).set("gender", gender).set("brithdate", brithdate).set("mobile", mobile).set("telephone", telephone).set("qq", qq).set("email", email).set("identity_card", identity_card).set("zip_code", zip_code).set("address", address).save();
+		return Customer.dao.set("card_id", card_id).set("name", name).set("gender", gender).set("brithdate", brithdate).set("mobile", mobile).set("telephone", telephone).set("qq", qq).set("email", email).set("identity_card", identity_card).set("zip_code", zip_code).set("address", address).set("create_dt", new Date()).save();
 	}
 }

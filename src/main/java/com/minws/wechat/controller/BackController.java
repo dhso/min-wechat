@@ -11,7 +11,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.CacheName;
-import com.minws.wechat.entity.ErrorMsg;
+import com.minws.wechat.entity.Message;
 import com.minws.wechat.entity.WechatMenu;
 import com.minws.wechat.frame.sdk.wechat.api.MenuApi;
 import com.minws.wechat.model.Config;
@@ -66,9 +66,9 @@ public class BackController extends Controller {
 			String newMenuJson = getPara("newMenuJson", "");
 			if (Config.dao.updateValueByKey("wechat_menu", newMenuJson)) {
 				MenuApi.createMenu(newMenuJson);
-				setAttr("errorMsg", new ErrorMsg("alert-success", "菜单更新成功！"));
+				setAttr("errorMsg", new Message("200", "alert-success", "菜单更新成功！"));
 			} else {
-				setAttr("errorMsg", new ErrorMsg("alert-error", "菜单更新失败！"));
+				setAttr("errorMsg", new Message("200", "alert-error", "菜单更新失败！"));
 			}
 		}
 		String wechatMenuJson = Config.dao.getValueByKey("wechat_menu");

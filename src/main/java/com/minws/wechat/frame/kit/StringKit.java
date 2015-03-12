@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -12,11 +15,28 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * 字符串工具类, 继承org.apache.commons.lang3.StringUtils类
  * 
  */
 public class StringKit extends org.apache.commons.lang3.StringUtils {
+
+	/**
+	 * "yyyy-MM-dd"
+	 */
+	public final static String DateType1 = "yyyy-MM-dd";
+	/**
+	 * "yyyy-MM-dd HH:mm:ss"
+	 */
+	public final static String DateType2 = "yyyy-MM-dd HH:mm:ss";
+	/**
+	 * 邮箱地址正则
+	 */
+	public final static String emailAddressPattern = "\\b(^['_A-Za-z0-9-]+(\\.['_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
 
 	public static String lowerFirst(String str) {
 		if (StringKit.isBlank(str)) {
@@ -135,6 +155,23 @@ public class StringKit extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
+	 * 转换为Date类型
+	 * 
+	 * @param val
+	 * @param DateType
+	 * @return
+	 * @throws ParseException
+	 */
+	public static Date toDate(Object val, String DateType) throws ParseException {
+		Date date = null;
+		if (null != val && StringKit.isNotEmpty(val.toString())) {
+			SimpleDateFormat sdf = new SimpleDateFormat(DateType);
+			date = sdf.parse(val.toString());
+		}
+		return date;
+	}
+
+	/**
 	 * InputStream转String类型
 	 * 
 	 * @param is
@@ -199,4 +236,35 @@ public class StringKit extends org.apache.commons.lang3.StringUtils {
 		return result;
 	}
 
+	/**
+	 * 正则校验
+	 * 
+	 * @param resource
+	 * @param pattern
+	 * @return
+	 */
+	public static boolean validator(String resource, String pattern) {
+		Pattern pat = Pattern.compile(pattern);
+		Matcher mat = pat.matcher(resource);
+		if (mat.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * 
+	 * @param is
+	 * @return
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonParseException
+	 */
+	@SuppressWarnings("unchecked")
+	public static Map<String, String> convertStreamToJsonMap(InputStream is) throws JsonParseException, JsonMappingException, IOException {
+		String jsonStr = convertStreamToString(is);
+		Map<String, String> maps = new ObjectMapper().readValue(jsonStr, Map.class);
+		return maps;
+	}
 }

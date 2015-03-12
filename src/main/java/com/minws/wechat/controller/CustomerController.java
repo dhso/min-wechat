@@ -1,14 +1,18 @@
 package com.minws.wechat.controller;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
 
-import com.jfinal.aop.Before;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.jfinal.core.Controller;
-import com.minws.wechat.entity.ErrorMsg;
+import com.minws.wechat.entity.Message;
+import com.minws.wechat.frame.kit.StringKit;
 import com.minws.wechat.model.customer.Customer;
-import com.minws.wechat.validator.CustomerValidator;
 
 public class CustomerController extends Controller {
 
@@ -19,25 +23,34 @@ public class CustomerController extends Controller {
 
 	/**
 	 * 新增客户
+	 * 
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonParseException
+	 * @throws ParseException
 	 */
 	@RequiresRoles("admin")
-	@Before(CustomerValidator.class)
-	public void newCustomer() {
-		String card_id = getPara("card_id");
-		String name = getPara("name");
-		String gender = getPara("gender", "1");
-		Date brithdate = getParaToDate("brithdate");
-		String mobile = getPara("mobile", "");
-		String telephone = getPara("telephone", "");
-		String qq = getPara("qq", "");
-		String email = getPara("email", "");
-		String identity_card = getPara("identity_card", "");
-		String zip_code = getPara("zip_code", "");
-		String address = getPara("address", "");
+	public void newCustomer() throws JsonParseException, JsonMappingException, IOException, ParseException {
+		Map<String, String> map = StringKit.convertStreamToJsonMap(getRequest().getInputStream());
+		String card_id = map.get("card_id");
+		String name = map.get("name");
+		String gender = map.get("gender");
+		Date brithdate = StringKit.toDate(map.get("birthdate"), StringKit.DateType1);
+		String mobile = map.get("mobile");
+		String telephone = map.get("telephone");
+		String qq = map.get("qq");
+		String email = map.get("email");
+		if (!StringKit.validator(email, StringKit.emailAddressPattern)) {
+			renderJson(new Message("500", "error", "邮箱地址不正确！"));
+			return;
+		}
+		String identity_card = map.get("identity_card");
+		String zip_code = map.get("zip_code");
+		String address = map.get("address");
 		if (Customer.dao.newCustomer(card_id, name, gender, brithdate, mobile, telephone, qq, email, identity_card, zip_code, address)) {
-			renderJson(new ErrorMsg("errorMsg", "添加成功！"));
+			renderJson(new Message("200", "success", "添加成功！"));
 		} else {
-			renderJson(new ErrorMsg("errorMsg", "添加失败！"));
+			renderJson(new Message("500", "error", "添加失败！"));
 		}
 	}
 }

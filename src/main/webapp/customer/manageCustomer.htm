@@ -1,86 +1,104 @@
 <div style="margin: 10px">
 	<div class="easyui-panel" style="padding: 5px;">
-		<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'fa fa-user-plus'" onclick="$('#newCustomerWindow').window('open')">新建客户</a>
+		<a href="#" class="easyui-linkbutton"
+			data-options="plain:true,iconCls:'fa fa-user-plus'"
+			onclick="$('#newCustomerWindow').window('open')">新建客户</a>
 	</div>
-	<div id="newCustomerWindow" class="easyui-window" title="新建客户" data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'fa fa-user-plus'" style="width: 800px; padding: 10px;">
+	<div id="newCustomerWindow" class="easyui-window" title="新建客户"
+		data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'fa fa-user-plus'"
+		style="width: 800px; padding: 10px;">
 		<div class="ui warning form segment">
-			<div class="ui warning message">
-				<i class="close icon"></i>
-				<span>信息</span>
+			<div id="message" class="ui hidden message">
+				<i class="close icon"></i><span></span>
 			</div>
 			<form id="newCustomerForm">
 				<div class="three fields">
 					<div class="field">
-						<label>姓名</label>
-						<input placeholder="姓名" type="text" name="name">
+						<label>姓名</label> <input placeholder="姓名" type="text" name="name">
 					</div>
 					<div class="field">
-						<label>性别</label>
-						<select class="ui dropdown" name="gender">
+						<label>性别</label> <select class="ui dropdown" name="gender">
 							<option value="">性别</option>
 							<option value="1">男</option>
 							<option value="0">女</option>
 						</select>
 					</div>
 					<div class="field">
-						<label>生日</label>
-						<input placeholder="生日" type="text" class="Wdate" name="birthdate" onClick="WdatePicker()">
+						<label>生日</label> <input placeholder="生日" type="text"
+							class="Wdate" name="birthdate" onClick="WdatePicker()">
 					</div>
 				</div>
 				<div class="four fields">
 					<div class="field">
-						<label>手机</label>
-						<input placeholder="手机" type="text" name="mobile">
+						<label>手机</label> <input placeholder="手机" type="text"
+							name="mobile">
 					</div>
 					<div class="field">
-						<label>手机</label>
-						<input placeholder="电话" type="text" name="telephone">
+						<label>手机</label> <input placeholder="电话" type="text"
+							name="telephone">
 					</div>
 					<div class="field">
-						<label>邮箱</label>
-						<input placeholder="邮箱" type="text" name="email">
+						<label>邮箱</label> <input placeholder="邮箱" type="text" name="email">
 					</div>
 					<div class="field">
-						<label>手机</label>
-						<input placeholder="QQ" type="text" name="qq">
+						<label>手机</label> <input placeholder="QQ" type="text" name="qq">
 					</div>
 				</div>
-				<div class="two fields">
+				<div class="three fields">
 					<div class="field">
-						<label>身份证</label>
-						<input placeholder="身份证" type="text" name="identity_card">
+						<label>身份证</label> <input placeholder="身份证" type="text"
+							name="identity_card">
 					</div>
 					<div class="field">
-						<label>邮编</label>
-						<input placeholder="邮编" type="text" name="zip_code">
+						<label>卡号</label> <input placeholder="卡号" type="text"
+							name="card_id">
+					</div>
+					<div class="field">
+						<label>邮编</label> <input placeholder="邮编" type="text"
+							name="zip_code">
 					</div>
 				</div>
 				<div class="field">
-					<label>地址</label>
-					<input placeholder="地址" type="text" name="address">
+					<label>地址</label> <input placeholder="地址" type="text"
+						name="address">
 				</div>
 			</form>
 			<div class="blank-split"></div>
-			<div class="ui blue submit button" onclick="submitNewCustomerForm()">提交</div>
+			<div class="ui buttons">
+			  <div class="ui button positive" onclick="submitNewCustomerForm()">保存</div>
+			  <div class="or"></div>
+			  <div class="ui button" onclick="resetNewCustomerForm()">重置</div>
+			</div>
 		</div>
 	</div>
 </div>
 <script>
 	function submitNewCustomerForm(){
 		var jsonData = $("#newCustomerForm").serializeArray();
-		console.log(jsonData);
+		jsonData = serializeArray2Json(jsonData);
+		var strData = JSON.stringify(jsonData);
 		$.ajax({
 			url: "${baseUrl}/customer/newCustomer",
-			dataType: "application/json",
-			data: jsonData,
+			dataType: "json",
+			contentType: "application/json",
+			data: strData,
 			type: "post",
 			async: false,
-			success: function (data) {
-				alert(data);
+			success : function(data) {
+				$("#message").removeClass();
+				$("#message").addClass("ui message visible " + data.msgType);
+				$("#message").find("span").html(data.msgDesc);
 			},
-			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$("#message").removeClass();
+				$("#message").addClass("ui message error visible");
+				$("#message").find("span").html(errorThrown);
 			}
 		});
+	}
+	function resetNewCustomerForm(){
+		$("#newCustomerForm")[0].reset();
+		$("#message").removeClass();
+		$("#message").addClass("ui message hidden")
 	}
 </script>

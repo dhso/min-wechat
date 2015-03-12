@@ -142,3 +142,12 @@ function paginationInit(){
 function prettyPhotoInit(){
 	$("a[rel^='prettyPhoto']").prettyPhoto();
 }
+//serializeArray转json
+function serializeArray2Json(serializeArray){
+	var result = "{";
+	for (var i in serializeArray){  
+		result += "\"" + serializeArray[i]["name"] + "\":\"" + serializeArray[i]["value"] + "\",";
+	}
+	result = result.substring(0, result.length-1) + "}";
+	return JSON.parse(result);
+}
