@@ -1,8 +1,14 @@
 <div style="margin: 10px">
-	<div class="easyui-panel" style="padding: 5px;">
-		<a href="#" class="easyui-linkbutton"
-			data-options="plain:true,iconCls:'fa fa-user-plus'"
-			onclick="$('#newCustomerWindow').window('open')">新建客户</a>
+	<table id="customerDatagrid" class="easyui-datagrid" url="${baseUrl}/customer/listCustomer" title="客户管理" iconCls="fa fa-users" rownumbers="true" pagination="true"  toolbar="#datagridToolbar">
+        <thead>
+            <tr>
+                <th field="NAME" width="80">姓名</th>
+                <th field="EMAIL" width="120">邮箱</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="datagridToolbar" style="padding:2px 5px;">
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'fa fa-user-plus',plain:true" onclick="$('#newCustomerWindow').window('open')">新建客户</a>
 	</div>
 	<div id="newCustomerWindow" class="easyui-window" title="新建客户"
 		data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'fa fa-user-plus'"

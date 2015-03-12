@@ -10,6 +10,8 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
+import com.minws.wechat.entity.DataGrid;
 import com.minws.wechat.entity.Message;
 import com.minws.wechat.frame.kit.StringKit;
 import com.minws.wechat.model.customer.Customer;
@@ -52,5 +54,17 @@ public class CustomerController extends Controller {
 		} else {
 			renderJson(new Message("500", "error", "添加失败！"));
 		}
+	}
+
+	/**
+	 * 分页查询客户
+	 */
+	@RequiresRoles("admin")
+	public void listCustomer() {
+		int pageNumber = getParaToInt("page");
+		int pageSize = getParaToInt("rows");
+		Page<Customer> customerPage = Customer.dao.listCustomer(pageNumber, pageSize);
+		DataGrid DataGrid = new DataGrid(String.valueOf(customerPage.getTotalRow()), customerPage.getList());
+		renderJson(DataGrid);
 	}
 }
