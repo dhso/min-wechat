@@ -67,4 +67,22 @@ public class CustomerController extends Controller {
 		DataGrid DataGrid = new DataGrid(String.valueOf(customerPage.getTotalRow()), customerPage.getList());
 		renderJson(DataGrid);
 	}
+
+	/**
+	 * 根据id删除客户
+	 * 
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@RequiresRoles("admin")
+	public void deleteCustomer() throws JsonParseException, JsonMappingException, IOException {
+		Map<String, String> map = StringKit.convertStreamToJsonMap(getRequest().getInputStream());
+		String id = map.get("id");
+		if (Customer.dao.deleteCustomer(StringKit.toLong(id))) {
+			renderJson(new Message("200", "success", "删除操作成功！"));
+		} else {
+			renderJson(new Message("500", "error", "请选择一行用于删除！"));
+		}
+	}
 }

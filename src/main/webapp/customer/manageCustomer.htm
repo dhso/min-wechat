@@ -1,85 +1,93 @@
 <div style="margin: 10px">
-	<table id="customerDatagrid" class="easyui-datagrid" url="${baseUrl}/customer/listCustomer" title="客户管理" iconCls="fa fa-users" rownumbers="true" pagination="true"  toolbar="#datagridToolbar">
+	<table id="customerDatagrid" class="easyui-datagrid" url="${baseUrl}/customer/listCustomer" title="客户管理" iconCls="fa fa-users" singleSelect="true" rownumbers="true" pagination="true" toolbar="#datagridToolbar">
         <thead>
             <tr>
-                <th field="NAME" width="80">姓名</th>
-                <th field="EMAIL" width="120">邮箱</th>
+            	<th field="ID" width="60" hidden="true">ID</th>
+                <th field="NAME" width="60">姓名</th>
+                <th field="GENDER" formatter="EasyUIFormatter.Gender" width="35" align="center">性别</th>
+                <th field="BRITHDATE" formatter="EasyUIFormatter.Date" width="80">生日</th>
+                <th field="MOBILE" width="90">手机</th>
+                <th field="TELEPHONE" width="90">电话</th>
+                <th field="QQ" width="80">QQ</th>
+                <th field="IDENTITY_CARD" width="150">身份证</th>
+                <th field="ZIP_CODE" width="60">邮编</th>
+                <th field="ADDRESS" width="200">地址</th>
+                <th field="CREATE_DT" width="130">注册日期</th>
             </tr>
         </thead>
     </table>
-    <div id="datagridToolbar" style="padding:2px 5px;">
-		<a href="#" class="easyui-linkbutton" data-options="iconCls:'fa fa-user-plus',plain:true" onclick="$('#newCustomerWindow').window('open')">新建客户</a>
+    <div id="datagridToolbar" style="padding:8px 5px;">
+		<a href="#" class="easyui-linkbutton" data-options="" onclick="$('#newCustomerWindow').window('open');resetNewCustomerForm();"><i class="fa fa-user-plus" style="color:green;"></i> 新建客户</a>
+		<a href="#" class="easyui-linkbutton" data-options="" onclick="alert(1);"><i class="fa fa-refresh" style="color:blue;"></i> 更新客户</a>
+		<a href="#" class="easyui-linkbutton" data-options="" onclick="deleteCustomer()"><i class="fa fa-user-times" style="color:red;"></i> 删除客户</a>
 	</div>
-	<div id="newCustomerWindow" class="easyui-window" title="新建客户"
-		data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'fa fa-user-plus'"
-		style="width: 800px; padding: 10px;">
-		<div class="ui warning form segment">
-			<div id="message" class="ui hidden message">
-				<i class="close icon"></i><span></span>
-			</div>
-			<form id="newCustomerForm">
-				<div class="three fields">
-					<div class="field">
-						<label>姓名</label> <input placeholder="姓名" type="text" name="name">
-					</div>
-					<div class="field">
-						<label>性别</label> <select class="ui dropdown" name="gender">
-							<option value="">性别</option>
-							<option value="1">男</option>
-							<option value="0">女</option>
-						</select>
-					</div>
-					<div class="field">
-						<label>生日</label> <input placeholder="生日" type="text"
-							class="Wdate" name="birthdate" onClick="WdatePicker()">
-					</div>
-				</div>
-				<div class="four fields">
-					<div class="field">
-						<label>手机</label> <input placeholder="手机" type="text"
-							name="mobile">
-					</div>
-					<div class="field">
-						<label>手机</label> <input placeholder="电话" type="text"
-							name="telephone">
-					</div>
-					<div class="field">
-						<label>邮箱</label> <input placeholder="邮箱" type="text" name="email">
-					</div>
-					<div class="field">
-						<label>手机</label> <input placeholder="QQ" type="text" name="qq">
-					</div>
-				</div>
-				<div class="three fields">
-					<div class="field">
-						<label>身份证</label> <input placeholder="身份证" type="text"
-							name="identity_card">
-					</div>
-					<div class="field">
-						<label>卡号</label> <input placeholder="卡号" type="text"
-							name="card_id">
-					</div>
-					<div class="field">
-						<label>邮编</label> <input placeholder="邮编" type="text"
-							name="zip_code">
-					</div>
+	<div id="newCustomerWindow" class="easyui-window" title="新建客户" data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'fa fa-user-plus'" style="width: 800px; padding: 10px;">
+		<div id="message" class="ui hidden message">
+			<i class="close icon"></i><span></span>
+		</div>
+		<form id="newCustomerForm" class="ui form segment">
+			<div class="three fields">
+				<div class="field">
+					<label>姓名</label> <input placeholder="姓名" type="text" name="name">
 				</div>
 				<div class="field">
-					<label>地址</label> <input placeholder="地址" type="text"
-						name="address">
+					<label>性别</label> <select class="ui dropdown" name="gender">
+						<option value="">性别</option>
+						<option value="1">男</option>
+						<option value="2">女</option>
+					</select>
 				</div>
-			</form>
+				<div class="field">
+					<label>生日</label> <input placeholder="生日" type="text"
+						class="Wdate" name="birthdate" onClick="WdatePicker()">
+				</div>
+			</div>
+			<div class="four fields">
+				<div class="field">
+					<label>手机</label> <input placeholder="手机" type="text"
+						name="mobile">
+				</div>
+				<div class="field">
+					<label>电话</label> <input placeholder="电话" type="text"
+						name="telephone">
+				</div>
+				<div class="field">
+					<label>邮箱</label> <input placeholder="邮箱" type="text" name="email">
+				</div>
+				<div class="field">
+					<label>QQ</label> <input placeholder="QQ" type="text" name="qq">
+				</div>
+			</div>
+			<div class="three fields">
+				<div class="field">
+					<label>身份证</label> <input placeholder="身份证" type="text"
+						name="identity_card">
+				</div>
+				<div class="field">
+					<label>卡号</label> <input placeholder="卡号" type="text"
+						name="card_id">
+				</div>
+				<div class="field">
+					<label>邮编</label> <input placeholder="邮编" type="text"
+						name="zip_code">
+				</div>
+			</div>
+			<div class="field">
+				<label>地址</label> <input placeholder="地址" type="text"
+					name="address">
+			</div>
 			<div class="blank-split"></div>
 			<div class="ui buttons">
-			  <div class="ui button positive" onclick="submitNewCustomerForm()">保存</div>
+			  <div class="ui button submit positive">保存</div>
 			  <div class="or"></div>
 			  <div class="ui button" onclick="resetNewCustomerForm()">重置</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </div>
 <script>
 	function submitNewCustomerForm(){
+		$("#newCustomerForm").addClass("loading");
 		var jsonData = $("#newCustomerForm").serializeArray();
 		jsonData = serializeArray2Json(jsonData);
 		var strData = JSON.stringify(jsonData);
@@ -94,17 +102,174 @@
 				$("#message").removeClass();
 				$("#message").addClass("ui message visible " + data.msgType);
 				$("#message").find("span").html(data.msgDesc);
+				if(data && data.msgType == "success"){
+					message_fade('提示',data.msgDesc,8000);
+					$('#customerDatagrid').datagrid('getPager').pagination('select');
+					$('#newCustomerWindow').window('close');
+				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				$("#message").removeClass();
 				$("#message").addClass("ui message error visible");
 				$("#message").find("span").html(errorThrown);
+			},
+			complete : function(XMLHttpRequet, textStatus) {
+				$("#newCustomerForm").removeClass("loading");
 			}
 		});
 	}
 	function resetNewCustomerForm(){
 		$("#newCustomerForm")[0].reset();
 		$("#message").removeClass();
-		$("#message").addClass("ui message hidden")
+		$("#message").addClass("ui message hidden");
+		$("#newCustomerForm").removeClass("loading");
+	}
+	$.getCachedScript("${baseUrl}/static/semantic/components/form.js").done(function() {
+		$('#newCustomerForm').form.settings.onSuccess = function() {
+			submitNewCustomerForm();
+		    return false;
+		}
+		$('#newCustomerForm').form({
+		   name: {
+		     identifier  : 'name',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请输入姓名'
+		       }
+		     ]
+		   },
+		   gender: {
+		     identifier  : 'gender',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请选择性别'
+		       }
+		     ]
+		   },
+		   birthdate: {
+		     identifier  : 'birthdate',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请选择生日'
+		       }
+		     ]
+		   },
+		   mobile: {
+		     identifier  : 'mobile',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请输入手机号码'
+		       }
+		     ]
+		   },
+		   telephone: {
+		     identifier  : 'telephone',
+		     optional   : true,
+		     rules: [
+		       {
+		         type   : 'integer',
+		         prompt : '请输入正确的电话号码'
+		       }
+		     ]
+		   },
+		   email: {
+		     identifier  : 'email',
+		     optional   : true,
+		     rules: [
+		       {
+		         type   : 'email',
+		         prompt : '请输入正确的邮箱'
+		       }
+		     ]
+		   },
+		   qq: {
+		     identifier  : 'qq',
+		     optional   : true,
+		     rules: [
+		       {
+		         type   : 'integer',
+		         prompt : '请输入正确的QQ号码'
+		       }
+		     ]
+		   },
+		   identity_card: {
+		     identifier  : 'identity_card',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请输入身份证号码'
+		       },
+		       {
+		         type   : 'integer',
+		         prompt : '请输入正确的身份证号码'
+		       }
+		     ]
+		   },
+		   card_id: {
+		     identifier  : 'card_id',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请输入卡号'
+		       },
+		       {
+		         type   : 'integer',
+		         prompt : '请输入正确的卡号'
+		       }
+		     ]
+		   },
+		   zip_code: {
+		     identifier  : 'zip_code',
+		     optional   : true,
+		     rules: [
+		       {
+		         type   : 'integer',
+		         prompt : '请输入正确的邮编号码'
+		       }
+		     ]
+		   },
+		   address: {
+		     identifier  : 'address',
+		     rules: [
+		       {
+		         type   : 'empty',
+		         prompt : '请输入地址'
+		       }
+		     ]
+		   }
+		 })
+	})
+	
+	function deleteCustomer(){
+		var row = $('#customerDatagrid').datagrid('getSelected');
+        if (row){
+        	$.messager.confirm('提示', '确认删除所选行？', function(r){
+       	        if (r){
+       	        	$.ajax({
+       	    			url: "${baseUrl}/customer/deleteCustomer",
+       	    			dataType: "json",
+       	    			contentType: "application/json",
+       	    			data: '{"id":"'+row.ID+'"}',
+       	    			type: "post",
+       	    			async: false,
+       	    			success : function(data) {
+       	    				message_fade('提示',data.msgDesc,8000);
+       	    				$('#customerDatagrid').datagrid('getPager').pagination('select');
+       	    			},
+       	    			error : function(XMLHttpRequest, textStatus, errorThrown) {
+       	    				message_fade('提示',errorThrown,8000);
+       	    			},
+       	    			complete : function(XMLHttpRequet, textStatus) {
+       	    			}
+       	    		});
+       	        }
+       	    });
+        }else{
+        	$.messager.alert('提示','请选择一行用于删除!');
+        }
 	}
 </script>

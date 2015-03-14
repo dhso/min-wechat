@@ -87,21 +87,19 @@ function closeProgress(){
 }
 
 //添加tabPanel
-function addTabPanel(contain,title,href){
+function addTabPanel(contain,title,href,ifr){
 	showProgress('提示','正在处理中，请耐心等待...');
 	var existTabPanel = $(contain).tabs('exists',title);
 	if(existTabPanel){
 		$(contain).tabs('close',title);
 	}
-	if(href && href.indexOf('http') == 0){
+	if(ifr){
 		$(contain).tabs('add',{
 	        title: title,
-	        content: '<iframe src="' + href + '" frameborder="0" style="border:0;width:100%;height:98%;" security="restricted" sandbox="" ></iframe>',
-	        closable: true,
-	        onLoad:function(){
-	        	closeProgress();
-	        }
+	        content: '<iframe src="' + href + '" frameborder="0" style="border:0;width:100%;height:99%;padding-top:10px;" seamless="seamless" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation" ></iframe>',
+	        closable: true
 	    });
+		setTimeout("closeProgress()", 1000);
 	}else{
 		$(contain).tabs('add',{
 	        title: title,
@@ -150,4 +148,51 @@ function serializeArray2Json(serializeArray){
 	}
 	result = result.substring(0, result.length-1) + "}";
 	return JSON.parse(result);
+}
+//带缓存的getScript
+jQuery.getCachedScript = function(url, options) {
+	  options = $.extend(options || {}, {
+	    dataType: "script",
+	    cache: true,
+	    url: url
+	  });
+	  return jQuery.ajax(options);
+}
+//easyui的DataGrid格式化
+var EasyUIFormatter = {
+    //EasyUI用DataGrid用日期格式化
+    Date: function (value,row,index) {
+    	var str = value.split(' ')[0].replace(/-/g, '/');
+    	var date;
+    	if(str){
+    		date = new Date(str);
+    	}
+    	var val = "";
+        if (date && date.getFullYear() >= 1900) {
+        	var year = date.getFullYear();  
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;  
+            var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        	val = year + "-" + month +"-" + day;
+        }
+        return val;
+    },
+    Gender: function (value,row,index) {
+    	var val = "";
+        if(value && value == "1"){
+        	val = "男";
+        }else if(value && value == "2"){
+        	val = "女";
+        }
+        return val;
+    }
+    
+};
+//easyui消息提示
+function message_fade(title,msg,timeout){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:timeout,
+        showType:'fade'
+    });
 }
