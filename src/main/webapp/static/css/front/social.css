@@ -1,0 +1,72 @@
+/* Vars ----------------------------------------------------*//* Mixins ----------------------------------------------------*/#social-bar {
+  display: block;
+  float: right;
+  margin-right: 30px;
+  margin-top: 62px;
+  position: relative;
+}
+#social-bar li {
+  display: block;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  width: 32px;
+  height: 32px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  -moz-border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px;
+  border-radius: 40px 40px 40px 40px;
+}
+#social-bar li a {
+  position: absolute;
+  height: 66px;
+  width: 32px;
+  top: 0;
+  left: 0px;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+#social-bar li a:hover {
+  top: -32px;
+}
+#social-bar .dribbble a {
+  background-image: url('../../img/front/social/dribbble.png');
+}
+#social-bar .facebook a {
+  background-image: url('../../img/front/social/facebook.png');
+}
+#social-bar .flickr a {
+  background-image: url('../../img/front/social/flickr.png');
+}
+#social-bar .github a {
+  background-image: url('../../img/front/social/github.png');
+}
+#social-bar .googleplus a {
+  background-image: url('../../img/front/social/googleplus.png');
+}
+#social-bar .lastfm a {
+  background-image: url('../../img/front/social/lastfm.png');
+}
+#social-bar .linkedin a {
+  background-image: url('../../img/front/social/linkedin.png');
+}
+#social-bar .rss a {
+  background-image: url('../../img/front/social/rss.png');
+}
+#social-bar .twitter a {
+  background-image: url('../../img/front/social/twitter.png');
+}
+#social-bar .tumblr a {
+  background-image: url('../../img/front/social/tumblr.png');
+}
+#social-bar .vimeo a {
+  background-image: url('../../img/front/social/vimeo.png');
+}
+#social-bar .youtube a {
+  background-image: url('../../img/front/social/youtube.png');
+}

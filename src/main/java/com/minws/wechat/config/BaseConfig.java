@@ -30,6 +30,7 @@ import com.minws.wechat.controller.ApiController;
 import com.minws.wechat.controller.BackController;
 import com.minws.wechat.controller.CustomerController;
 import com.minws.wechat.controller.FrontController;
+import com.minws.wechat.controller.MainController;
 import com.minws.wechat.controller.SecurityController;
 import com.minws.wechat.controller.ShopController;
 import com.minws.wechat.controller.WechatController;
@@ -67,7 +68,7 @@ public class BaseConfig extends JFinalConfig {
 	@Override
 	public void configRoute(Routes rs) {
 		this.routes = rs;
-
+		rs.add("/", MainController.class);
 		rs.add("/wechat", WechatController.class);
 		rs.add("/api", ApiController.class);
 		rs.add("/security", SecurityController.class, "/security");
