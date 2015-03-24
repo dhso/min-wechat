@@ -1,3 +1,4 @@
+<#assign head_title = "博客">
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -5,45 +6,26 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-<head><#include "common/head.htm" encoding="UTF-8">
+<head>
+<#include "common/head.htm" encoding="UTF-8">
 </head>
 <body>
-
-
 	<!-- WRAPPER -->
 	<div class="wrapper">
-
 		<!-- HEADER -->
-		<header class="cf">
-			<div id="logo">
-				<a href="index.html"><img
-					src="${baseUrl}/static/img/front/logo.png" alt="Madison Template" /></a>
-			</div>
-
-			<!-- social-bar -->
-			<ul id="social-bar" class="cf">
-
-				<li class="dribbble"><a href="#" title="Dribbble"></a></li>
-				<li class="facebook"><a href="#" title="Facebook"></a></li>
-				<li class="googleplus"><a href="#" title="googleplus"></a></li>
-				<li class="twitter"><a href="#" title="twitter"></a></li>
-			</ul>
-			<!-- ENDS social-bar -->
-
-		</header>
+		<#include "common/header.htm" encoding="UTF-8">
 		<!-- ENDS HEADER -->
 		<!-- NAV -->
 		<#include "common/nav.htm" encoding="UTF-8">
 		<!-- ENDS NAV -->
 		<!-- MAIN -->
 		<div id="main" class="cf">
-
 			<!-- posts list -->
 			<div id="posts-list" class="cf">
 
 				<article class="cf">
 					<div class="feature-image">
-						<a href="single.html"><img
+						<a href="single"><img
 							src="${baseUrl}/static/img/front/dummies/620x450-a.jpg"
 							alt="Thumbnail" /></a>
 					</div>
@@ -288,26 +270,8 @@
 
 	</div>
 	<!-- ENDS WRAPPER -->
-
-	<!-- JS -->
-	<script src="${baseUrl}/static/js/front/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="${baseUrl}/static/js/front/jquery.js"><\/script>')</script>
-	<script src="${baseUrl}/static/js/front/custom.js"></script>
-
-	<!-- superfish -->
-	<script
-		src="${baseUrl}/static/js/front/superfish-1.4.8/js/hoverIntent.js"></script>
-	<script
-		src="${baseUrl}/static/js/front/superfish-1.4.8/js/superfish.js"></script>
-	<script
-		src="${baseUrl}/static/js/front/superfish-1.4.8/js/supersubs.js"></script>
-	<!-- ENDS superfish -->
-
-	<script src="${baseUrl}/static/js/front/css3-mediaqueries.js"></script>
-
-	<script src="${baseUrl}/static/js/front/nivoslider.js"></script>
-	<script src="${baseUrl}/static/js/front/tabs.js"></script>
-
-	<!-- ENDS JS -->
+	<!-- FOOT -->
+	<#include "common/foot.htm" encoding="UTF-8">
+	<!-- ENDS FOOT -->
 </body>
 </html>

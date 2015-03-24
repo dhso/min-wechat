@@ -78,4 +78,12 @@ public class BackController extends Controller {
 		render("manageWechatMenu.htm");
 	}
 
+	/**
+	 * 前端博客管理
+	 */
+	public void frontBlogManage() {
+		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {
+		}
+		render("front/frontBlogManage.htm");
+	}
 }

@@ -18,6 +18,9 @@
 		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'fa fa-angle-double-right'">套餐管理</a></p>
 		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'fa fa-angle-double-right'" onclick="addTabPanel('#mainTabContain','新闻管理','articleManage',false)">新闻管理</a></p>
 	</div>
+	<div title="前台管理" data-options="selected:true,iconCls:'fa fa-th-large'" style="padding: 10px;">
+		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'fa fa-angle-double-right'" onclick="addTabPanel('#mainTabContain','博客管理','frontBlogManage',false)">博客管理</a></p>
+	</div>
 	<@shiro.hasRole name="admin">
 	<div title="后台管理" data-options="selected:true,iconCls:'fa fa-th-large'" style="padding: 10px;">
 		<p><a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'fa fa-angle-double-right'">订单管理</a></p>
