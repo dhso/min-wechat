@@ -16,6 +16,7 @@ import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.ext.plugin.config.ConfigPlugin;
 import com.jfinal.ext.plugin.shiro.ShiroInterceptor;
 import com.jfinal.ext.plugin.shiro.ShiroPlugin;
+import com.jfinal.ext.plugin.sqlinxml.SqlInXmlPlugin;
 import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
 import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
@@ -28,6 +29,7 @@ import com.jfinal.render.RedirectRender;
 import com.jfinal.render.Render;
 import com.minws.wechat.controller.ApiController;
 import com.minws.wechat.controller.BackController;
+import com.minws.wechat.controller.BlogController;
 import com.minws.wechat.controller.CustomerController;
 import com.minws.wechat.controller.FrontController;
 import com.minws.wechat.controller.MainController;
@@ -68,15 +70,16 @@ public class BaseConfig extends JFinalConfig {
 	@Override
 	public void configRoute(Routes rs) {
 		this.routes = rs;
-		rs.add("/", MainController.class);
-		rs.add("/wechat", WechatController.class);
-		rs.add("/api", ApiController.class);
-		rs.add("/security", SecurityController.class, "/security");
-		rs.add("/front", FrontController.class, "/front");
-		rs.add("/shop", ShopController.class, "/shop");
-		rs.add("/customer", CustomerController.class, "/customer");
-		rs.add("/back", BackController.class, "/back");
-		rs.add("/alipay", AlipayController.class, "/alipay");
+		rs.add("/", MainController.class);// Index
+		rs.add("/wechat", WechatController.class);// 微信
+		rs.add("/api", ApiController.class);// API
+		rs.add("/security", SecurityController.class, "/security");// 安全
+		rs.add("/front", FrontController.class, "/front");// 前台
+		rs.add("/shop", ShopController.class, "/shop");// 商店
+		rs.add("/blog", BlogController.class, "/blog");// 博客
+		rs.add("/customer", CustomerController.class, "/customer");// 客户
+		rs.add("/back", BackController.class, "/back");// 后台
+		rs.add("/alipay", AlipayController.class, "/alipay");// 支付宝
 	}
 
 	@Override
@@ -85,6 +88,8 @@ public class BaseConfig extends JFinalConfig {
 		ps.add(new ShiroPlugin(routes));
 		// 添加缓存支持
 		ps.add(new EhCachePlugin(BaseConfig.class.getClassLoader().getResource("ehcache-model.xml")));
+		// add sql xml plugin
+		ps.add(new SqlInXmlPlugin());
 		// 配置数据库连接池插件
 		DruidPlugin druidPlugin = new DruidPlugin(getProperty("wx.jdbcUrl"), getProperty("wx.jdbcUser"), getProperty("wx.jdbcPassword"), getProperty("wx.jdbcDriver"));
 		WallFilter wallFilter = new WallFilter();

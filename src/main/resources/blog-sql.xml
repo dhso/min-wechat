@@ -1,0 +1,40 @@
+<sqlGroup name="blog">
+	<sql id="selectAllArticlesSelect">
+		select
+			art.id as articleId,
+			art.visit_num as articleVisitNum,
+			art.thumbnail as articleThumbnail,
+			art.title as articleTitle,
+			art.content as articleContent,
+			art.author as articleAuthor,
+			art.create_dt as articleCreateDt,
+			art.update_dt as articleUpdateDt,
+			cat.id as categoryId,
+			cat.title as categoryTitle
+	</sql>
+	<sql id="selectAllArticlesSqlExceptSelect">
+		from blog_articles as art
+		left join blog_categories as cat on cat.id = art.category_id
+		order by art.update_dt desc
+	</sql>
+
+	<sql id="selectArticlesByCategoryIdSelect">
+		select *
+	</sql>
+	<sql id="selectArticlesByCategoryIdSqlExceptSelect">
+		from blog_articles
+		where category_id = ?
+		order by update_dt desc
+	</sql>
+	
+	<sql id="selectAllCategoriesSelect">
+		select
+			id as categoryId,
+			title as categoryTitle
+	</sql>
+	<sql id="selectAllCategoriesSqlExceptSelect">
+		from blog_categories
+		order by update_dt desc
+	</sql>
+	
+</sqlGroup>

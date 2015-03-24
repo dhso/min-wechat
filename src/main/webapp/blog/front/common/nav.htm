@@ -1,0 +1,16 @@
+<nav class="cf">
+	<ul id="nav" class="sf-menu">
+		<li <#if head_title == '首页'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/index">首页</a></li>
+		<li <#if page_type == 'blog'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/blog">博客</a></li>
+		<li <#if head_title == '栏目'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/page">栏目</a>
+			<ul>
+				<li <#if head_title == 'Column'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/page">Column</a></li>
+				<li <#if head_title == 'Typography'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/pageTypography">Typography</a></li>
+				<li <#if head_title == 'Elements'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/pageElements">Elements</a></li>
+			</ul>
+		</li>
+		<li <#if head_title == 'WORK'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/work">WORK</a></li>
+		<li <#if head_title == 'CONTACT'> class="current-menu-item" </#if> ><a href="${baseUrl}/blog/contact">CONTACT</a></li>
+		<li class="important"><a href="#/blog/downloads/madison-template/">GET IT NOW</a></li>
+	</ul>
+</nav>

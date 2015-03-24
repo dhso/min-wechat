@@ -1,0 +1,74 @@
+<#assign head_title = "博客">
+<#assign page_type = "blog">
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head><#include "common/head.htm" encoding="UTF-8">
+</head>
+<body>
+	<!-- WRAPPER -->
+	<div class="wrapper">
+		<!-- HEADER -->
+		<#include "common/header.htm" encoding="UTF-8">
+		<!-- ENDS HEADER -->
+		<!-- NAV -->
+		<#include "common/nav.htm" encoding="UTF-8">
+		<!-- ENDS NAV -->
+		<!-- MAIN -->
+		<div id="main" class="cf">
+			<!-- posts list -->
+			<div id="posts-list" class="cf">
+				<#list articlePage.list as article>
+				<article class="cf">
+					<div class="feature-image">
+						<a href="single"><img src="${article.articleThumbnail}"
+							alt="Thumbnail" /></a>
+					</div>
+					<div class="entry-title">
+						<div class="meta">
+							${article.articleUpdateDt}<a href="#" class="author">${article.articleAuthor}</a>
+						</div>
+						<a href="single.html" class="post-heading">${article.articleTitle}</a>
+					</div>
+					<div class="excerpt">${article.articleContent}</div>
+					<a href="single.html" class="action-button">READ MORE</a>
+				</article>
+				</#list>
+				<!-- page-navigation -->
+				<div class="page-navigation cf">
+					<div class="nav-next">
+						<a href="#">OLDER</a>
+					</div>
+					<div class="nav-previous">
+						<a href="#">NEWER</a>
+					</div>
+				</div>
+				<!--ENDS page-navigation -->
+			</div>
+			<!-- ENDS post list -->
+			<!-- SIDEBAR -->
+			<#include "common/sidebar.htm" encoding="UTF-8">
+			<!-- ENDS SIDEBAR -->
+		</div>
+		<!-- ENDS MAIN -->
+		<!-- WIDGETS -->
+		<#include "common/widgets.htm" encoding="UTF-8">
+		<!-- ENDS WIDGETS -->
+		<!-- FOOTER -->
+		<div class="footer-divider"></div>
+		<footer class="cf">
+			Madison Theme. More Templates <a href="http://www.cssmoban.com/"
+				target="_blank" title="模板之家">模板之家</a>
+		</footer>
+		<!-- ENDS FOOTER -->
+	</div>
+	<!-- ENDS WRAPPER -->
+	<!-- FOOT -->
+	<#include "common/foot.htm" encoding="UTF-8">
+	<!-- ENDS FOOT -->
+</body>
+</html>
