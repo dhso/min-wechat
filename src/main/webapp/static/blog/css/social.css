@@ -35,38 +35,38 @@
   top: -32px;
 }
 #social-bar .dribbble a {
-  background-image: url('../../img/front/social/dribbble.png');
+  background-image: url('../img/social/dribbble.png');
 }
 #social-bar .facebook a {
-  background-image: url('../../img/front/social/facebook.png');
+  background-image: url('../img/social/facebook.png');
 }
 #social-bar .flickr a {
-  background-image: url('../../img/front/social/flickr.png');
+  background-image: url('../img/social/flickr.png');
 }
 #social-bar .github a {
-  background-image: url('../../img/front/social/github.png');
+  background-image: url('../img/social/github.png');
 }
 #social-bar .googleplus a {
-  background-image: url('../../img/front/social/googleplus.png');
+  background-image: url('../img/social/googleplus.png');
 }
 #social-bar .lastfm a {
-  background-image: url('../../img/front/social/lastfm.png');
+  background-image: url('../img/social/lastfm.png');
 }
 #social-bar .linkedin a {
-  background-image: url('../../img/front/social/linkedin.png');
+  background-image: url('../img/social/linkedin.png');
 }
 #social-bar .rss a {
-  background-image: url('../../img/front/social/rss.png');
+  background-image: url('../img/social/rss.png');
 }
 #social-bar .twitter a {
-  background-image: url('../../img/front/social/twitter.png');
+  background-image: url('../img/social/twitter.png');
 }
 #social-bar .tumblr a {
-  background-image: url('../../img/front/social/tumblr.png');
+  background-image: url('../img/social/tumblr.png');
 }
 #social-bar .vimeo a {
-  background-image: url('../../img/front/social/vimeo.png');
+  background-image: url('../img/social/vimeo.png');
 }
 #social-bar .youtube a {
-  background-image: url('../../img/front/social/youtube.png');
+  background-image: url('../img/social/youtube.png');
 }

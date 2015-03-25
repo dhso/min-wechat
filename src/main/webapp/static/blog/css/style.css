@@ -31,7 +31,7 @@ body {
   font-size: 16px;
   line-height: 1.5em;
   color: #6b3b25;
-  background: url(../../img/front/bg.png);
+  background: url(../img/bg.png);
 }
 .wrapper {
   width: 1000px;
@@ -116,7 +116,7 @@ h6 {
 }
 .chirp p {
   padding-left: 30px;
-  background: url(../../img/front/twitter.png) no-repeat 0px 5px;
+  background: url(../img/twitter.png) no-repeat 0px 5px;
 }
 .chirp .meta {
   display: block;
@@ -176,7 +176,7 @@ h6 {
 /*	HEADER
 /*-----------------------------------------------------------------------------------*/
 header {
-  background: url(../../img/front/header.png);
+  background: url(../img/header.png);
   min-height: 155px;
 }
 header #logo {
@@ -195,7 +195,7 @@ header #logo img {
 /*	Nav
 /*-----------------------------------------------------------------------------------*/
 nav {
-  background: url(../../img/front/nav.png) no-repeat top center;
+  background: url(../img/nav.png) no-repeat top center;
   height: 65px;
   width: 1038px;
   margin-left: -20px;
@@ -338,7 +338,7 @@ nav #nav > li ul a:hover {
 .work-list li {
   display: block;
   float: left;
-  width: 300px;
+  width: 170px;
   margin-left: 20px;
   margin-bottom: 40px;
 }
@@ -362,7 +362,7 @@ nav #nav > li ul a:hover {
   bottom: -22px;
   left: 0px;
   content: '';
-  background: url(../../img/front/stacked-paper.png) no-repeat right bottom;
+  background: url(../img/stacked-paper.png) no-repeat right bottom;
   width: 100%;
   height: 17px;
 }
@@ -520,7 +520,7 @@ nav #nav > li ul a:hover {
   bottom: -22px;
   left: 0px;
   content: '';
-  background: url(../../img/front/stacked-paper.png) no-repeat right bottom;
+  background: url(../img/stacked-paper.png) no-repeat right bottom;
   width: 100%;
   height: 17px;
 }
@@ -594,11 +594,11 @@ nav #nav > li ul a:hover {
 #posts-list .page-navigation .nav-next {
   float: left;
   margin-right: 20px;
-  background: url(../../img/front/pagination.png) no-repeat 0px 0px;
+  background: url(../img/pagination.png) no-repeat 0px 0px;
 }
 #posts-list .page-navigation .nav-previous {
   float: right;
-  background: url(../../img/front/pagination.png) no-repeat right -59px;
+  background: url(../img/pagination.png) no-repeat right -59px;
 }
 /*-----------------------------------------------------------------------------------*/
 /*	PROJECT PAGE
@@ -757,7 +757,7 @@ footer {
   padding: 30px 30px 30px 30px;
   font-size: 13px;
   color: #e09402;
-  background: #62493d url(../../img/front/footer.png) repeat-x center top;
+  background: #62493d url(../img/footer.png) repeat-x center top;
   text-shadow: 0px -1px 0 rgba(0, 0, 0, 0.5);
 }
 footer:after {
@@ -767,7 +767,7 @@ footer:after {
   height: 46px;
   width: 100%;
   width: 940px\9;
-  background: url(../../img/front/main-shadow.png) no-repeat top center;
+  background: url(../img/main-shadow.png) no-repeat top center;
 }
 footer a {
   text-decoration: none;

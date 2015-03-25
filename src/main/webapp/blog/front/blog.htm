@@ -22,29 +22,44 @@
 		<div id="main" class="cf">
 			<!-- posts list -->
 			<div id="posts-list" class="cf">
-				<#list articlePage.list as article>
-				<article class="cf">
-					<div class="feature-image">
-						<a href="single"><img src="${article.articleThumbnail}"
-							alt="Thumbnail" /></a>
-					</div>
-					<div class="entry-title">
-						<div class="meta">
-							${article.articleUpdateDt}<a href="#" class="author">${article.articleAuthor}</a>
+				<#if thumb == 0>
+					<#list articlePage.list as article>
+					<article class="cf">
+						<div class="feature-image">
+							<a href="single"><img src="${article.articleThumbnail}"
+								alt="Thumbnail" /></a>
 						</div>
-						<a href="single.html" class="post-heading">${article.articleTitle}</a>
-					</div>
-					<div class="excerpt">${article.articleContent}</div>
-					<a href="single.html" class="action-button">READ MORE</a>
-				</article>
-				</#list>
+						<div class="entry-title">
+							<div class="meta">
+								${article.articleUpdateDt}<a href="#" class="author">${article.articleAuthor}</a>
+							</div>
+							<a href="single?articleId=${article.articleId}" class="post-heading">${article.articleTitle}</a>
+						</div>
+						<div class="excerpt">${article.articleContent}</div>
+						<a href="single?articleId=${article.articleId}" class="action-button">READ MORE</a>
+					</article>
+					</#list>
+				<#elseif thumb == 1>
+					<ul class="work-list cf" id="filter-container">
+					<#list articlePage.list as article>
+					<li><a href="project?projectId" class="thumb"> <img
+							src="${baseUrl}/static/blog/img/dummies/f-01.jpg" alt="Thumbnail" />
+							<div class="img-overlay">READ MORE</div>
+					</a> <a href="single?articleId=${article.articleId}" class="title">${article.articleTitle}</a>
+						<div class="categories">
+						<a href="#" class="author">${article.articleAuthor}</a>
+						<p>${article.articleUpdateDt}</p>
+						</div></li>
+						</#list>
+					</ul>
+				</#if>
 				<!-- page-navigation -->
 				<div class="page-navigation cf">
 					<div class="nav-next">
-						<a href="#">OLDER</a>
+						<a href="blog?pageNumber=${articlePage.pageNumber-1}">OLDER</a>
 					</div>
 					<div class="nav-previous">
-						<a href="#">NEWER</a>
+						<a href="blog?pageNumber=${articlePage.pageNumber+1}">NEWER</a>
 					</div>
 				</div>
 				<!--ENDS page-navigation -->
@@ -59,11 +74,7 @@
 		<#include "common/widgets.htm" encoding="UTF-8">
 		<!-- ENDS WIDGETS -->
 		<!-- FOOTER -->
-		<div class="footer-divider"></div>
-		<footer class="cf">
-			Madison Theme. More Templates <a href="http://www.cssmoban.com/"
-				target="_blank" title="模板之家">模板之家</a>
-		</footer>
+		<#include "common/footer.htm" encoding="UTF-8">
 		<!-- ENDS FOOTER -->
 	</div>
 	<!-- ENDS WRAPPER -->

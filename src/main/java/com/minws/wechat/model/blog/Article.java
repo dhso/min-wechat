@@ -7,6 +7,8 @@
  */
 package com.minws.wechat.model.blog;
 
+import java.util.List;
+
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
@@ -24,8 +26,17 @@ public class Article extends Model<Article> {
 	public Page<Article> selectAllArticles(int pageNumber, int pageSize) {
 		return Article.dao.paginate(pageNumber, pageSize, SqlKit.sql("blog.selectAllArticlesSelect"), SqlKit.sql("blog.selectAllArticlesSqlExceptSelect"));
 	}
-	
-	public Page<Article> selectAllCategories(int pageNumber, int pageSize) {
-		return Article.dao.find(SqlKit.sql("blog.selectAllCategoriesSelect")+SqlKit.sql("blog.selectAllCategoriesSelect"));
+
+	public Article selectArticleByArticleId(int articleId) {
+		return Article.dao.findFirst(SqlKit.sql("blog.selectArticleByArticleIdSql"), articleId);
 	}
+
+	public List<Article> selectPopularArticles(int limitNum) {
+		return Article.dao.find(SqlKit.sql("blog.selectPopularArticlesSql"), limitNum);
+	}
+
+	public List<Article> selectRecentArticles(int limitNum) {
+		return Article.dao.find(SqlKit.sql("blog.selectRecentArticlesSql"), limitNum);
+	}
+
 }

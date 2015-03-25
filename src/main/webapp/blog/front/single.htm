@@ -1,3 +1,5 @@
+<#assign head_title = "单页">
+<#assign page_type = "blog">
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -7,365 +9,51 @@
 <!--<![endif]-->
 <head>
 <head><#include "common/head.htm" encoding="UTF-8"><body>
-	
-		
-
 		<!-- WRAPPER -->
 		<div class="wrapper">
-		
 			<!-- HEADER -->
-			<header class="cf">
-				<div id="logo">
-				<a href="index.html"><img src="img/logo.png"
-					alt="Madison Template" /></a>
-			</div>
-				
-				<!-- social-bar -->
-				<ul id="social-bar" class="cf">
-					
-					<li class="dribbble"><a href="#" title="Dribbble"></a></li>
-					<li class="facebook"><a href="#" title="Facebook"></a></li>
-					<li class="googleplus"><a href="#" title="googleplus"></a></li>
-					<li class="twitter"><a href="#" title="twitter"></a></li>
-				</ul>
-				<!-- ENDS social-bar -->
-				
-			</header>
+			<#include "common/header.htm" encoding="UTF-8">
 			<!-- ENDS HEADER -->
-			
 			<!-- NAV -->
 			<#include "common/nav.htm" encoding="UTF-8">
 			<!-- ENDS NAV -->
-			
-			
 			<!-- MAIN -->
 			<div id="main" class="cf">
-				
 				<!-- posts list -->
-				<div id="posts-list" class="cf single-post"> 
-					
+				<div id="posts-list" class="cf single-post">
+					<#if article??>
 					<article class="cf">
 						<div class="feature-image">
-							<img src="img/dummies/620x450-a.jpg" alt="Thumbnail" />
+							<img src="${article.articleThumbnail}" alt="Thumbnail" />
 						</div>
 						<div class="entry-title">
-							<div class="meta">Jan 23 by <a href="#" class="author">Ansimuz</a>
+							<div class="meta">${article.articleUpdateDt}<a href="#" class="author">${article.articleAuthor}</a>
 						</div>
-							<div class="post-heading">LOREM IPSUM DOLOR</div>
+							<div class="post-heading">${article.articleTitle}</div>
 						</div>
 						<div class="excerpt entry-content">
-							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</p> 
 							<blockquote> This is a blockquote. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</blockquote>
-							
-							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.</p>
-							
-							
+							${article.articleContent}
 						</div>	
 					</article>
-					
-					
-					<!-- Comments wrap-->
-					<div id="comments-wrap">
-						<h4 class="heading">3 comments</h4>
-									
-						<!-- comments list -->
-						<ul class="commentlist">
-							<li
-							class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent"
-							id="comment-1">
-								<div id="div-comment-1" class="comment-body">
-									<div class="comment-author vcard">
-										<img alt=""
-										src="http://1.gravatar.com/avatar/35c17650e764d5598b6726ff10ea33f0?s=60&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G"
-										class="avatar avatar-60 photo" height="60" width="60">
-										<cite class="fn">admin</cite> <span class="says">says:</span>
-									</div>
-					
-									<div class="comment-meta commentmetadata">
-									<a href="#">June 18, 2012 at 6:07 pm</a>
-								</div>
-					
-									<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<div class="reply">
-										<a class="comment-reply-link" href="replytocom=23#respond"
-										onclick='return addComment.moveForm("comment-1", "2", "respond", "432")'>Reply</a>
-									</div>
-								</div>
-							</li>
-							
-							<li
-							class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent"
-							id="comment-2">
-								<div id="div-comment-2" class="comment-body">
-									<div class="comment-author vcard">
-										<img alt=""
-										src="http://1.gravatar.com/avatar/35c17650e764d5598b6726ff10ea33f0?s=60&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G"
-										class="avatar avatar-60 photo" height="60" width="60">
-										<cite class="fn">admin</cite> <span class="says">says:</span>
-									</div>
-					
-									<div class="comment-meta commentmetadata">
-									<a href="#comment-2">June 18, 2012 at 6:07 pm</a>
-								</div>
-					
-									<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<div class="reply">
-										<a class="comment-reply-link" href="#respond"
-										onclick='return addComment.moveForm("comment-2", "2", "respond", "432")'>Reply</a>
-									</div>
-								</div>
-								
-								<ul class="children">
-									<li
-									class="comment byuser comment-author-admin bypostauthor odd alt depth-2"
-									id="comment-4">
-										<div id="div-comment-3" class="comment-body">
-											<div class="comment-author vcard">
-												<img alt=""
-												src="http://1.gravatar.com/avatar/35c17650e764d5598b6726ff10ea33f0?s=60&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G"
-												class="avatar avatar-60 photo" height="60" width="60"><cite
-												class="fn">admin</cite> <span class="says">says:</span>
-											</div>
-				
-											<div class="comment-meta commentmetadata">
-											<a href="#/themes/wp-vintage/pulvinar-facilisis/#comment-4">June 18, 2012 at 6:09 pm</a>
-											</div>
-				
-											<p>Aenean fermentum, elit eget tincidunt condimentum, eros</p>
-				
-											<div class="reply">
-												<a class="comment-reply-link" href="#respond"
-												onclick='return addComment.moveForm("comment-3", "2", "respond", "432")'>Reply</a>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<!-- ENDS comments list -->
-					</div>
-					<!-- ENDS Comments wrap -->
-					
-					<!-- Respond -->
-					<script src="js/moveform.js"></script>				
-					<div id="respond">
-						<h4 class="heading">Leave a Reply <small><a
-							rel="nofollow" id="cancel-comment-reply-link"
-							href="/themes/wp-simpler/archives/34#respond"
-							style="display:none;">Cancel reply</a></small>
-					</h4>
-						
-						
-						<form action="single.html" method="post" id="commentform">
-						<p class="comment-notes">Your email address will not be published. Required fields are marked <span
-								class="required">*</span>
-						</p>
-						
-						<p class="comment-form-author">
-							<label for="author">Name<span class="required">*</span></label> <input
-								id="author" name="author" type="text" value="" size="30"
-								aria-required="true">
-						</p>
-						
-						<p class="comment-form-email">
-							<label for="email">Email<span class="required">*</span></label> <input
-								id="email" name="email" type="text" value="" size="30"
-								aria-required="true">
-						</p>
-		<p class="comment-form-url">
-							<label for="url">Website</label><input id="url" name="url"
-								type="text" value="" size="30">
-						</p>
-						
-						<p class="comment-form-comment">
-							<label for="comment">Comment</label>
-							<textarea id="comment" name="comment" cols="45" rows="8"
-								aria-required="true"></textarea>
-						</p>						
-														
-						<!-- allowed tags -->
-						<p class="form-allowed-tags">You may use these <abbr
-								title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code>
-						</p>						
-						<!-- ENDS allowed tags -->
-						
-						<p class="form-submit">
-							<input name="submit" type="submit" id="submit"
-								value="Post Comment">
-							<input type="hidden" name="comment_post_ID" value="34"
-								id="comment_post_ID">
-							<input type="hidden" name="comment_parent" id="comment_parent"
-								value="0">
-						</p>
-						
-						</form>
-					</div>
-					<!-- ENDS Respond -->
-				
+					</#if>
 				</div>
 				<!-- ENDS post list -->
-				
 				<!-- SIDEBAR -->
-				<aside id="sidebar">
-				
-					<ul>
-						<li class="block">
-							<h4 class="heading">ARCHIVES</h4>
-							<ul>
-								<li class="cat-item"><a href="#">September 2012</a> (1)</li>
-								<li class="cat-item"><a href="#">March 2012</a> (2)</li>
-								<li class="cat-item"><a href="#">February 2012</a> (6)</li>
-								<li class="cat-item"><a href="#">January 2012</a> (12)</li>
-							</ul>
-						</li>
-						
-						<li class="block">
-							<h4 class="heading">POPULAR POSTS</h4>
-							
-							
-							<div class="small-posts-list ">
-								
-								<div class="post cf">
-									<a href="#" class="thumb"><img
-									src="img/dummies/54x54-a.jpg" alt="Post"></a>
-									<div class="post-head">
-										<a href="#">Pellentesque habitant morbi senectus </a><span
-										class="meta"> Mar 12 <a href="#">By ansimuz</a></span>
-									</div>
-								</div>
-								
-								<div class="post cf">
-									<a href="#" class="thumb"><img
-									src="img/dummies/54x54-b.jpg" alt="Post"></a>
-									<div class="post-head">
-										<a href="#">Pellentesque habitant morbi senectus </a><span
-										class="meta"> Mar 12 <a href="#">By ansimuz</a></span>
-									</div>
-								</div>
-								
-								<div class="post cf">
-									<a href="#" class="thumb"><img
-									src="img/dummies/54x54-c.jpg" alt="Post"></a>
-									<div class="post-head">
-										<a href="#">Pellentesque habitant morbi senectus </a><span
-										class="meta"> Mar 12 <a href="#">By ansimuz</a></span>
-									</div>
-								</div>
-								
-								
-								
-								
-							</div>
-							
-							
-						
-						</li>
-						
-						
-						<li class="block">
-							<h4 class="heading">SPONSORS</h4>
-		        		
-						<div class="ads cf">
-							<a href="#"><img src="img/dummies/banner-tf.gif"
-								alt="Thumbnail"></a>
-								<a href="#" class="last"><img
-								src="img/dummies/banner-mt.jpeg" alt="Thumbnail"></a>
-								<a href="#/list/"><img src="img/dummies/banner-tp.jpeg"
-								alt="Thumbnail"></a>
-								<a href="#" class="last"><img
-								src="img/dummies/banner-tf.gif" alt="Thumbnail"></a>
-						</div>
-						</li>
-					</ul>
-				</aside>
+				<#include "common/sidebar.htm" encoding="UTF-8">
 				<!-- ENDS SIDEBAR -->
-				
 			</div>
 			<!-- ENDS MAIN -->
-			
-			
 			<!-- WIDGETS -->
-			<ul class="widget-cols cf">
-				<li class="first-col">
-					
-					<div class="widget-block">
-						<h4>MADISON TEMPLATE</h4>
-						<p>Use this template on your commercial or personal projects no links back required but much appreciated. Read the complete license agreement on this <a
-							href="#/blog/license/">link</a> </p>
-		     		</div>
-				</li>
-				
-				<li class="second-col">
-					
-					<div class="widget-block">
-						<h4>LATEST TWEETS</h4>
-						<script src="js/chirp.js"></script>
-						<script>
-							Chirp({
-								user : 'ansimuz',
-								max : 2
-							})
-						</script>
-		     		</div>
-					
-				</li>
-				
-				<li class="third-col">
-					
-					<div class="widget-block">
-						<h4>DUMMY TEXT</h4>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-		     		</div>
-		     		
-				</li>
-				
-				<li class="fourth-col">
-					
-					<div class="widget-block">
-						<h4>CATEGORIES</h4>
-						<ul>
-							<li class="cat-item"><a href="#">Design</a></li>
-							<li class="cat-item"><a href="#">Photo</a></li>
-							<li class="cat-item"><a href="#">Art</a></li>
-							<li class="cat-item"><a href="#">Game</a></li>
-							<li class="cat-item"><a href="#">Film</a></li>
-							<li class="cat-item"><a href="#">TV</a></li>
-						</ul>
-					</div>
-		     		
-				</li>
-				<li class="scroll"></li>
-			</ul>
+			<#include "common/widgets.htm" encoding="UTF-8">
 			<!-- ENDS WIDGETS -->
-			
-			
 			<!-- FOOTER -->
-			<div class="footer-divider"></div>
-			<footer class="cf">
-				Madison Theme. More Templates <a href="http://www.cssmoban.com/"
-				target="_blank" title="模板之家">模板之家</a> 
-			</footer>
+			<#include "common/footer.htm" encoding="UTF-8">
 			<!-- ENDS FOOTER -->
-		
 		</div>
 		<!-- ENDS WRAPPER -->
-		
-		<!-- JS -->
-		<script src="js/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
-		<script src="js/custom.js"></script>
-		
-		<!-- superfish -->
-		<script src="js/superfish-1.4.8/js/hoverIntent.js"></script>
-		<script src="js/superfish-1.4.8/js/superfish.js"></script>
-		<script src="js/superfish-1.4.8/js/supersubs.js"></script>
-		<!-- ENDS superfish -->
-		
-		<script src="js/css3-mediaqueries.js"></script>
-		
-		<script src="js/nivoslider.js"></script>
-		<script src="js/tabs.js"></script>
-	
-		<!-- ENDS JS -->
+		<!-- FOOT -->
+		<#include "common/foot.htm" encoding="UTF-8">
+		<!-- ENDS FOOT -->
 	</body>
 </html>

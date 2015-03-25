@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `blog_articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='博客文章';
 
--- Dumping data for table tps.blog_articles: ~2 rows (approximately)
+-- Dumping data for table tps.blog_articles: ~3 rows (approximately)
 /*!40000 ALTER TABLE `blog_articles` DISABLE KEYS */;
 INSERT INTO `blog_articles` (`id`, `category_id`, `visit_num`, `thumbnail`, `title`, `content`, `author`, `create_dt`, `update_dt`) VALUES
 	(1, 1, 0, '', '第一篇文章', '这是正文', 'Hadong', '2015-03-24 16:29:29', '2015-03-24 16:31:10'),
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `blog_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='博客分类';
 
--- Dumping data for table tps.blog_categories: ~0 rows (approximately)
+-- Dumping data for table tps.blog_categories: ~1 rows (approximately)
 /*!40000 ALTER TABLE `blog_categories` DISABLE KEYS */;
 INSERT INTO `blog_categories` (`id`, `pid`, `title`, `create_dt`, `update_dt`) VALUES
 	(1, 0, '测试', '2015-03-24 16:31:44', '2015-03-24 16:31:45');
@@ -228,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `shop_good` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.shop_good: ~0 rows (approximately)
+-- Dumping data for table tps.shop_good: ~1 rows (approximately)
 /*!40000 ALTER TABLE `shop_good` DISABLE KEYS */;
 INSERT INTO `shop_good` (`id`, `menu_id`, `sort`, `name`, `price`, `old_price`, `image`, `detail`, `status`, `update_dt`) VALUES
 	(1, 1, 1, '豪华套餐', '8888', '10001', '54ceeec6a17a5.jpg', '<p>豪华套餐介绍</p><p>巴拉巴拉、、、、</p>	', 1, '2015-02-03 10:48:21');
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `shop_menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.shop_menu: ~0 rows (approximately)
+-- Dumping data for table tps.shop_menu: ~1 rows (approximately)
 /*!40000 ALTER TABLE `shop_menu` DISABLE KEYS */;
 INSERT INTO `shop_menu` (`id`, `name`, `pid`) VALUES
 	(1, '婚纱摄影套餐', 0);
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `shop_order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.shop_order: ~0 rows (approximately)
+-- Dumping data for table tps.shop_order: ~1 rows (approximately)
 /*!40000 ALTER TABLE `shop_order` DISABLE KEYS */;
 INSERT INTO `shop_order` (`id`, `user_id`, `order_id`, `totalprice`, `note`, `pay_style`, `pay_status`, `order_status`, `cartdata`, `create_dt`, `update_dt`) VALUES
 	(1, '1', '1423064213950', '8888.00', 'aa', '0', '0', '0', '[{"name":"豪华套餐","num":"1","price":"8888"}]', '2015-02-04 23:36:53', '0000-00-00 00:00:00');
@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `shop_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.shop_user: ~0 rows (approximately)
+-- Dumping data for table tps.shop_user: ~1 rows (approximately)
 /*!40000 ALTER TABLE `shop_user` DISABLE KEYS */;
 INSERT INTO `shop_user` (`id`, `uid`, `username`, `phone`, `password`, `address`, `update_dt`) VALUES
 	(1, '410000100', 'dong hao', '+8615262731827', NULL, 'nantong university', NULL);

@@ -1,41 +1,25 @@
 <aside id="sidebar">
 	<ul>
 		<li class="block">
-			<h4 class="heading">ARCHIVES</h4>
+			<h4 class="heading">文章分类</h4>
 			<ul>
-				<li class="cat-item"><a href="#">September 2012</a> (1)</li>
-				<li class="cat-item"><a href="#">March 2012</a> (2)</li>
-				<li class="cat-item"><a href="#">February 2012</a> (6)</li>
-				<li class="cat-item"><a href="#">January 2012</a> (12)</li>
+			<#list categoryList as category>
+				<li class="cat-item"><a href="blog?categoryId=${category.categoryId}">${category.categoryTitle}</a></li>
+			</#list>
 			</ul>
 		</li>
 		<li class="block">
-			<h4 class="heading">POPULAR POSTS</h4>
+			<h4 class="heading">热门文章</h4>
 			<div class="small-posts-list ">
+				<#list popularArticleList as article>
 				<div class="post cf">
-					<a href="#" class="thumb"><img
-						src="${baseUrl}/static/img/front/dummies/54x54-a.jpg" alt="Post"></a>
+					<a href="#" class="thumb"><img src="${article.articleThumbnail}" alt="Post"></a>
 					<div class="post-head">
-						<a href="#">Pellentesque habitant morbi senectus </a><span
-							class="meta"> Mar 12 <a href="#">By ansimuz</a></span>
+						<a href="single?articleId=${article.articleId}">${article.articleTitle}</a>
+						<span class="meta">${article.articleUpdateDt}<a href="#">${article.articleAuthor}</a></span>
 					</div>
 				</div>
-				<div class="post cf">
-					<a href="#" class="thumb"><img
-						src="${baseUrl}/static/img/front/dummies/54x54-b.jpg" alt="Post"></a>
-					<div class="post-head">
-						<a href="#">Pellentesque habitant morbi senectus </a><span
-							class="meta"> Mar 12 <a href="#">By ansimuz</a></span>
-					</div>
-				</div>
-				<div class="post cf">
-					<a href="#" class="thumb"><img
-						src="${baseUrl}/static/img/front/dummies/54x54-c.jpg" alt="Post"></a>
-					<div class="post-head">
-						<a href="#">Pellentesque habitant morbi senectus </a><span
-							class="meta"> Mar 12 <a href="#">By ansimuz</a></span>
-					</div>
-				</div>
+				</#list>
 			</div>
 		</li>
 		<li class="block">
