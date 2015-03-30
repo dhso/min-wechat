@@ -1,9 +1,9 @@
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.CMS;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-import com.minws.wechat.model.blog.Article;
-import com.minws.wechat.model.blog.Category;
+import com.minws.wechat.model.CMS.Article;
+import com.minws.wechat.model.CMS.Category;
 
 public class BlogController extends Controller {
 

@@ -1,4 +1,4 @@
-package com.minws.wechat.model.shop;
+package com.minws.wechat.model.SHOP;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;

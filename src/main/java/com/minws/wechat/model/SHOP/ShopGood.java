@@ -1,4 +1,4 @@
-package com.minws.wechat.model.shop;
+package com.minws.wechat.model.SHOP;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.MMS;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -11,10 +11,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
-import com.minws.wechat.entity.DataGrid;
-import com.minws.wechat.entity.Message;
+import com.minws.wechat.entity.SYS.DataGrid;
+import com.minws.wechat.entity.SYS.Message;
 import com.minws.wechat.frame.kit.StringKit;
-import com.minws.wechat.model.customer.Customer;
+import com.minws.wechat.model.MMS.Customer;
 
 public class CustomerController extends Controller {
 

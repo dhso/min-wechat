@@ -1,4 +1,4 @@
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.SYS;
 
 import java.io.IOException;
 
@@ -11,11 +11,11 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.CacheName;
-import com.minws.wechat.entity.Message;
-import com.minws.wechat.entity.WechatMenu;
+import com.minws.wechat.entity.SYS.Message;
+import com.minws.wechat.entity.WX.WechatMenu;
 import com.minws.wechat.frame.sdk.wechat.api.MenuApi;
-import com.minws.wechat.model.Config;
-import com.minws.wechat.model.back.Article;
+import com.minws.wechat.model.SYS.Article;
+import com.minws.wechat.model.SYS.Config;
 
 public class BackController extends Controller {
 

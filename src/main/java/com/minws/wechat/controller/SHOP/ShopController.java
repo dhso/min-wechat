@@ -1,17 +1,17 @@
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.SHOP;
 
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-import com.minws.wechat.entity.Shop;
+import com.minws.wechat.entity.WX.Shop;
 import com.minws.wechat.frame.kit.StringKit;
-import com.minws.wechat.model.Config;
-import com.minws.wechat.model.shop.ShopGood;
-import com.minws.wechat.model.shop.ShopMenu;
-import com.minws.wechat.model.shop.ShopOrder;
-import com.minws.wechat.model.shop.ShopUser;
+import com.minws.wechat.model.SHOP.ShopGood;
+import com.minws.wechat.model.SHOP.ShopMenu;
+import com.minws.wechat.model.SHOP.ShopOrder;
+import com.minws.wechat.model.SHOP.ShopUser;
+import com.minws.wechat.model.SYS.Config;
 
 public class ShopController extends Controller {
 

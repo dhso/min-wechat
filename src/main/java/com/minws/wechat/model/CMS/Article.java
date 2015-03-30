@@ -5,7 +5,7 @@
  * @author hadong
  *
  */
-package com.minws.wechat.model.blog;
+package com.minws.wechat.model.CMS;
 
 import java.util.List;
 
