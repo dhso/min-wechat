@@ -1,4 +1,4 @@
-package com.minws.wechat.model.back;
+package com.minws.wechat.model.SYS;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;

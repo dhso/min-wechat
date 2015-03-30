@@ -4,7 +4,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
 
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.WX;
 
 import java.io.IOException;
 

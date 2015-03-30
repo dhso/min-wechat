@@ -1,4 +1,4 @@
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.WX;
 
 import com.jfinal.core.Controller;
 import com.minws.wechat.frame.sdk.wechat.api.ApiResult;

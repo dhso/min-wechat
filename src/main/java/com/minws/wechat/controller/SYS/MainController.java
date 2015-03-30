@@ -1,4 +1,4 @@
-package com.minws.wechat.controller;
+package com.minws.wechat.controller.SYS;
 
 import com.jfinal.core.Controller;
 

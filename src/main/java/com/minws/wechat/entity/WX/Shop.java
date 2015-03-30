@@ -1,4 +1,4 @@
-package com.minws.wechat.entity;
+package com.minws.wechat.entity.WX;
 
 import java.io.Serializable;
 

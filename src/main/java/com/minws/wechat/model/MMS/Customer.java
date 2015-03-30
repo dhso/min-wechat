@@ -5,7 +5,7 @@
  * @author hadong
  *
  */
-package com.minws.wechat.model.customer;
+package com.minws.wechat.model.MMS;
 
 import java.util.Date;
 
