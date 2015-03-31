@@ -1,5 +1,4 @@
-<#assign head_title = "文章">
-<#assign page_type = "article">
+<#assign head_title = "文章"> <#assign page_type = "article">
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -22,37 +21,24 @@
 		<div id="main" class="cf">
 			<!-- posts list -->
 			<div id="posts-list" class="cf">
-				<#if thumb == 0>
-					<#list articlePage.list as article>
-					<article class="cf">
-						<div class="feature-image">
-							<a href="single"><img src="${article.articleThumbnail}"
-								alt="Thumbnail" /></a>
+				<#list articlePage.list as article>
+				<article class="cf">
+					<div class="feature-image">
+						<a href="single"><img src="${article.articleThumbnail}"
+							alt="Thumbnail" /></a>
+					</div>
+					<div class="entry-title">
+						<div class="meta">
+							${article.articleUpdateDt}<a href="#" class="author">${article.articleAuthor}</a>
 						</div>
-						<div class="entry-title">
-							<div class="meta">
-								${article.articleUpdateDt}<a href="#" class="author">${article.articleAuthor}</a>
-							</div>
-							<a href="single?articleId=${article.articleId}" class="post-heading">${article.articleTitle}</a>
-						</div>
-						<div class="excerpt">${article.articleContent}</div>
-						<a href="single?articleId=${article.articleId}" class="action-button">READ MORE</a>
-					</article>
-					</#list>
-				<#elseif thumb == 1>
-					<ul class="work-list cf" id="filter-container">
-					<#list articlePage.list as article>
-					<li><a href="project?projectId" class="thumb"> <img
-							src="${baseUrl}/static/blog/img/dummies/f-01.jpg" alt="Thumbnail" />
-							<div class="img-overlay">READ MORE</div>
-					</a> <a href="single?articleId=${article.articleId}" class="title">${article.articleTitle}</a>
-						<div class="categories">
-						<a href="#" class="author">${article.articleAuthor}</a>
-						<p>${article.articleUpdateDt}</p>
-						</div></li>
-						</#list>
-					</ul>
-				</#if>
+						<a href="single?articleId=${article.articleId}"
+							class="post-heading">${article.articleTitle}</a>
+					</div>
+					<div class="excerpt">${article.articleContent}</div>
+					<a href="single?articleId=${article.articleId}"
+						class="action-button">READ MORE</a>
+				</article>
+				</#list>
 				<!-- page-navigation -->
 				<div class="page-navigation cf">
 					<div class="nav-next">

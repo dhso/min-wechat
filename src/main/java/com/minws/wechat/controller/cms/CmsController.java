@@ -15,11 +15,9 @@ public class CmsController extends Controller {
 	public void article() {
 		Integer pageNumber = getParaToInt("pageNumber", 1);
 		Integer pageSize = getParaToInt("pageSize", 10);
-		Integer thumb = getParaToInt("thumb", 0);
 		setAttr("articlePage", Article.dao.selectAllArticles(pageNumber, pageSize));
 		setAttr("categoryList", Category.dao.selectAllCategories());
 		setAttr("popularArticleList", Article.dao.selectPopularArticles(5));
-		setAttr("thumb", thumb);
 		render("front/article.htm");
 	}
 
@@ -29,6 +27,14 @@ public class CmsController extends Controller {
 		setAttr("categoryList", Category.dao.selectAllCategories());
 		setAttr("popularArticleList", Article.dao.selectPopularArticles(5));
 		render("front/single.htm");
+	}
+
+	public void work() {
+		Integer articleId = getParaToInt("articleId", 1);
+		setAttr("article", Article.dao.selectArticleByArticleId(articleId));
+		setAttr("categoryList", Category.dao.selectAllCategories());
+		setAttr("popularArticleList", Article.dao.selectPopularArticles(5));
+		render("front/work.htm");
 	}
 
 	public void page() {
@@ -41,10 +47,6 @@ public class CmsController extends Controller {
 
 	public void pageElements() {
 		render("front/page-elements.htm");
-	}
-
-	public void work() {
-		render("front/work.htm");
 	}
 
 	public void contact() {
