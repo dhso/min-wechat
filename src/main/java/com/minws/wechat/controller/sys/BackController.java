@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.json.JSONException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -14,6 +15,7 @@ import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.CacheName;
 import com.minws.wechat.entity.sys.Message;
 import com.minws.wechat.entity.wechat.WechatMenu;
+import com.minws.wechat.frame.sdk.ueditor.ActionEnter;
 import com.minws.wechat.frame.sdk.wechat.api.MenuApi;
 import com.minws.wechat.model.sys.Article;
 import com.minws.wechat.model.sys.Config;
@@ -32,6 +34,11 @@ public class BackController extends Controller {
 
 	public void packages() {
 		render("pages/packages.htm");
+	}
+
+	public void upload() throws JSONException {
+		String config = new ActionEnter(getRequest(), this.getClass().getClassLoader().getResource("").toString().replace("file:/", "")).exec();
+		renderText(config);
 	}
 
 	@Before(CacheInterceptor.class)
