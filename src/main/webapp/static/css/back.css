@@ -126,6 +126,6 @@ body {
 }
 
 .wechatQRCode{
-	background-image: url("../img/qrcode_for_gh_606373913254_258.jpg");
+	/* background-image: url("../img/qrcode_for_gh_606373913254_258.jpg"); */
 	background-repeat: round;
 }

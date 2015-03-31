@@ -2,6 +2,7 @@ package com.minws.wechat.controller.sys;
 
 import java.io.IOException;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -19,7 +20,7 @@ import com.minws.wechat.model.sys.Config;
 
 public class BackController extends Controller {
 
-	@RequiresRoles("admin")
+	@RequiresAuthentication
 	public void index() {
 		setAttr("easyuiThemeName", getCookie("easyuiThemeName", "default"));
 		render("index.htm");

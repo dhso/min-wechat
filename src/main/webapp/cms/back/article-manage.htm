@@ -1,0 +1,27 @@
+<div style="margin: 10px">
+	<table id="articleDatagrid" class="easyui-datagrid" url="${baseUrl}/cms/articleJson" title="文章管理" iconCls="fa fa-users" singleSelect="true" rownumbers="true" pagination="true" toolbar="#datagridToolbar">
+        <thead>
+            <tr>
+            	<th field="ARTICLEID" width="40" align="center">序号</th>
+                <th field="ARTICLETITLE" width="200">标题</th>
+                <th field="ARTICLECONTENT"  width="250">内容</th>
+                <th field="ARTICLEAUTHOR" width="90">作者</th>
+                <th field="ARTICLEVISITNUM"  width="80">浏览数</th>
+                <th field="ARTICLETHUMBNAIL" width="90">缩略图</th>
+                <th field="CATEGORYID" width="50" hidden="true">分类ID</th>
+                <th field="CATEGORYTITLE" width="80">分类</th>
+                <th field="ARTICLECREATEDT" width="130">创建时间</th>
+                <th field="ARTICLEUPDATEDT" width="130">更新时间</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="datagridToolbar" style="padding:8px 5px;">
+		<a href="#" class="easyui-linkbutton c6" data-options="" onclick="addTabPanel('#mainTabContain','新建文章','${baseUrl}/cms/back/article/add',false)"><i class="fa fa-user-plus"></i> 新建文章</a>
+		<a href="#" class="easyui-linkbutton c8" data-options="" onclick="alert(1);"><i class="fa fa-pencil-square-o"></i> 编辑文章</a>
+		<a href="#" class="easyui-linkbutton c5" data-options="" onclick="deleteCustomer()"><i class="fa fa-user-times"></i> 删除文章</a>
+		<a href="#" class="easyui-linkbutton c1" data-options="" onclick="$('#articleDatagrid').datagrid('getPager').pagination('select');"><i class="fa fa-refresh"></i> 刷新文章</a>
+	</div>
+</div>
+<script>
+
+</script>
