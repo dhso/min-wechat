@@ -1,0 +1,96 @@
+/* Vars ----------------------------------------------------*//* Mixins ----------------------------------------------------*//*-----------------------------------------------------------------------------------*/
+/*	Widgets block
+/*-----------------------------------------------------------------------------------*/
+.widget-cols {
+  position: relative;
+  display: block;
+  background: #62493d url(../img/widgets.png) repeat;
+  font-size: 14px;
+  color: #e7d7ba;
+  text-shadow: 0px -1px 0 rgba(0, 0, 0, 0.5);
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+  border-top: 3px solid #e09402;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.widget-cols h1,
+.widget-cols h2,
+.widget-cols h3,
+.widget-cols h4,
+.widget-cols h5,
+.widget-cols h6 {
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
+  color: #e09402;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.widget-cols a {
+  color: #e09402;
+  border-bottom: 1px dotted #e09402;
+  text-decoration: none;
+}
+.widget-cols a:hover {
+  color: #fff;
+  border-bottom: 1px dotted #fff;
+}
+.widget-cols > li {
+  width: 220px;
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 40px;
+}
+.widget-cols .scroll {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  margin-left: -23px;
+  background: url(../img/bottom-arrow.png) no-repeat;
+  height: 41px;
+  width: 46px;
+}
+.widget-cols .scroll:hover {
+  background-position: 0px -41px;
+}
+.multiplebgs .widget-cols {
+  background-image: url(../img/widgets-shadow.png), url(../img/widgets.png);
+  background-repeat: repeat-x, repeat;
+  background-position: left bottom, left bottom;
+}
+/* RECENT POSTS -----------------------------------------------*/
+#sidebar .small-posts-list .post {
+  margin-bottom: 10px;
+}
+#sidebar .small-posts-list .post .thumb {
+  display: block;
+  float: left;
+  background: #f1f1f1;
+  line-height: 0em;
+  padding: 3px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+#sidebar .small-posts-list .post .post-head {
+  overflow: auto;
+  font-size: 18px;
+}
+#sidebar .small-posts-list .post .post-head a {
+  color: #6b3b25;
+}
+#sidebar .small-posts-list .post .post-head a:hover {
+  border: none;
+}
+#sidebar .small-posts-list .post .post-head .meta {
+  color: #c78301;
+}
+#sidebar .small-posts-list .post .post-head .meta a {
+  color: #c78301;
+}
+#sidebar .small-posts-list .post .meta {
+  display: block;
+  font-size: 12px;
+}

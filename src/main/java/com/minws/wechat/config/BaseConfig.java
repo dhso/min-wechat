@@ -27,7 +27,7 @@ import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.IErrorRenderFactory;
 import com.jfinal.render.RedirectRender;
 import com.jfinal.render.Render;
-import com.minws.wechat.controller.cms.BlogController;
+import com.minws.wechat.controller.cms.CmsController;
 import com.minws.wechat.controller.mms.CustomerController;
 import com.minws.wechat.controller.shop.ShopController;
 import com.minws.wechat.controller.sys.BackController;
@@ -76,7 +76,7 @@ public class BaseConfig extends JFinalConfig {
 		rs.add("/security", SecurityController.class, "/security");// 安全
 		rs.add("/front", FrontController.class, "/front");// 前台
 		rs.add("/shop", ShopController.class, "/shop");// 商店
-		rs.add("/blog", BlogController.class, "/blog");// 博客
+		rs.add("/cms", CmsController.class, "/cms");// CMS
 		rs.add("/customer", CustomerController.class, "/customer");// 客户
 		rs.add("/back", BackController.class, "/back");// 后台
 		rs.add("/alipay", AlipayController.class, "/alipay");// 支付宝
