@@ -1,8 +1,10 @@
 package com.minws.wechat.frame.sdk.ueditor.upload;
 
-import com.minws.wechat.frame.sdk.ueditor.define.State;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
+import com.minws.wechat.frame.sdk.ueditor.define.State;
 
 public class Uploader {
 	private HttpServletRequest request = null;
@@ -16,14 +18,15 @@ public class Uploader {
 	public final State doExec() {
 		String filedName = (String) this.conf.get("fieldName");
 		State state = null;
-
-		if ("true".equals(this.conf.get("isBase64"))) {
-			state = Base64Uploader.save(this.request.getParameter(filedName),
-					this.conf);
+		if (this.conf.get("savePath").toString().indexOf("http://") >= 0) {
+			state = QiNiuUploader.save(this.request, this.conf);
 		} else {
-			state = BinaryUploader.save(this.request, this.conf);
+			if ("true".equals(this.conf.get("isBase64"))) {
+				state = Base64Uploader.save(this.request.getParameter(filedName), this.conf);
+			} else {
+				state = BinaryUploader.save(this.request, this.conf);
+			}
 		}
-
 		return state;
 	}
 }

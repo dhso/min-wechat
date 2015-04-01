@@ -22,21 +22,19 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class BinaryUploader {
 
-	public static final State save(HttpServletRequest request,
-			Map<String, Object> conf) {
+	public static final State save(HttpServletRequest request, Map<String, Object> conf) {
 		FileItemStream fileStream = null;
-		boolean isAjaxUpload = request.getHeader( "X_Requested_With" ) != null;
+		boolean isAjaxUpload = request.getHeader("X_Requested_With") != null;
 
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			return new BaseState(false, AppInfo.NOT_MULTIPART_CONTENT);
 		}
 
-		ServletFileUpload upload = new ServletFileUpload(
-				new DiskFileItemFactory());
+		ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
 
-        if ( isAjaxUpload ) {
-            upload.setHeaderEncoding( "UTF-8" );
-        }
+		if (isAjaxUpload) {
+			upload.setHeaderEncoding("UTF-8");
+		}
 
 		try {
 			FileItemIterator iterator = upload.getItemIterator(request);
@@ -57,8 +55,7 @@ public class BinaryUploader {
 			String originFileName = fileStream.getName();
 			String suffix = FileType.getSuffixByFilename(originFileName);
 
-			originFileName = originFileName.substring(0,
-					originFileName.length() - suffix.length());
+			originFileName = originFileName.substring(0, originFileName.length() - suffix.length());
 			savePath = savePath + suffix;
 
 			long maxSize = ((Long) conf.get("maxSize")).longValue();
@@ -72,8 +69,7 @@ public class BinaryUploader {
 			String physicalPath = (String) conf.get("rootPath") + savePath;
 
 			InputStream is = fileStream.openStream();
-			State storageState = StorageManager.saveFileByInputStream(is,
-					physicalPath, maxSize);
+			State storageState = StorageManager.saveFileByInputStream(is, physicalPath, maxSize);
 			is.close();
 
 			if (storageState.isSuccess()) {

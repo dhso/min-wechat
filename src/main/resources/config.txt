@@ -34,5 +34,5 @@ wx.alipay.ali_public_key = fd48ig23w67gyjoc08c82sji3eabe8ie
 #七牛云配置
 wx.qiniu.ak = s4qqqDqXBOcvFKUDsAIDPk1X7p1df1XKAv-2rhU6
 wx.qiniu.sk = PKnBKg_fcc3otG0C_0WPPvW3COLTxW6FaWrJ1bUw
-wx.qiniu.bucket = min-tps
-wx.qiniu.url = http://7sbmku.com2.z0.glb.qiniucdn.com/
+wx.qiniu.bucket = apphui
+wx.qiniu.url = http://apphui.qiniudn.com/

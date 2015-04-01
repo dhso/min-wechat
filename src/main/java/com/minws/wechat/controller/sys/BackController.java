@@ -2,6 +2,7 @@ package com.minws.wechat.controller.sys;
 
 import java.io.IOException;
 
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.json.JSONException;
@@ -36,7 +37,7 @@ public class BackController extends Controller {
 		render("pages/packages.htm");
 	}
 
-	public void ueditor() throws JSONException {
+	public void ueditor() throws JSONException, FileUploadException {
 		String config = new UeditorKit(getRequest()).exec();
 		renderText(config);
 	}
