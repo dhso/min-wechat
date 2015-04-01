@@ -35,6 +35,7 @@
 <script>
 	var ue = UE.getEditor('editor',{
 		UEDITOR_HOME_URL:'${baseUrl}/static/ueditor/',
+		serverUrl:'${baseUrl}/back/ueditor',
 		initialFrameHeight:'420'
 	});
 	ue.ready(function() {
@@ -42,5 +43,6 @@
 	    ue.setContent('');
 	    //ue.getContent() 获取html内容，返回: <p>hello</p>
 	    //ue.getContentTxt() 获取纯文本内容，返回: hello
+		
 	});
 </script>

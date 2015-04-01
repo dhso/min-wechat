@@ -7,6 +7,7 @@ import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 import com.minws.wechat.entity.sys.DataGrid;
+import com.minws.wechat.entity.sys.Message;
 import com.minws.wechat.model.cms.Article;
 import com.minws.wechat.model.cms.Category;
 
@@ -86,7 +87,11 @@ public class CmsController extends Controller {
 		String thumbnail = getPara("thumbnail", "");
 		String editorValue = getPara("editorValue", "");
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {
-			Article.dao.insertArticle(articleTitle, categoryId, thumbnail, editorValue, SecurityUtils.getSubject().getPrincipal().toString());
+			if (Article.dao.insertArticle(articleTitle, categoryId, thumbnail, editorValue, SecurityUtils.getSubject().getPrincipal().toString())) {
+				setAttr("errorMsg", new Message("200", "alert-success", "添加文章成功！"));
+			} else {
+				setAttr("errorMsg", new Message("200", "alert-error", "添加文章失败！"));
+			}
 		}
 		setAttr("categoryList", Category.dao.selectAllCategories());
 		setAttr("articleTitle", articleTitle);
