@@ -39,4 +39,8 @@ public class Article extends Model<Article> {
 		return Article.dao.find(SqlKit.sql("blog.selectRecentArticlesSql"), limitNum);
 	}
 
+	public boolean insertArticle(String articleTitle, String categoryId, String editorValue, String uname) {
+		return new Article().set("category_id", categoryId).set("title", articleTitle).set("content", editorValue).set("author", uname).save();
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.minws.wechat.controller.cms;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 
 import com.jfinal.core.ActionKey;
@@ -80,10 +81,11 @@ public class CmsController extends Controller {
 	@ActionKey("cms/back/article/add")
 	@RequiresPermissions("cms:article")
 	public void addArticle() {
-		String articleTitle = getPara("articleTitle","");
-		String categoryId = getPara("categoryId","");
-		String editorValue = getPara("editorValue","");
+		String articleTitle = getPara("articleTitle", "");
+		String categoryId = getPara("categoryId", "");
+		String editorValue = getPara("editorValue", "");
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {
+			Article.dao.insertArticle(articleTitle, categoryId, editorValue, SecurityUtils.getSubject().getPrincipal().toString());
 		}
 		setAttr("categoryList", Category.dao.selectAllCategories());
 		setAttr("articleTitle", articleTitle);
