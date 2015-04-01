@@ -83,9 +83,10 @@ public class CmsController extends Controller {
 	public void addArticle() {
 		String articleTitle = getPara("articleTitle", "");
 		String categoryId = getPara("categoryId", "");
+		String thumbnail = getPara("thumbnail", "");
 		String editorValue = getPara("editorValue", "");
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {
-			Article.dao.insertArticle(articleTitle, categoryId, editorValue, SecurityUtils.getSubject().getPrincipal().toString());
+			Article.dao.insertArticle(articleTitle, categoryId, thumbnail, editorValue, SecurityUtils.getSubject().getPrincipal().toString());
 		}
 		setAttr("categoryList", Category.dao.selectAllCategories());
 		setAttr("articleTitle", articleTitle);
