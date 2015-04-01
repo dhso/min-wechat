@@ -38,8 +38,8 @@ public class BackController extends Controller {
 	}
 
 	public void ueditor() throws JSONException, FileUploadException {
-		String config = new UeditorKit(getRequest()).exec();
-		renderText(config);
+		String result = new UeditorKit(getRequest()).exec();
+		renderText(result);
 	}
 
 	@Before(CacheInterceptor.class)
