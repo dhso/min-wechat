@@ -70,7 +70,6 @@ public class QiNiuUploader {
 			PutRet putRet = new QiniuKit(ConfigKit.getStr("wx.qiniu.ak"), ConfigKit.getStr("wx.qiniu.sk")).put(ConfigKit.getStr("wx.qiniu.bucket"), originFileName, is);
 			State state = new BaseState(true);
 			is.close();
-
 			if (putRet.ok()) {
 				String key = putRet.getKey();
 				state.putInfo("size", originFileSize);
@@ -78,9 +77,10 @@ public class QiNiuUploader {
 				state.putInfo("url", ConfigKit.getStr("wx.qiniu.url") + key);
 				state.putInfo("type", suffix);
 				state.putInfo("original", "");
+				return state;
+			} else {
+				return new BaseState(false, AppInfo.IO_ERROR);
 			}
-
-			return state;
 		} catch (FileUploadException e) {
 			return new BaseState(false, AppInfo.PARSE_REQUEST_ERROR);
 		} catch (IOException e) {
