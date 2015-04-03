@@ -5,10 +5,20 @@
 -- HeidiSQL Version:             9.1.0.4867
 -- --------------------------------------------------------
 
+/*
+ * use tps;
+ * status
+ * alert database tps character set utf8;
+ * show variables like "%char%";
+ * SET NAMES utf8;
+ * SET character_set_server = 'utf8';
+*/
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+SET NAMES utf8;
 
 -- Dumping structure for table tps.articles
 DROP TABLE IF EXISTS `articles`;
@@ -61,14 +71,15 @@ CREATE TABLE IF NOT EXISTS `blog_articles` (
   `create_dt` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_dt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='博客文章';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='博客文章';
 
--- Dumping data for table tps.blog_articles: ~3 rows (approximately)
+-- Dumping data for table tps.blog_articles: ~4 rows (approximately)
 /*!40000 ALTER TABLE `blog_articles` DISABLE KEYS */;
 INSERT INTO `blog_articles` (`id`, `category_id`, `visit_num`, `thumbnail`, `title`, `content`, `author`, `create_dt`, `update_dt`) VALUES
 	(1, 1, 0, '', '第一篇文章', '这是正文', 'Hadong', '2015-03-24 16:29:29', '2015-03-24 16:31:10'),
 	(2, 1, 0, '', '第二篇文章', '这是正文', 'Hadong', '2015-03-24 16:32:46', '2015-03-24 16:33:11'),
-	(3, 1, 0, '', '第四篇文章', '这是正文', 'Hadong', '2015-03-24 16:33:23', '2015-03-24 16:33:42');
+	(3, 1, 0, '', '第四篇文章', '这是正文', 'Hadong', '2015-03-24 16:33:23', '2015-03-24 16:33:42'),
+	(4, 1, 0, NULL, 'asd', '<p>asd<br/></p>', 'admin', '2015-04-01 18:11:36', '2015-04-01 18:11:36');
 /*!40000 ALTER TABLE `blog_articles` ENABLE KEYS */;
 
 
@@ -162,15 +173,12 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `available` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_permissions_permission` (`permission`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.permissions: ~4 rows (approximately)
+-- Dumping data for table tps.permissions: ~1 rows (approximately)
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 INSERT INTO `permissions` (`id`, `permission`, `description`, `available`) VALUES
-	(1, 'editUser', NULL, 1),
-	(2, 'showUser', NULL, 1),
-	(3, 'addUser', NULL, 1),
-	(4, 'deleteUser', NULL, 1);
+	(1, 'cms:article', NULL, 1);
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
 
@@ -188,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- Dumping data for table tps.roles: ~2 rows (approximately)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `role`, `description`, `available`) VALUES
-	(1, 'admin', 'admin user', 1),
+	(1, 'admin', 'admin', 1),
 	(2, 'user', 'user', 1);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
@@ -201,14 +209,11 @@ CREATE TABLE IF NOT EXISTS `roles_permissions` (
   PRIMARY KEY (`role_id`,`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.roles_permissions: ~5 rows (approximately)
+-- Dumping data for table tps.roles_permissions: ~2 rows (approximately)
 /*!40000 ALTER TABLE `roles_permissions` DISABLE KEYS */;
 INSERT INTO `roles_permissions` (`role_id`, `permission_id`) VALUES
 	(1, 1),
-	(1, 2),
-	(1, 3),
-	(1, 4),
-	(2, 2);
+	(2, 1);
 /*!40000 ALTER TABLE `roles_permissions` ENABLE KEYS */;
 
 
@@ -307,12 +312,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `idx_users_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tps.users: ~3 rows (approximately)
+-- Dumping data for table tps.users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `locked`) VALUES
 	(1, 'admin', '40ece1b68be64912285e0c54452186b5', 'tps', 0),
-	(2, 'adminuser', 'adminuser', NULL, 0),
-	(3, 'user', 'user', NULL, 0);
+	(2, 'user', '40ece1b68be64912285e0c54452186b5', 'tps', 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
@@ -329,8 +333,7 @@ CREATE TABLE IF NOT EXISTS `user_roles` (
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 	(1, 1),
 	(1, 2),
-	(2, 2),
-	(3, 1);
+	(2, 2);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

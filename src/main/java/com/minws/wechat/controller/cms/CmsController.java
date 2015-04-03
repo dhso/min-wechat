@@ -1,6 +1,5 @@
 package com.minws.wechat.controller.cms;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 
 import com.jfinal.core.ActionKey;
@@ -8,6 +7,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 import com.minws.wechat.entity.sys.DataGrid;
 import com.minws.wechat.entity.sys.Message;
+import com.minws.wechat.frame.plugin.shiro.ShiroKit;
 import com.minws.wechat.model.cms.Article;
 import com.minws.wechat.model.cms.Category;
 
@@ -87,7 +87,7 @@ public class CmsController extends Controller {
 		String thumbnail = getPara("thumbnail", "");
 		String editorValue = getPara("editorValue", "");
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {
-			if (Article.dao.insertArticle(articleTitle, categoryId, thumbnail, editorValue, SecurityUtils.getSubject().getPrincipal().toString())) {
+			if (Article.dao.insertArticle(articleTitle, categoryId, thumbnail, editorValue, ShiroKit.whoAmI())) {
 				setAttr("errorMsg", new Message("200", "alert-success", "添加文章成功！"));
 			} else {
 				setAttr("errorMsg", new Message("200", "alert-error", "添加文章失败！"));
