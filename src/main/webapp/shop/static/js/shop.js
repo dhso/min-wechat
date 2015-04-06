@@ -57,6 +57,8 @@ $(document).ready(function () {
 					$.each(json, function (index, value) {
 						var pay = '';
 						var order = '';
+						var carts_html = '';
+						var carts_data = JSON.parse(value.CARTDATA);
 						if (value.ORDER_STATUS == '0'){
 							order_status = 'no';
 							order = '未发货';
@@ -72,7 +74,12 @@ $(document).ready(function () {
 							pay_status = 'ok';
 							pay = '已支付';
 						}
-						html += '<tr><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+						for(var i = 0;i < carts_data.length;i++){
+							carts_html+='<tr><td colspan="4">名称：'+carts_data[i].name+' | 数量：'+carts_data[i].num+' | 单价：'+carts_data[i].price+' 元</td></tr>';
+						}
+						html += '<tr style="background-color:#ccc;"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+						html += '<tr><td colspan="4">时间：'+value.CREATE_DT+'</td></tr>';
+						html += carts_html;
 					});
 					$('#orderlistinsert').empty();
 					$('#orderlistinsert').append( html );					
@@ -220,6 +227,8 @@ function submitOrder () {
 						var html = '';
 						var order_status = '';
 						var pay_status = '';
+						var carts_html = '';
+						var carts_data = JSON.parse(value.CARTDATA);
 						
 						$.each(json, function (index, value) {
 							var pay = '';
@@ -239,7 +248,12 @@ function submitOrder () {
 								pay_status = 'ok';
 								pay = '已支付';
 							}
-							html += '<tr><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+							for(var i = 0;i < carts_data.length;i++){
+								carts_html+='<tr><td colspan="4">名称：'+carts_data[i].name+' | 数量：'+carts_data[i].num+' | 单价：'+carts_data[i].price+' 元</td></tr>';
+							}
+							html += '<tr style="background-color:#ccc;"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+							html += '<tr><td colspan="4">时间：'+value.CREATE_DT+'</td></tr>';
+							html += carts_html;
 						});
 						$('#orderlistinsert').empty();
 						$('#orderlistinsert').append( html );

@@ -27,6 +27,7 @@ import com.minws.wechat.frame.sdk.wechat.msg.out.OutNewsMsg;
 import com.minws.wechat.frame.sdk.wechat.msg.out.OutTextMsg;
 import com.minws.wechat.frame.sdk.wechat.msg.out.OutVoiceMsg;
 import com.minws.wechat.frame.sdk.wechat.weixin.WeixinController;
+import com.minws.wechat.model.sys.Config;
 
 /**
  * 将此 UiController 在YourJFinalConfig 中注册路由， 并设置好weixin开发者中心的 URL 与 token ，使 URL
@@ -174,7 +175,7 @@ public class WechatController extends WeixinController {
 		if ("click".equalsIgnoreCase(msgEvent)) {
 			if ("CK_SHOP".equalsIgnoreCase(msgEventKey)) {
 				OutNewsMsg outMsg = new OutNewsMsg(inMenuEvent);
-				outMsg.addNews("东方新娘微信商城", "点击进入，开启幸福购物世界^_^", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", "http://shop.minws.com/index.php?g=App&m=Index&a=index&from=wechat&uid=" + inMenuEvent.getFromUserName());
+				outMsg.addNews(Config.dao.getValueByKey("shop_name"), "点击进入，开启幸福购物世界^_^", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_url") + inMenuEvent.getFromUserName());
 				render(outMsg);
 			}
 		} else if ("view".equalsIgnoreCase(msgEvent)) {
