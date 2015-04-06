@@ -15,4 +15,9 @@ public class ShopUser extends Model<ShopUser> {
 	public Boolean addUser(String uid, String username, String phone, String address) {
 		return new ShopUser().set("uid", uid).set("username", username).set("phone", phone).set("address", address).save();
 	}
+
+	public boolean updateUser(String uid, String username, String phone, String address) {
+		int id = ShopUser.dao.findFirst("select * from shop_user where uid = ?", uid).getInt("id");
+		return ShopUser.dao.findById(id).set("uid", uid).set("username", username).set("phone", phone).set("address", address).update();
+	}
 }
