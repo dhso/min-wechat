@@ -24,7 +24,7 @@ public class ShopController extends Controller {
 			setAttr("shop", new Shop(Config.dao.getValueByKey("shop_name"), Config.dao.getValueByKey("shop_notification")));
 			setAttr("shop_good", ShopGood.dao.getAllGood());
 			setAttr("shop_user", ShopUser.dao.getUserByUid(uid));
-			render("index.htm");
+			render("front/index.htm");
 		} else {
 			renderText("请使用微信打开");
 		}

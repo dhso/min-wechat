@@ -901,7 +901,7 @@ ul.round li:last-of-type {
 
 .round li span {
 	display: block;
-	background: url(../images/lbsarrow.png) no-repeat right 50%;
+	background: url(../img/lbsarrow.png) no-repeat right 50%;
 	-webkit-background-size: 8.5px 13px;
 	background-size: 8.5px 13px;
 	padding: 8px 20px 8px 0;
@@ -915,7 +915,7 @@ ul.round li:last-of-type {
 }
 
 .round li.addr {
-	background: url(../images/card/themes/1/addr.png) no-repeat scroll 10px
+	background: url(../img/addr.png) no-repeat scroll 10px
 		13px transparent;
 	background-size: 15px 15px;
 	line-height: 22px;
@@ -923,7 +923,7 @@ ul.round li:last-of-type {
 }
 
 .round li.tel {
-	background: url(../images/card/themes/1/tel.png) no-repeat scroll 11px
+	background: url(../img/tel.png) no-repeat scroll 11px
 		13px transparent;
 	background-size: 15px 15px;
 	line-height: 22px;
@@ -931,7 +931,7 @@ ul.round li:last-of-type {
 }
 
 .round li.manage {
-	background: url(../images/card/themes/1/manage.png) no-repeat scroll
+	background: url(../img/manage.png) no-repeat scroll
 		11px 13px transparent;
 	background-size: 15px 15px;
 	line-height: 22px;
@@ -943,7 +943,7 @@ ul.round li:last-of-type {
 }
 
 .round li.detail {
-	background: url(../images/card/themes/1/detail.png) no-repeat scroll
+	background: url(../img/detail.png) no-repeat scroll
 		10px 13px transparent;
 	background-size: 15px 15px;
 	line-height: 22px;
@@ -1340,7 +1340,7 @@ del {
 .imgPopup img {
 	width: 100%;
 	border-radius: 6px;
-	background: url(../images/ajax-loader.gif) no-repeat 50% 50% #f5f5f5;
+	background: url(../img/ajax-loader.gif) no-repeat 50% 50% #f5f5f5;
 	background-size: 50px 50px;
 }
 
@@ -1352,7 +1352,7 @@ del {
 }
 
 #mcover .close {
-	background: url(../../Static/images/mdlg_btn_x.png) no-repeat scroll 0 0
+	background: url(../img/mdlg_btn_x.png) no-repeat scroll 0 0
 		transparent;
 	background-size: 27px 27px;
 	display: inline-block;
@@ -1419,7 +1419,7 @@ del {
 }
 
 .textPopup .x {
-	background: url(../images/foods/mdlg_btn_x.png) no-repeat scroll 0 0
+	background: url(../img/mdlg_btn_x.png) no-repeat scroll 0 0
 		transparent;
 	background-size: 27px 27px;
 	display: inline-block;
@@ -1539,7 +1539,7 @@ del {
 }
 
 .head_btn_left a {
-	background: url(http://img.ishangtong.com/images/s22KaR0Wtcuu.png) 5px
+	background: url(../img/s22KaR0Wtcuu.png) 5px
 		center no-repeat;
 	background-size: 24px 24px;
 	height: 24px;
@@ -1556,7 +1556,7 @@ del {
 }
 
 .head_btn_left span {
-	background-image: url(http://img.ishangtong.com/images/zEdepbMPHt.png);
+	background-image: url(../img//zEdepbMPHt.png);
 	background-position: left -32px;
 	background-size: 105px;
 	padding-left: 17px;
@@ -1574,7 +1574,7 @@ del {
 	height: 32px;
 	line-height: 30px;
 	color: #fff;
-	background-image: url(http://img.ishangtong.com/images/zEdepbMPHt.png);
+	background-image: url(../img/zEdepbMPHt.png);
 	background-size: 105px;
 	padding-left: 10px;
 	padding-right: 4px;
@@ -1583,7 +1583,7 @@ del {
 }
 
 .head_btn_left b, .head_btn_right b {
-	background-image: url(http://img.ishangtong.com/images/zEdepbMPHt.png);
+	background-image: url(../img/zEdepbMPHt.png);
 	background-position: bottom right;
 	background-size: 105px;
 	width: 6px;
@@ -1605,7 +1605,7 @@ del {
 }
 
 .menu_header_home {
-	background: url(../../Static/images/menu.png)
+	background: url(../img/menu.png)
 		no-repeat;
 	background-size: 24px 24px;
 	width: 24px;

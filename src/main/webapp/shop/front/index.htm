@@ -8,9 +8,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <title>${shop.name}</title>
-        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/css/shop.css">
-        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/frozen.css">
-        <link rel="stylesheet" type="text/css" href="${baseUrl}/static/frozenui/css/global.css">
+        <link rel="stylesheet" type="text/css" href="${baseUrl}/shop/static/css/shop.css">
         <script type="text/javascript">
         	var appurl = "${baseUrl}";
         </script>
@@ -168,7 +166,7 @@
 			<div class="btn-group"
 				style="position: fixed; font-size: 12px; width: 220px; bottom: 80px; left: 50%; margin-left: -110px; z-index: 999;">
 				<div class="del" style="font-size: 14px;">
-					<img src="${baseUrl}/static/img/shop/ajax-loader.gif" alt="loader">正在提交订单...
+					<img src="${baseUrl}/shop/static/img/ajax-loader.gif" alt="loader">正在提交订单...
 				</div>
 			</div>
 		</div>
@@ -191,7 +189,7 @@
 				<div class="btn-group"
 					style="position: fixed; font-size: 12px; width: 220px; bottom: 80px; left: 50%; margin-left: -110px; z-index: 999;">
 					<div class="del" style="font-size: 14px;">
-						<img src="${baseUrl}/static/img/shop/ajax-loader.gif" alt="loader">正在获取订单...
+						<img src="${baseUrl}/shop/static/img/ajax-loader.gif" alt="loader">正在获取订单...
 					</div>
 				</div>
 			</div>
@@ -215,21 +213,21 @@
 	<div class="footermenu">
 		<ul>
 			<li id="home"><a class="active" href="javascript:void(0);"> <img
-					src="${baseUrl}/static/img/shop/home.png">
+					src="${baseUrl}/shop/static/img/home.png">
 					<p>首页</p>
 			</a></li>
 
 			<li id="cart"><a href="javascript:void(0);"> <span class="num" id="cartN2">0</span> <img
-					src="${baseUrl}/static/img/shop/cart.png">
+					src="${baseUrl}/shop/static/img/cart.png">
 					<p>购物车</p>
 			</a></li>
-			<li id="user"><a href="javascript:void(0);"> <img src="${baseUrl}/static/img/shop/user.png">
+			<li id="user"><a href="javascript:void(0);"> <img src="${baseUrl}/shop/static/img/user.png">
 					<p>我的</p>
 			</a></li>
 		</ul>
 	</div>
 	<script src="${baseUrl}/static/js/jquery.min.js"></script>
-    <script src="${baseUrl}/static/js/alert.js"></script>
-    <script src="${baseUrl}/static/js/shop.js"></script>
+    <script src="${baseUrl}/shop/static/js/alert.js"></script>
+    <script src="${baseUrl}/shop/static/js/shop.js"></script>
 </body>
 </html>
