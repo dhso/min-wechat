@@ -8,7 +8,7 @@
 /*
  * use tps;
  * status
- * alert database tps character set utf8;
+ * alert database tps character set utf8 COLLATE 'utf8_general_ci';;
  * show variables like "%char%";
  * SET NAMES utf8;
  * SET character_set_server = 'utf8';
@@ -18,8 +18,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-SET NAMES utf8;
-
 -- Dumping structure for table tps.articles
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
@@ -28,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `title` varchar(255) DEFAULT NULL,
   `content` text,
   `writer` varchar(20) DEFAULT NULL,
-  `update_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
@@ -68,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `blog_articles` (
   `title` varchar(255) DEFAULT NULL,
   `content` text,
   `author` varchar(50) DEFAULT NULL,
-  `create_dt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_dt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_dt` datetime DEFAULT NULL,
+  `update_dt` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='博客文章';
 
@@ -89,8 +87,8 @@ CREATE TABLE IF NOT EXISTS `blog_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
-  `create_dt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_dt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_dt` datetime DEFAULT NULL,
+  `update_dt` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='博客分类';
 
@@ -106,7 +104,7 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
-  `update_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -155,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `zip_code` varchar(10) DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
   `create_dt` datetime DEFAULT NULL,
-  `update_dt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_dt` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -229,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `shop_good` (
   `image` varchar(255) DEFAULT NULL,
   `detail` text NOT NULL,
   `status` int(11) DEFAULT '1',
-  `update_dt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_dt` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -269,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `shop_order` (
   `order_status` varchar(32) DEFAULT NULL,
   `cartdata` text,
   `create_dt` datetime DEFAULT NULL,
-  `update_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -289,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `shop_user` (
   `phone` varchar(32) DEFAULT NULL,
   `password` varchar(32) DEFAULT NULL,
   `address` text,
-  `update_dt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_dt` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
