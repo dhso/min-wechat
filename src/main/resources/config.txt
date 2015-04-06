@@ -6,7 +6,7 @@ wx.jdbcDriver = com.mysql.jdbc.Driver
 #wx.jdbcUrl = jdbc:mysql://127.0.0.1:3306/tps
 #wx.jdbcUser = root
 #wx.jdbcPassword = 923389
-wx.jdbcUrl = jdbc:mysql://192.168.3.110:3306/tps
+wx.jdbcUrl = jdbc:mysql://192.168.3.110:3306/jfsys
 wx.jdbcUser = root
 wx.jdbcPassword = 923389
 wx.devMode = true
@@ -19,10 +19,10 @@ wx.proxy.auth.username = 1194709104218733_default_-6
 wx.proxy.auth.password = rb6e475twf
 
 #微信配置
-wx.url=http://eastbride-wechat.aliapp.com/wechat
-wx.token=eastbride
-wx.appId = wxbbaed5839238c4eb
-wx.appSecret = 064682c9add7e6756f9f435c904825a9
+wx.url=http://oraybang.wicp.net/jfsys/wechat
+wx.token=apphui
+wx.appId = wx396714621dc72788
+wx.appSecret = e5adb6d4b8326ead8bfe27dfe92a2738
 
 #支付宝配置
 wx.alipay.user = dhso@163.com

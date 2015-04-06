@@ -45,16 +45,15 @@ public class WechatController extends WeixinController {
 
 		String msgContent = inTextMsg.getContent().trim();
 		// 帮助提示
-		if ("help".equalsIgnoreCase(msgContent)) {
+		if ("help".equalsIgnoreCase(msgContent) || "帮助".equals(msgContent)) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
 			outMsg.setContent(ConfigKit.getStr("msg.helpStr"));
 			render(outMsg);
 		}
 		// 图文消息测试
-		else if ("news".equalsIgnoreCase(msgContent)) {
+		else if (msgContent.contains("带包子")) {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-			outMsg.addNews("JFinal 1.8 发布，JAVA 极速 WEB+ORM 框架", "现在就加入 JFinal 极速开发世界，节省更多时间去跟女友游山玩水 ^_^", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq1ibBkhSA1BibMuMxLuHIvUfiaGsK7CC4kIzeh178IYSHbYQ5eg9tVxgEcbegAu22Qhwgl5IhZFWWXUw/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200313981&idx=1&sn=3bc5547ba4beae12a3e8762ababc8175#rd");
-			outMsg.addNews("JFinal 1.6 发布,JAVA极速WEB+ORM框架", "JFinal 1.6 主要升级了 ActiveRecord 插件，本次升级全面支持多数源、多方言、多缓", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq0fcR8VmNCgugHXv7gVlxI6w95RBlKLdKUTjhOZIHGSWsGvjvHqnBnjIWHsicfcXmXlwOWE6sb39kA/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200121522&idx=1&sn=ee24f352e299b2859673b26ffa4a81f6#rd");
+			outMsg.addNews(Config.dao.getValueByKey("shop_name"), "点击进入，开启幸福购物世界^_^", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_url") + inTextMsg.getFromUserName());
 			render(outMsg);
 		}
 		// 音乐消息测试
