@@ -277,10 +277,17 @@ function getOrders(){
 						pay = '已支付';
 					}
 					for(var i = 0;i < cart_data.length;i++){
-						cart_html+='<tr><td colspan="4">名称：'+cart_data[i].name+' | 数量：'+cart_data[i].num+' | 单价：'+cart_data[i].price+' 元</td></tr>';
+						if(i == 0){
+							cart_html+='<tr id="orderDesc_'+value.ORDER_ID+'" style="display: none;"><td colspan="4"><table width="100%" border="1" cellpadding="0" cellspacing="0">';
+							cart_html+='<tr><th>名称</th><th class="cc">数量</th><th class="cc">单价</th></tr>';
+						}
+						cart_html+='<tr><td>'+cart_data[i].name+'</td><td class="cc">'+cart_data[i].num+'</td><td class="cc">'+cart_data[i].price+'</td></tr>';
+						if(i == cart_data.length-1){
+							cart_html+='<tr><td colspan="3">订单时间：'+value.CREATE_DT+'</td></tr>';
+							cart_html+='</table></td><tr>';
+						}
 					}
-					html += '<tr style="background-color:#ccc;"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
-					html += '<tr><td colspan="4">时间：'+value.CREATE_DT+'</td></tr>';
+					html += '<tr onclick="showOrderDesc('+value.ORDER_ID+');"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
 					html += cart_html;
 				});
 				$('#orderlistinsert').empty();
@@ -336,4 +343,8 @@ function showAll() {
 		$(this).show();
 	});
 	$('#menu ul').hide();
+}
+function showOrderDesc(orderId){
+	$('tr[id^="orderDesc_"]').hide();
+	$('#orderDesc_'+orderId).show();
 }
