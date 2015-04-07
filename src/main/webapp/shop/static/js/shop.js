@@ -10,7 +10,7 @@ $(document).ready(function () {
 //			$(this).hide();
 //		}
 //	});
-	
+	//点击购物车
 	$('#cart').on('click' , function (){
 		$('#menu-container').hide();
 		$('#cart-container').show();
@@ -21,6 +21,7 @@ $(document).ready(function () {
 		});
 		$(this).children("a").attr("class","active");
 	});
+	//点击首页
 	$('#home').on('click' , function (){
 		$('#menu-container').show();
 		$('#cart-container').hide();
@@ -31,6 +32,7 @@ $(document).ready(function () {
 		});
 		$(this).children("a").attr("class","active");
 	});
+	//点击用户
 	$('#user').on('click' , function (){
 		$('#menu-container').hide();
 		$('#cart-container').hide();
@@ -41,69 +43,19 @@ $(document).ready(function () {
 		});
 		$(this).children("a").attr("class","active");
 		
-		$.ajax({
-			type : 'POST',
-			url : appurl+'/shop/order/getOrders',
-			data : {
-				uid : $_GET['uid']
-			},
-			success : function (response , status , xhr){
-				if(response){
-					var json = eval(response); 
-					var html = '';
-					var order_status = '';
-					var pay_status = '';
-					
-					$.each(json, function (index, value) {
-						var pay = '';
-						var order = '';
-						var carts_html = '';
-						var carts_data = JSON.parse(value.CARTDATA);
-						if (value.ORDER_STATUS == '0'){
-							order_status = 'no';
-							order = '未发货';
-						}else if ( value.ORDER_STATUS == '1'){
-							order_status = 'ok';
-							order = '已发货';
-						}
-						
-						if (value.PAY_STATUS == '0'){
-							pay_status = 'no';
-							pay = '未支付';
-						}else if ( value.PAY_STATUS == '1'){
-							pay_status = 'ok';
-							pay = '已支付';
-						}
-						for(var i = 0;i < carts_data.length;i++){
-							carts_html+='<tr><td colspan="4">名称：'+carts_data[i].name+' | 数量：'+carts_data[i].num+' | 单价：'+carts_data[i].price+' 元</td></tr>';
-						}
-						html += '<tr style="background-color:#ccc;"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
-						html += '<tr><td colspan="4">时间：'+value.CREATE_DT+'</td></tr>';
-						html += carts_html;
-					});
-					$('#orderlistinsert').empty();
-					$('#orderlistinsert').append( html );					
-				}
+		getOrders();//add by hadong
 
-			},
-			beforeSend : function(){
-    			$('#page_tag_load').show();
-	    	},
-	    	complete : function(){
-	    		$('#page_tag_load').hide();
-	    	}
-		});
 	});
 
 });
+//触发点击首页
 function home() {
 	$('#home').click();
 }
+//清空购物车
 function clearCache(){
 	$('#ullist').find('li').remove();
-
 	$('#home').click();
-
 	$('.reduce').each(function () {
 		$(this).children().css('background','');
 	});
@@ -111,6 +63,7 @@ function clearCache(){
 	$('#cartN2').html(0);
 	$('#totalPrice').html(0);
 }
+//购物车+1
 function addProductN (wemallId){
 	var jqueryid = wemallId.split('_')[0]+'_'+wemallId.split('_')[1];
 	var price = parseFloat( wemallId.split('_')[2] );
@@ -124,6 +77,7 @@ function addProductN (wemallId){
 	var totalPrice = parseFloat($('#totalPrice').html())+ parseFloat(price);
 	$('#totalPrice').html( totalPrice.toFixed(2) );
 }
+//购物车-1
 function reduceProductN ( wemallId ){
 	var price = parseFloat( wemallId.split('_')[2] );
 	var jqueryid = wemallId.split('_')[0]+'_'+wemallId.split('_')[1];
@@ -148,6 +102,7 @@ function reduceProductN ( wemallId ){
 	var totalPrice = parseFloat($('#totalPrice').html())- parseFloat(price);
 	$('#totalPrice').html( totalPrice.toFixed(2) );
 }
+//加入购物车
 function doProduct (id , name , price) {
 	var bgcolor = $('#'+id).children().css('background-color').colorHex().toUpperCase();
 	if (bgcolor == '#FFFFFF') {
@@ -161,7 +116,7 @@ function doProduct (id , name , price) {
 		$('#totalPrice').html( totalPrice.toFixed(2) );
 
 		var wemallId = 'wemall_'+id;
-		var html = '<li class="ccbg2" id="'+wemallId+'"><div class="orderdish"><span name="title">'+name+'</span><span class="price" id="v_0">'+price+'</span><span class="price">元</span></div><div class="orderchange"><a href=javascript:addProductN("'+wemallId+'_'+price+'") class="increase"><b class="ico_increase">加一份</b></a><span class="count" id="num_1_499">1</span><a href=javascript:reduceProductN("'+wemallId+'_'+price+'") class="reduce"><b class="ico_reduce">减一份</b></a></div></li>';
+		var html = '<li class="ccbg2" id="'+wemallId+'"><div class="orderdish"><span name="title">'+name+'</span><span class="price" id="v_0">'+price+'</span><span class="price">元</span></div><div class="orderchange"><a href=javascript:reduceProductN("'+wemallId+'_'+price+'") class="reduce"><b class="ico_reduce">减一</b></a><span class="count" id="num_1_499">1</span><a href=javascript:addProductN("'+wemallId+'_'+price+'") class="increase"><b class="ico_increase">加一</b></a></div></li>';
 		$('#ullist').append(html);
 	}else{
 		$('#'+id).children().css('background-color','');
@@ -177,16 +132,26 @@ function doProduct (id , name , price) {
 		$('#'+wemallId).remove();
 	}
 }
+//提交订单
 function submitOrder () {
-
-	//获取订单信息
+	if(!$('form').find('#name').val()){
+		alert('请输入联系人！');
+		return false;
+	}
+	if(!$('form').find('#phone').val()){
+		alert('请输入联系电话！');
+		return false;
+	}
+	if(!$('form').find('#address').val()){
+		alert('请输入地址！');
+		return false;
+	}
 	var json = '';
 	$('#ullist li').each(function () {
 		var name = $(this).find('span[name=title]').html();
 		var num = $(this).find('span[class=count]').html();
 		var price = $(this).find('span[class=price]').html();
 		json += '{"name":"'+name+'","num":"'+num+'","price":"'+price+'"},';
-	
 	});
 	json = json.substring(0 , json.length-1);
 	json = '['+json+']';
@@ -214,58 +179,8 @@ function submitOrder () {
 			if (response) {
 				window.open(response);
 			}
+			getOrders();//add by hadong
 			
-			$.ajax({
-				type : 'POST',
-				url : appurl+'/shop/order/getOrders',
-				data : {
-					uid : $_GET['uid']
-				},
-				success : function (response , status , xhr){
-					if(response){
-						var json = eval(response); 
-						var html = '';
-						var order_status = '';
-						var pay_status = '';
-						var carts_html = '';
-						var carts_data = JSON.parse(value.CARTDATA);
-						
-						$.each(json, function (index, value) {
-							var pay = '';
-							var order = '';
-							if (value.ORDER_STATUS == '0'){
-								order_status = 'no';
-								order = '未发货';
-							}else if ( value.ORDER_STATUS == '1'){
-								order_status = 'ok';
-								order = '已发货';
-							}
-							
-							if (value.PAY_STATUS == '0'){
-								pay_status = 'no';
-								pay = '未支付';
-							}else if ( value.PAY_STATUS == '1'){
-								pay_status = 'ok';
-								pay = '已支付';
-							}
-							for(var i = 0;i < carts_data.length;i++){
-								carts_html+='<tr><td colspan="4">名称：'+carts_data[i].name+' | 数量：'+carts_data[i].num+' | 单价：'+carts_data[i].price+' 元</td></tr>';
-							}
-							html += '<tr style="background-color:#ccc;"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
-							html += '<tr><td colspan="4">时间：'+value.CREATE_DT+'</td></tr>';
-							html += carts_html;
-						});
-						$('#orderlistinsert').empty();
-						$('#orderlistinsert').append( html );
-					}
-				},
-				beforeSend : function(){
-	    			$('#page_tag_load').show();
-		    	},
-		    	complete : function(){
-		    		$('#page_tag_load').hide();
-		    	}
-			});
 		},
 		beforeSend : function(){
 			$('#menu-shadow').show();
@@ -277,6 +192,7 @@ function submitOrder () {
 	
 
 }
+//获取url参数
 var $_GET = (function(){
 	var url = window.document.location.href.toString();
 	var u = url.split("?");
@@ -292,6 +208,7 @@ var $_GET = (function(){
 		return {};
 	}
 })();
+//获取Hex颜色
 String.prototype.colorHex = function(){
 	var that = this;
 	if(/^(rgb|RGB)/.test(that)){
@@ -323,6 +240,62 @@ String.prototype.colorHex = function(){
 		return that;	
 	}
 };
+//获取订单
+function getOrders(){
+	$.ajax({
+		type : 'POST',
+		url : appurl+'/shop/order/getOrders',
+		data : {
+			uid : $_GET['uid']
+		},
+		success : function (response , status , xhr){
+			if(response){
+				var json = eval(response); 
+				var html = '';
+				var order_status = '';
+				var pay_status = '';
+				
+				$.each(json, function (index, value) {
+					var pay = '';
+					var order = '';
+					var cart_html = '';
+					var cart_data = JSON.parse(value.CARTDATA);
+					
+					if (value.ORDER_STATUS == '0'){
+						order_status = 'no';
+						order = '未发货';
+					}else if ( value.ORDER_STATUS == '1'){
+						order_status = 'ok';
+						order = '已发货';
+					}
+					
+					if (value.PAY_STATUS == '0'){
+						pay_status = 'no';
+						pay = '未支付';
+					}else if ( value.PAY_STATUS == '1'){
+						pay_status = 'ok';
+						pay = '已支付';
+					}
+					for(var i = 0;i < cart_data.length;i++){
+						cart_html+='<tr><td colspan="4">名称：'+cart_data[i].name+' | 数量：'+cart_data[i].num+' | 单价：'+cart_data[i].price+' 元</td></tr>';
+					}
+					html += '<tr style="background-color:#ccc;"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+					html += '<tr><td colspan="4">时间：'+value.CREATE_DT+'</td></tr>';
+					html += cart_html;
+				});
+				$('#orderlistinsert').empty();
+				$('#orderlistinsert').append( html );
+			}
+		},
+		beforeSend : function(){
+			$('#page_tag_load').show();
+    	},
+    	complete : function(){
+    		$('#page_tag_load').hide();
+    	}
+	});
+}
+//商品详细展示
 function showDetail(id){
 	$.ajax({
 		type : 'post',

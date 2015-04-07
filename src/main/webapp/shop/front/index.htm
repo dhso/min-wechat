@@ -26,8 +26,7 @@
 						<li><a href="javascript:showAll()">所有商品</a></li>
 					</ul>
 				</div>
-				<a class="head_btn_right" href="javascript:showMenu();"><i
-					class="menu_header_home"></i> </a>
+				<a class="head_btn_right" href="javascript:showMenu();"><i class="menu_header_home"></i></a>
 			</div>
 		</div>
 
@@ -115,7 +114,7 @@
 										<td width="80px"><label for="name" class="ui-input-text">联系人：</label></td>
 										<td>
 											<div class="ui-input-text">
-												<input id="name" name="name" placeholder="" value="<#if shop_user??&&shop_user.username??>${shop_user.username}</#if>" type="text" class="ui-input-text">
+												<input id="name" name="name" placeholder="联系人" value="<#if shop_user??&&shop_user.username??>${shop_user.username}</#if>" type="text" class="ui-input-text">
 											</div>
 										</td>
 									</tr>
@@ -124,7 +123,7 @@
 										<td width="80px"><label for="phone" class="ui-input-text">联系电话：</label></td>
 										<td>
 											<div class="ui-input-text">
-												<input id="phone" name="phone" placeholder="" value="<#if shop_user??&&shop_user.phone??>${shop_user.phone}</#if>" type="tel" class="ui-input-text">
+												<input id="phone" name="phone" placeholder="联系电话" value="<#if shop_user??&&shop_user.phone??>${shop_user.phone}</#if>" type="tel" class="ui-input-text">
 											</div>
 										</td>
 									</tr>
@@ -140,7 +139,7 @@
 									<tr>
 										<td width="80px"><label for="address"
 											class="ui-input-text">地址：</label></td>
-										<td><textarea id="address" name="address" placeholder="" value="" class="ui-input-text"><#if shop_user??&&shop_user.address??>${shop_user.address}</#if></textarea>
+										<td><textarea id="address" name="address" placeholder="地址" value="" class="ui-input-text"><#if shop_user??&&shop_user.address??>${shop_user.address}</#if></textarea>
 										</td>
 									</tr>
 									<tr>
