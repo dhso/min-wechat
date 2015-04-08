@@ -154,8 +154,13 @@ function submitOrder () {
 		json += '{"name":"'+name+'","num":"'+num+'","price":"'+price+'"},';
 	});
 	json = json.substring(0 , json.length-1);
-	json = '['+json+']';
 	
+	if(!json){
+		alert('请选择至少一种商品！');
+		return false;
+	}
+	
+	json = '['+json+']';
 	$.ajax({
 		type : 'POST',
 		url : appurl+'/shop/order/addOrder',
@@ -306,16 +311,16 @@ function getOrders(){
 function showDetail(id){
 	$.ajax({
 		type : 'post',
-		url : appurl+'/shop/order/fetchGoodDetail',
+		url : appurl+'/shop/good/fetchGoodDetail',
 		data : {
 			id : id,
 		},
 		success : function(response , status , xhr){
 			$('#mcover').show();
 			var json = eval(response);
-			$('#detailpic').attr('src',appurl+'/static/img/'+json.image);
-			$('#detailtitle').html(json.title);
-			$('#detailinfo').html(json.detail);
+			$('#detailpic').attr('src',json.IMAGE);
+			$('#detailtitle').html(json.NAME);
+			$('#detailinfo').html(json.DETAIL);
 		}
 	});
 }

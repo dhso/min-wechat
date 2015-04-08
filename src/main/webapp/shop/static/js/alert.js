@@ -4,7 +4,7 @@ document.writeln(".window {");
 document.writeln("	width:290px;");
 document.writeln("	position:fixed;");
 document.writeln("	display:none;");
-document.writeln("	bottom:30px;");
+document.writeln("	bottom:50%;");
 document.writeln("	left:50%;");
 document.writeln("	 z-index:9999;");
 document.writeln("	margin:-50px auto 0 -145px;");

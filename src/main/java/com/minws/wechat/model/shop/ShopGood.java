@@ -13,4 +13,8 @@ public class ShopGood extends Model<ShopGood> {
 	public List<ShopGood> getAllGood() {
 		return ShopGood.dao.find("select * from shop_good");
 	}
+
+	public ShopGood fetchGoodDetail(int id) {
+		return ShopGood.dao.findById(id, "name,image,detail,price,old_price");
+	}
 }

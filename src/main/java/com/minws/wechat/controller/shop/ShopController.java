@@ -58,4 +58,15 @@ public class ShopController extends Controller {
 			renderText("uid is empty!");
 		}
 	}
+
+	@ActionKey("/shop/good/fetchGoodDetail")
+	public void fetchGoodDetail() {
+		int id = getParaToInt("id", -999);
+		if (id != -999) {
+			renderJson(ShopGood.dao.fetchGoodDetail(id));
+		} else {
+			renderText("id is empty!");
+		}
+	}
+
 }
