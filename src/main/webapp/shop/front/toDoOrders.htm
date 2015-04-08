@@ -14,7 +14,7 @@
         </script>
 </head>
 <body class="sanckbg mode_webapp">
-	<div id="user-container" style="">
+	<div id="close-order-container">
 		<div class="menu_header">
 			<div class="menu_topbar">
 				<div id="menu" class="sort ">
@@ -33,11 +33,12 @@
 					</div>
 				</div>
 			</div>
+		</div>
 			<ul class="round-todoorder">
 				<#list toDoOrders as toDoOrder>
 				<table id="table_${toDoOrder.ORDERID}" cellpadding="0" cellspacing="0" class="cpbiaoge-todoorder" onclick="closeOrder('${toDoOrder.ORDERID}');">
-					<tr class="ordertitle"><td>订单:</td><td>${toDoOrder.ORDERID}</td><td>时间:</td><td>${toDoOrder.CREATEDT}</td></tr>
-					<tr class="ordertitle"><td>姓名:</td><td>${toDoOrder.USERNAME}</td><td>备注:</td><td>${toDoOrder.NOTE}</td></tr>
+					<tr class="ordertitle"><td colspan="4">No:${toDoOrder.ORDERID} / ${toDoOrder.CREATEDT}</td></tr>
+					<tr class="ordertitle"><td colspan="4">姓名:${toDoOrder.USERNAME} / Note: ${toDoOrder.NOTE}</td></tr>
 					<#assign map = "${toDoOrder.CARTDATA}"?eval>
 					<#assign count = 0>
 					<#assign countall = 0>
@@ -60,7 +61,6 @@
 				</#list>
 			</ul>
 		</div>
-	</div>
 	<script src="${baseUrl}/static/js/jquery.min.js"></script>
     <script src="${baseUrl}/shop/static/js/shop.js"></script>
 </body>
