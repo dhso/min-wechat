@@ -22,9 +22,13 @@ public class ShopOrder extends Model<ShopOrder> {
 	public boolean addOrderByUid(String uid, String totalPrice, String note, String payStyle, String cartData, String username, String phone, String address) {
 		if (null == ShopUser.dao.getUserByUid(uid)) {
 			ShopUser.dao.addUser(uid, username, phone, address);
-		}else{
+		} else {
 			ShopUser.dao.updateUser(uid, username, phone, address);
 		}
 		return new ShopOrder().set("user_id", ShopUser.dao.getUserByUid(uid).get("id")).set("order_id", IdentityKit.uuid4()).set("totalprice", totalPrice).set("note", note).set("pay_style", payStyle).set("pay_status", "0").set("order_status", "0").set("create_dt", new Date()).set("cartdata", cartData).save();
+	}
+
+	public List<ShopOrder> getToDoOrders() {
+		return ShopOrder.dao.find("select so.order_id as orderId,so.totalprice as totalPrice,so.cartdata as cartData,so.create_dt as createDt,so.note as note, su.username as userName from shop_order so left join shop_user su on su.id = so.user_id where so.order_status='0'");
 	}
 }
