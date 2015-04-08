@@ -353,3 +353,26 @@ function showOrderDesc(orderId){
 	$('tr[id^="orderDesc_"]').hide();
 	$('#orderDesc_'+orderId).show();
 }
+function closeOrder(orderId){
+	if(confirm("是否关闭订单?")){
+		$.ajax({
+			type : 'POST',
+			url : appurl+'/shop/order/closeOrder',
+			data : {
+				uid : $_GET['uid'],
+				orderId : orderId
+			},
+			success : function (response , status , xhr){
+				if(response && response == "success"){
+					$("#table_"+orderId).remove();
+				}
+			},
+			beforeSend : function(){
+				$('#page_tag_load').show();
+	    	},
+	    	complete : function(){
+	    		$('#page_tag_load').hide();
+	    	}
+		});
+	}
+}

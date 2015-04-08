@@ -69,8 +69,24 @@ public class ShopController extends Controller {
 		}
 	}
 
-	@ActionKey("/shop/back/order/getToDoOrders")
+	@ActionKey("/shop/order/getToDoOrders")
 	public void getToDoOrders() {
+		setAttr("toDoOrders", ShopOrder.dao.getToDoOrders());
+		render("front/toDoOrders.htm");
+	}
+
+	@ActionKey("/shop/order/getToDoOrders/json")
+	public void getToDoOrdersJson() {
 		renderJson(ShopOrder.dao.getToDoOrders());
+	}
+	
+	@ActionKey("/shop/order/closeOrder")
+	public void closeOrder() {
+		String orderId = getPara("orderId");
+		if(ShopOrder.dao.closeOrder(orderId) == 0){
+			renderText("orderId is empty!");
+		}else{
+			renderText("success");
+		}
 	}
 }

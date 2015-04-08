@@ -2074,3 +2074,49 @@ p.title {
 	border: 1px solid #d8d8d8;
 }
 
+ul.round-todoorder{
+	text-align: left;
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 11px;
+	display: block;
+	color: #666666;
+}
+.cpbiaoge-todoorder {
+	width: 100%;
+	text-align: left;
+	background-color: #fff;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: 5px 5px 5px #ccc;
+	margin: 5px 0;
+	border: 0px;
+}
+
+.cpbiaoge-todoorder .cc {
+	text-align: center !important;
+}
+
+.cpbiaoge-todoorder .rr {
+	text-align: right !important;
+}
+
+.cpbiaoge-todoorder th {
+	background-color: #f9f9f9;
+	font-size: 12px;
+	padding: 6px 10px 6px 10px;
+	border-bottom: 1px solid #d8d8d8;
+	white-space: nowrap;
+}
+
+.cpbiaoge-todoorder tr.ordertitle td{
+	font-size: 14px;
+	padding: 3px 10px 0 10px;
+	color: #333;
+}
+.cpbiaoge-todoorder tr.orderlist td{
+	border-top: 1px dashed #ccc;
+	padding: 2px 10px;
+	font-size: 14px;
+	color: #333;
+}

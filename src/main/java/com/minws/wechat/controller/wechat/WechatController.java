@@ -56,6 +56,11 @@ public class WechatController extends WeixinController {
 			outMsg.addNews(Config.dao.getValueByKey("shop_name"), "点击进入，开启幸福购物世界^_^", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_url") + inTextMsg.getFromUserName());
 			render(outMsg);
 		}
+		else if (msgContent.contains("处理订单")) {
+			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
+			outMsg.addNews("处理订单入口", "点击进入处理订单界面。", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_order_manage_url"));
+			render(outMsg);
+		}
 		// 音乐消息测试
 		else if ("music".equalsIgnoreCase(msgContent)) {
 			OutMusicMsg outMsg = new OutMusicMsg(inTextMsg);
