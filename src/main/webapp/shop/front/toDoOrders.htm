@@ -14,7 +14,9 @@
         </script>
 </head>
 <body class="sanckbg mode_webapp">
-	<div id="close-order-container">
+
+	<div id="toDoOrder-container">
+
 		<div class="menu_header">
 			<div class="menu_topbar">
 				<div id="menu" class="sort ">
@@ -33,34 +35,46 @@
 					</div>
 				</div>
 			</div>
-		</div>
-			<ul class="round-todoorder">
-				<#list toDoOrders as toDoOrder>
-				<table id="table_${toDoOrder.ORDERID}" cellpadding="0" cellspacing="0" class="cpbiaoge-todoorder" onclick="closeOrder('${toDoOrder.ORDERID}');">
-					<tr class="ordertitle"><td colspan="4">No:${toDoOrder.ORDERID} / ${toDoOrder.CREATEDT}</td></tr>
-					<tr class="ordertitle"><td colspan="4">姓名:${toDoOrder.USERNAME} / Note: ${toDoOrder.NOTE}</td></tr>
-					<#assign map = "${toDoOrder.CARTDATA}"?eval>
-					<#assign count = 0>
-					<#assign countall = 0>
-					<#list map as cart>
-						<#assign count = count + 1>
-						<#assign countall = countall + 1>
-						<#if count = 1>
-						<tr class="orderlist">
-						</#if>
-						<td>${cart.name}</td><td>${cart.num}</td>
-						<#if count = 2>
-						</tr>
+
+			<ul class="round">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge">
+					<tr>
+						<th>订单编号</th>
+						<th class="cc">姓名</th>
+						<th>备注</th>
+					</tr>
+					<tbody id="orderlistinsert">
+					<#list toDoOrders as toDoOrder>
+						<tr id="tr_${toDoOrder.ORDERID}" onclick="closeOrder('${toDoOrder.ORDERID}');" style="background-color:#cccccc;"><td>${toDoOrder.ORDERID}</td><td class="cc">${toDoOrder.USERNAME}</td><td>${toDoOrder.NOTE}</td></tr>
+						<#assign map = "${toDoOrder.CARTDATA}"?eval>
 						<#assign count = 0>
-						</#if>
-						<#if countall = map?size && count != 2>
-						<td></td><td></td></tr>
-						</#if>
+						<#assign countall = 0>
+						<tr id="tb_${toDoOrder.ORDERID}" onclick="closeOrder('${toDoOrder.ORDERID}');"><td colspan="3">
+						<table width="100%" border="1" cellpadding="0" cellspacing="0">
+						<tr style="line-height: 10px;"><th>商品名称</th><th class="cc">数量</th><th>商品名称</th><th class="cc">数量</th></tr>
+						<#list map as cart>
+							<#assign count = count + 1>
+							<#assign countall = countall + 1>
+							<#if count = 1>
+							<tr style="line-height: 2px;">
+							</#if>
+							<td>${cart.name}</td><td class="cc">${cart.num}</td>
+							<#if count = 2>
+							</tr>
+							<#assign count = 0>
+							</#if>
+							<#if countall = map?size && count != 2>
+							<td></td><td class="cc"></td></tr>
+							</#if>
+						</#list>
+						</table></td></tr>
 					</#list>
+					</tbody>
 				</table>
-				</#list>
 			</ul>
 		</div>
+	</div>
+	
 	<script src="${baseUrl}/static/js/jquery.min.js"></script>
     <script src="${baseUrl}/shop/static/js/shop.js"></script>
 </body>

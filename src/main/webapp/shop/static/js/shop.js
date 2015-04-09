@@ -42,9 +42,7 @@ $(document).ready(function () {
 			$(this).attr("class","");
 		});
 		$(this).children("a").attr("class","active");
-		
 		getOrders();//add by hadong
-
 	});
 
 });
@@ -171,7 +169,6 @@ function submitOrder () {
 			totalPrice : $('#totalPrice').html()
 		},
 		success : function (response , status , xhr) {
-			
 			$('#user').click();
 			$('#ullist').find('li').remove();
 			$('.reduce').each(function () {
@@ -180,12 +177,9 @@ function submitOrder () {
 			$('#totalNum').html(0);
 			$('#cartN2').html( 0 );
 			$('#totalPrice').html(0);
-			
 			if (response) {
 				window.open(response);
 			}
-			getOrders();//add by hadong
-			
 		},
 		beforeSend : function(){
 			$('#menu-shadow').show();
@@ -354,7 +348,7 @@ function showOrderDesc(orderId){
 	$('#orderDesc_'+orderId).show();
 }
 function closeOrder(orderId){
-	if(confirm("是否关闭订单?")){
+	if(confirm("是否关闭订单 "+orderId+" ?")){
 		$.ajax({
 			type : 'POST',
 			url : appurl+'/shop/order/closeOrder',
@@ -364,7 +358,8 @@ function closeOrder(orderId){
 			},
 			success : function (response , status , xhr){
 				if(response && response == "success"){
-					$("#table_"+orderId).remove();
+					$("#tr_"+orderId).remove();
+					$("#tb_"+orderId).remove();
 				}
 			},
 			beforeSend : function(){
