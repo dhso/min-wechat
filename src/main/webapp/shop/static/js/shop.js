@@ -282,11 +282,15 @@ function getOrders(){
 						}
 						cart_html+='<tr><td>'+cart_data[i].name+'</td><td class="cc">'+cart_data[i].num+'</td><td class="cc">'+cart_data[i].price+'</td></tr>';
 						if(i == cart_data.length-1){
-							cart_html+='<tr><td colspan="3">订单时间：'+value.CREATE_DT+'</td></tr>';
+							if(value.ORDER_STATUS == '0'){
+								cart_html+='<tr><td colspan="3">订单时间：'+value.CREATE_DT+' <em class="btn_del error" onclick="delOrder('+value.ORDER_ID+');">删除订单</em></td></tr>';
+							}else{
+								cart_html+='<tr><td colspan="3">订单时间：'+value.CREATE_DT+' <em class="btn_del no">删除订单</em></td></tr>';
+							}
 							cart_html+='</table></td><tr>';
 						}
 					}
-					html += '<tr onclick="showOrderDesc('+value.ORDER_ID+');"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+					html += '<tr id="orderTitle_'+value.ORDER_ID+'" onclick="showOrderDesc('+value.ORDER_ID+');"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
 					html += cart_html;
 				});
 				$('#orderlistinsert').empty();
@@ -352,6 +356,32 @@ function showAll() {
 function showOrderDesc(orderId){
 	$('#orderDesc_'+orderId).toggle();
 }
+function delOrder(orderId){
+	if(confirm("是否删除订单 "+orderId+" ?")){
+		$.ajax({
+			type : 'POST',
+			url : appurl+'/shop/order/delOrder',
+			data : {
+				uid : $_GET['uid'],
+				orderId : orderId
+			},
+			success : function (response , status , xhr){
+				if(response && response == "success"){
+					$("#orderTitle_"+orderId).remove();
+					$("#orderDesc_"+orderId).remove();
+				}else{
+					alert(response);
+				}
+			},
+			beforeSend : function(){
+				$('#page_tag_load').show();
+	    	},
+	    	complete : function(){
+	    		$('#page_tag_load').hide();
+	    	}
+		});
+	}
+}
 function closeOrder(orderId){
 	if(confirm("是否关闭订单 "+orderId+" ?")){
 		$.ajax({
@@ -363,8 +393,10 @@ function closeOrder(orderId){
 			},
 			success : function (response , status , xhr){
 				if(response && response == "success"){
-					$("#tr_"+orderId).remove();
 					$("#tb_"+orderId).remove();
+					$("#div_"+orderId).remove();
+				}else{
+					alert(response);
 				}
 			},
 			beforeSend : function(){

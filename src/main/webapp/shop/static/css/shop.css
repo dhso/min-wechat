@@ -2073,3 +2073,8 @@ p.title {
 .bline {
 	border: 1px solid #d8d8d8;
 }
+
+.btn_del{
+	float: right;
+	line-height: 14px;
+}

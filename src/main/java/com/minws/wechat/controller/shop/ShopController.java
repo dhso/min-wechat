@@ -59,6 +59,16 @@ public class ShopController extends Controller {
 		}
 	}
 
+	@ActionKey("/shop/order/delOrder")
+	public void delOrder() {
+		String orderId = getPara("orderId");
+		if (ShopOrder.dao.delOrder(orderId) == 0) {
+			renderText("orderId is not illegal!");
+		} else {
+			renderText("success");
+		}
+	}
+
 	@ActionKey("/shop/good/fetchGoodDetail")
 	public void fetchGoodDetail() {
 		int id = getParaToInt("id", -999);
@@ -79,13 +89,13 @@ public class ShopController extends Controller {
 	public void getToDoOrdersJson() {
 		renderJson(ShopOrder.dao.getToDoOrders());
 	}
-	
+
 	@ActionKey("/shop/order/closeOrder")
 	public void closeOrder() {
 		String orderId = getPara("orderId");
-		if(ShopOrder.dao.closeOrder(orderId) == 0){
+		if (ShopOrder.dao.closeOrder(orderId) == 0) {
 			renderText("orderId is empty!");
-		}else{
+		} else {
 			renderText("success");
 		}
 	}
