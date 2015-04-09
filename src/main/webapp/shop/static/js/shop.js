@@ -315,7 +315,13 @@ function showDetail(id){
 			$('#detailpic').attr('src',json.IMAGE);
 			$('#detailtitle').html(json.NAME);
 			$('#detailinfo').html(json.DETAIL);
-		}
+		},
+		beforeSend : function(){
+			$('#mcover_tag_load').show();
+    	},
+    	complete : function(){
+    		$('#mcover_tag_load').hide();
+    	}
 	});
 }
 function showMenu(){

@@ -36,7 +36,15 @@
 			</div>
 			<div class="content">${shop.notification}</div>
 		</div>
-
+		<div id="mcover_tag_load" hidefocus="true"
+				style="display: none; z-index: 10;">
+				<div class="btn-group"
+					style="position: fixed; font-size: 12px; width: 220px; bottom: 80px; left: 50%; margin-left: -110px; z-index: 999;">
+					<div class="del" style="font-size: 14px;">
+						<img src="${baseUrl}/shop/static/img/ajax-loader.gif" alt="loader">正在获取数据...
+					</div>
+				</div>
+		</div>
 		<section class="menu">
 			<section class="list listimg">
 				<dl>
