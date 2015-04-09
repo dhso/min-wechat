@@ -350,8 +350,7 @@ function showAll() {
 	$('#menu ul').hide();
 }
 function showOrderDesc(orderId){
-	$('tr[id^="orderDesc_"]').hide();
-	$('#orderDesc_'+orderId).show();
+	$('#orderDesc_'+orderId).toggle();
 }
 function closeOrder(orderId){
 	if(confirm("是否关闭订单 "+orderId+" ?")){
