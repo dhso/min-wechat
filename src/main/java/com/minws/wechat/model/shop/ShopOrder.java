@@ -7,6 +7,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.minws.wechat.frame.kit.IdentityKit;
@@ -16,8 +17,8 @@ import com.minws.wechat.frame.kit.IdentityKit;
 public class ShopOrder extends Model<ShopOrder> {
 	public static final ShopOrder dao = new ShopOrder();
 
-	public List<ShopOrder> getOrdersByUid(String uid) {
-		return ShopOrder.dao.find("select * from shop_order as so left join shop_user as su on su.id = so.user_id where su.uid = ?", uid);
+	public Page<Record> getOrdersByUid(String uid) {
+		return Db.paginate(1, 20, "select *", "from shop_order as so left join shop_user as su on su.id = so.user_id where su.uid = ? order by so.create_dt desc", uid);
 	}
 
 	@Before(Tx.class)

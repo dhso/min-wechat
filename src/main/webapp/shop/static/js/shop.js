@@ -254,7 +254,7 @@ function getOrders(){
 				var order_status = '';
 				var pay_status = '';
 				
-				$.each(json, function (index, value) {
+				$.each(json.list, function (index, value) {
 					var pay = '';
 					var order = '';
 					var cart_html = '';
