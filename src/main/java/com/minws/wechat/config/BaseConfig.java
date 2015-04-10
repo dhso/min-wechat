@@ -34,7 +34,6 @@ import com.minws.wechat.controller.sys.BackController;
 import com.minws.wechat.controller.sys.FrontController;
 import com.minws.wechat.controller.sys.MainController;
 import com.minws.wechat.controller.sys.SecurityController;
-import com.minws.wechat.controller.wechat.ApiController;
 import com.minws.wechat.controller.wechat.WechatController;
 import com.minws.wechat.frame.kit.HttpKit;
 import com.minws.wechat.frame.plugin.shiro.FreemarketShiroTags;
@@ -72,7 +71,6 @@ public class BaseConfig extends JFinalConfig {
 		this.routes = rs;
 		rs.add("/", MainController.class);// Index
 		rs.add("/wechat", WechatController.class);// 微信
-		rs.add("/api", ApiController.class);// API
 		rs.add("/security", SecurityController.class, "/security");// 安全
 		rs.add("/front", FrontController.class, "/front");// 前台
 		rs.add("/shop", ShopController.class, "/shop");// 商店

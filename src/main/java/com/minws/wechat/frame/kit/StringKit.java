@@ -267,4 +267,56 @@ public class StringKit extends org.apache.commons.lang3.StringUtils {
 		Map<String, String> maps = new ObjectMapper().readValue(jsonStr, Map.class);
 		return maps;
 	}
+
+	/**
+	 * 严格包含对象
+	 * 
+	 * @param origin
+	 * @param object
+	 * @return
+	 */
+	public static boolean hasObject(Object origin, Object... object) {
+		boolean result = false;
+		for (int i = 0; i < object.length; i++) {
+			if (origin.equals(object[i])) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 非严格包含字符串
+	 * 
+	 * @param origin
+	 * @param str
+	 * @return
+	 */
+	public static boolean containStr(String origin, Object... str) {
+		boolean result = false;
+		for (int i = 0; i < str.length; i++) {
+			if (origin.contains(str[i].toString())) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 批量替换
+	 * 
+	 * @param origin
+	 * @param newChar
+	 * @param str
+	 * @return
+	 */
+	public static String replaceStrs(String origin, String newChar, Object... str) {
+		for (int i = 0; i < str.length; i++) {
+			origin = origin.replace(str[i].toString(), newChar);
+		}
+		return origin;
+	}
+
 }

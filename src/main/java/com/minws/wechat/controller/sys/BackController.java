@@ -73,7 +73,7 @@ public class BackController extends Controller {
 	public void manageWechatMenu() throws JsonParseException, JsonMappingException, IOException {
 		if ("POST".equalsIgnoreCase(this.getRequest().getMethod().toUpperCase())) {
 			String newMenuJson = getPara("newMenuJson", "");
-			if (Config.dao.updateValueByKey("wechat_menu", newMenuJson)) {
+			if (Config.dao.setValueByKey("wechat_menu", newMenuJson) > 0) {
 				MenuApi.createMenu(newMenuJson);
 				setAttr("errorMsg", new Message("200", "alert-success", "菜单更新成功！"));
 			} else {

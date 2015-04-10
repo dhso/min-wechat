@@ -7,8 +7,13 @@
 package com.minws.wechat.controller.wechat;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.jfinal.ext.plugin.config.ConfigKit;
+import com.minws.wechat.frame.kit.HttpKit;
+import com.minws.wechat.frame.kit.StringKit;
 import com.minws.wechat.frame.sdk.simsimi.SimsimiSdk;
 import com.minws.wechat.frame.sdk.wechat.msg.in.InImageMsg;
 import com.minws.wechat.frame.sdk.wechat.msg.in.InLinkMsg;
@@ -42,27 +47,37 @@ public class WechatController extends WeixinController {
 	 * 其它类型的消息会在随后的方法中进行测试
 	 */
 	protected void processInTextMsg(InTextMsg inTextMsg) {
-
 		String msgContent = inTextMsg.getContent().trim();
-		// 帮助提示
-		if ("help".equalsIgnoreCase(msgContent) || "帮助".equals(msgContent)) {
+		if (StringKit.hasObject(msgContent, "help", "HELP", "帮助")) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
 			outMsg.setContent(ConfigKit.getStr("msg.helpStr"));
 			render(outMsg);
-		}
-		// 图文消息测试
-		else if (msgContent.contains("带包子")) {
+		} else if (StringKit.containStr(msgContent, "包子", "早点", "早饭")) {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
 			outMsg.addNews(Config.dao.getValueByKey("shop_name"), "点击进入，开启幸福购物世界^_^", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_url") + inTextMsg.getFromUserName());
 			render(outMsg);
-		}
-		else if (msgContent.contains("处理订单")) {
+		} else if (StringKit.hasObject(msgContent, "处理订单", "订单处理")) {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
 			outMsg.addNews("处理订单入口", "点击进入处理订单界面。", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_order_manage_url"));
 			render(outMsg);
-		}
-		// 音乐消息测试
-		else if ("music".equalsIgnoreCase(msgContent)) {
+		} else if (StringKit.containStr(msgContent, "天气预报", "天气", "温度", "下雨")) {
+			try {
+				String uri = "http://apix.sinaapp.com/weather/?appkey=trialuser&city=" + URLEncoder.encode(StringKit.replaceStrs(msgContent, "", "天气预报", "天气", "温度", "下雨"), "UTF-8");
+				JSONArray weather = JSON.parseArray(HttpKit.get(uri));
+				OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
+				for (int i = 0; i < weather.size(); i++) {
+					if (i == 0) {
+						outMsg.addNews(weather.getJSONObject(i).getString("Title"), weather.getJSONObject(i).getString("Description"), "http://wcdn.u.qiniudn.com/img/weatherreport.jpg", "");
+					} else {
+						outMsg.addNews(weather.getJSONObject(i).getString("Title"), weather.getJSONObject(i).getString("Description"), weather.getJSONObject(i).getString("PicUrl"), "");
+					}
+				}
+				render(outMsg);
+			} catch (Exception e) {
+				OutTextMsg outMsg = new OutTextMsg(inTextMsg).setContent("找不到地区: " + StringKit.replaceStrs(msgContent, "", "天气", "温度", "下雨", "天气预报"));
+				render(outMsg);
+			}
+		} else if ("music".equalsIgnoreCase(msgContent)) {
 			OutMusicMsg outMsg = new OutMusicMsg(inTextMsg);
 			outMsg.setTitle("Listen To Your Heart");
 			outMsg.setDescription("建议在 WIFI 环境下流畅欣赏此音乐");
@@ -74,9 +89,7 @@ public class WechatController extends WeixinController {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
 			outMsg.addNews("秀色可餐", "JFinal Weixin 极速开发就是这么爽，有木有 ^_^", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq2GJLC60ECD7rE7n1cvKWRNFvOyib4KGdic3N5APUWf4ia3LLPxJrtyIYRx93aPNkDtib3ADvdaBXmZJg/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200987822&idx=1&sn=7eb2918275fb0fa7b520768854fb7b80#rd");
 			render(outMsg);
-		}
-		// 其它文本消息直接返回原值 + 帮助提示
-		else {
+		} else {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
 			try {
 				outMsg.setContent(SimsimiSdk.askSimsimi(inTextMsg.getContent()));
@@ -194,4 +207,5 @@ public class WechatController extends WeixinController {
 	protected void processInSpeechRecognitionResults(InSpeechRecognitionResults inSpeechRecognitionResults) {
 		renderOutTextMsg("语音识别结果： " + inSpeechRecognitionResults.getRecognition());
 	}
+
 }
