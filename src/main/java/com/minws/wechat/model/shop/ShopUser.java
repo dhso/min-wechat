@@ -1,6 +1,7 @@
 package com.minws.wechat.model.shop;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 
 @SuppressWarnings("serial")
@@ -16,8 +17,7 @@ public class ShopUser extends Model<ShopUser> {
 		return new ShopUser().set("uid", uid).set("username", username).set("phone", phone).set("address", address).save();
 	}
 
-	public boolean updateUser(String uid, String username, String phone, String address) {
-		int id = ShopUser.dao.findFirst("select * from shop_user where uid = ?", uid).getInt("id");
-		return ShopUser.dao.findById(id).set("uid", uid).set("username", username).set("phone", phone).set("address", address).update();
+	public int updateUser(String uid, String username, String phone, String address) {
+		return Db.update("update shop_user set username = ?, phone = ?, address = ? where uid = ?", username, phone, address, uid);
 	}
 }
