@@ -33,7 +33,7 @@
 
 			<ul class="round" style="background-color: #E9E9E9;">
 				<#list toDoOrders as toDoOrder>
-				<table id="tb_${toDoOrder.ORDERID}" width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" onclick="closeOrder('${toDoOrder.ORDERID}');" style="border-top-left-radius: 10px;border-top-right-radius: 10px;background-color: #fff;">
+				<table id="tb_${toDoOrder.ORDERID}" width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" style="border-radius: 10px;background-color: #fff;margin-bottom: 5px;">
 					<tbody id="orderlistinsert">
 						<tr style="line-height: 12px;"><td style="width:80px;"><b>客户：</b>${toDoOrder.USERNAME}</td><td><b>备注：</b>${toDoOrder.NOTE}</td></tr>
 						<#assign map = "${toDoOrder.CARTDATA}"?eval>
@@ -58,9 +58,12 @@
 							</#if>
 						</#list>
 						</table></td></tr>
+						<tr style="line-height: 12px;"><td style="width:80px;"><b>总价：</b>${toDoOrder.TOTALPRICE}</td><td>
+						<em class="btn_del error" id="orderStatus_${toDoOrder.ORDERID}" onclick="closeOrder('${toDoOrder.ORDERID}');">关闭订单</em>
+						<#if toDoOrder.ORDERSTATUS = '0'><em class="btn_del error" id="dealStatus_${toDoOrder.ORDERID}" onclick="dealOrder('${toDoOrder.ORDERID}','1');">未处理</em><#else><em class="btn_del no" id="dealStatus_${toDoOrder.ORDERID}" onclick="dealOrder('${toDoOrder.ORDERID}','0');">已处理</em></#if>
+						</td></tr>
 					</tbody>
 				</table>
-				<div  id="div_${toDoOrder.ORDERID}" style="height:5px;background-color: #E9E9E9;"></div>
 				</#list>
 			</ul>
 		</div>

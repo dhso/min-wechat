@@ -99,4 +99,26 @@ public class ShopController extends Controller {
 			renderText("success");
 		}
 	}
+
+	@ActionKey("/shop/order/payOrder")
+	public void payOrder() {
+		String orderId = getPara("orderId");
+		String payStatus = getPara("payStatus");
+		if (ShopOrder.dao.payOrder(orderId, payStatus) == 0) {
+			renderText("orderId is empty!");
+		} else {
+			renderText("success");
+		}
+	}
+
+	@ActionKey("/shop/order/dealOrder")
+	public void dealOrder() {
+		String orderId = getPara("orderId");
+		String orderStatus = getPara("orderStatus");
+		if (ShopOrder.dao.dealOrder(orderId, orderStatus) == 0) {
+			renderText("orderId is empty!");
+		} else {
+			renderText("success");
+		}
+	}
 }

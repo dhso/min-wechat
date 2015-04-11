@@ -36,10 +36,18 @@ public class ShopOrder extends Model<ShopOrder> {
 	}
 
 	public List<Record> getToDoOrders() {
-		return Db.find("select so.order_id as orderId,so.totalprice as totalPrice,so.cartdata as cartData,so.create_dt as createDt,so.note as note, su.username as userName from shop_order so left join shop_user su on su.id = so.user_id where so.order_status='0'");
+		return Db.find("select so.order_id as orderId,so.totalprice as totalPrice,so.cartdata as cartData,so.create_dt as createDt,so.note as note,so.pay_status as payStatus,so.order_status as orderStatus, su.username as userName from shop_order so left join shop_user su on su.id = so.user_id where so.order_status='0' or so.pay_status='0' order by so.create_dt desc");
 	}
 
 	public int closeOrder(String orderId) {
-		return Db.update("update shop_order set order_status = '1' where order_id = ?", orderId);
+		return Db.update("update shop_order set order_status = '1',pay_status = '1' where order_id = ?", orderId);
+	}
+
+	public int payOrder(String orderId, String payStatus) {
+		return Db.update("update shop_order set pay_status = ? where order_id = ?", payStatus, orderId);
+	}
+
+	public int dealOrder(String orderId, String orderStatus) {
+		return Db.update("update shop_order set order_status = ? where order_id = ?", orderStatus, orderId);
 	}
 }

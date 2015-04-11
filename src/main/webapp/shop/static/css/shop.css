@@ -2077,4 +2077,5 @@ p.title {
 .btn_del{
 	float: right;
 	line-height: 14px;
+	margin: 0 3px;
 }

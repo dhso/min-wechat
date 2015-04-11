@@ -262,10 +262,10 @@ function getOrders(){
 					
 					if (value.ORDER_STATUS == '0'){
 						order_status = 'no';
-						order = '未发货';
+						order = '未处理';
 					}else if ( value.ORDER_STATUS == '1'){
 						order_status = 'ok';
-						order = '已发货';
+						order = '已处理';
 					}
 					
 					if (value.PAY_STATUS == '0'){
@@ -383,6 +383,10 @@ function delOrder(orderId){
 	}
 }
 function closeOrder(orderId){
+	if($("#payStatus_"+orderId).html()=="未处理"){
+		alert("订单尚未处理,无法关闭订单！");
+		return false;
+	}
 	if(confirm("是否关闭订单 "+orderId+" ?")){
 		$.ajax({
 			type : 'POST',
@@ -394,7 +398,6 @@ function closeOrder(orderId){
 			success : function (response , status , xhr){
 				if(response && response == "success"){
 					$("#tb_"+orderId).remove();
-					$("#div_"+orderId).remove();
 				}else{
 					alert(response);
 				}
@@ -407,4 +410,76 @@ function closeOrder(orderId){
 	    	}
 		});
 	}
+}
+//更改订单支付状态
+function payOrder(orderId,payStatus){
+	var msg = "是否设置订单 "+orderId+" 为已支付状态？";
+	if(payStatus == "0"){
+		msg = "是否设置订单 "+orderId+" 为未支付状态？";
+	}
+	if(confirm(msg)){
+		$.ajax({
+			type : 'POST',
+			url : appurl+'/shop/order/payOrder',
+			data : {
+				uid : $_GET['uid'],
+				orderId : orderId,
+				payStatus : payStatus
+			},
+			success : function (response , status , xhr){
+				if(response && response == "success"){
+					if(payStatus =="0" ){
+						$("#payStatus_"+orderId).removeClass("no").addClass("error");
+						$("#payStatus_"+orderId).attr("onclick","payOrder('"+orderId+"','1');");
+						$("#payStatus_"+orderId).html("未支付");
+					}else{
+						$("#payStatus_"+orderId).removeClass("error").addClass("no");
+						$("#payStatus_"+orderId).attr("onclick","payOrder('"+orderId+"','0');");
+						$("#payStatus_"+orderId).html("已支付");
+					}
+				}else{
+					alert(response);
+				}
+			},
+			beforeSend : function(){
+				$('#page_tag_load').show();
+	    	},
+	    	complete : function(){
+	    		$('#page_tag_load').hide();
+	    	}
+		});
+	}
+}
+//更改订单处理状态
+function dealOrder(orderId,orderStatus){
+	$.ajax({
+		type : 'POST',
+		url : appurl+'/shop/order/dealOrder',
+		data : {
+			uid : $_GET['uid'],
+			orderId : orderId,
+			orderStatus : orderStatus
+		},
+		success : function (response , status , xhr){
+			if(response && response == "success"){
+				if(orderStatus =="0" ){
+					$("#dealStatus_"+orderId).removeClass("no").addClass("error");
+					$("#dealStatus_"+orderId).attr("onclick","dealOrder('"+orderId+"','1');");
+					$("#dealStatus_"+orderId).html("未处理");
+				}else{
+					$("#dealStatus_"+orderId).removeClass("error").addClass("no");
+					$("#dealStatus_"+orderId).attr("onclick","dealOrder('"+orderId+"','0');");
+					$("#dealStatus_"+orderId).html("已处理");
+				}
+			}else{
+				alert(response);
+			}
+		},
+		beforeSend : function(){
+			$('#page_tag_load').show();
+    	},
+    	complete : function(){
+    		$('#page_tag_load').hide();
+    	}
+	});
 }
