@@ -58,7 +58,7 @@
 							</#if>
 						</#list>
 						</table></td></tr>
-						<tr style="line-height: 12px;"><td style="width:80px;"><b>总价：</b>${toDoOrder.TOTALPRICE}</td><td>
+						<tr style="line-height: 12px;"><td style="width:100px;"><b>总价：</b>${toDoOrder.TOTALPRICE}</td><td>
 						<em class="btn_del error" id="orderStatus_${toDoOrder.ORDERID}" onclick="closeOrder('${toDoOrder.ORDERID}');">关闭订单</em>
 						<#if toDoOrder.ORDERSTATUS = '0'><em class="btn_del error" id="dealStatus_${toDoOrder.ORDERID}" onclick="dealOrder('${toDoOrder.ORDERID}','1');">未处理</em><#else><em class="btn_del no" id="dealStatus_${toDoOrder.ORDERID}" onclick="dealOrder('${toDoOrder.ORDERID}','0');">已处理</em></#if>
 						</td></tr>
