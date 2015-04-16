@@ -46,8 +46,8 @@ public class AccessTokenApi {
 	}
 	
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
-		ApiConfig.setAppId("wx9803d1188fa5fbda");
-		ApiConfig.setAppSecret("db859c968763c582794e7c3d003c3d87");
+		ApiConfig.setAppId("wx396714621dc72788");
+		ApiConfig.setAppSecret("e5adb6d4b8326ead8bfe27dfe92a2738");
 		
 		AccessToken at = getAccessToken();
 		if (at.isAvailable())
