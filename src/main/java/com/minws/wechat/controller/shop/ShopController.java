@@ -62,11 +62,8 @@ public class ShopController extends Controller {
 	@ActionKey("/shop/order/delOrder")
 	public void delOrder() {
 		String orderId = getPara("orderId");
-		if (ShopOrder.dao.delOrder(orderId) == 0) {
-			renderText("orderId is not illegal!");
-		} else {
-			renderText("success");
-		}
+		ShopOrder.dao.delOrder(orderId);
+		renderText("success");
 	}
 
 	@ActionKey("/shop/good/fetchGoodDetail")
@@ -120,5 +117,13 @@ public class ShopController extends Controller {
 		} else {
 			renderText("success");
 		}
+	}
+
+	@ActionKey("/shop/user/changeMoney")
+	public void changeMoney() {
+		String id = getPara("id");
+		String money = getPara("money");
+		ShopUser.dao.changeMoney(id, money);
+		renderJson(ShopUser.dao.findById(id));
 	}
 }

@@ -1,8 +1,10 @@
 package com.minws.wechat.model.shop;
 
+import com.jfinal.aop.Before;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
 @SuppressWarnings("serial")
 @TableBind(tableName = "shop_user", pkName = "id")
@@ -19,5 +21,11 @@ public class ShopUser extends Model<ShopUser> {
 
 	public int updateUser(String uid, String username, String phone, String address) {
 		return Db.update("update shop_user set username = ?, phone = ?, address = ? where uid = ?", username, phone, address, uid);
+	}
+
+	@Before(Tx.class)
+	public void changeMoney(String id, String money) {
+		Db.update("update shop_user set current_money = ? where id= ?", money, id);
+		// ShopChargeHistory.dao.addHistory(id, money, money, "直接改余额");
 	}
 }

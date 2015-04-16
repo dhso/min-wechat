@@ -11,6 +11,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.minws.wechat.frame.kit.IdentityKit;
+import com.minws.wechat.frame.kit.StringKit;
 
 @SuppressWarnings("serial")
 @TableBind(tableName = "shop_order", pkName = "id")
@@ -22,17 +23,25 @@ public class ShopOrder extends Model<ShopOrder> {
 	}
 
 	@Before(Tx.class)
-	public boolean addOrderByUid(String uid, String totalPrice, String note, String payStyle, String cartData, String username, String phone, String address) {
+	public void addOrderByUid(String uid, String totalPrice, String note, String payStyle, String cartData, String username, String phone, String address) {
 		if (null == ShopUser.dao.getUserByUid(uid)) {
 			ShopUser.dao.addUser(uid, username, phone, address);
 		} else {
 			ShopUser.dao.updateUser(uid, username, phone, address);
 		}
-		return new ShopOrder().set("user_id", ShopUser.dao.getUserByUid(uid).get("id")).set("order_id", IdentityKit.uuid4()).set("totalprice", totalPrice).set("note", note).set("pay_style", payStyle).set("pay_status", "0").set("order_status", "0").set("create_dt", new Date()).set("cartdata", cartData).save();
+		ShopUser shopUser = ShopUser.dao.getUserByUid(uid);
+		new ShopOrder().set("user_id", shopUser.getInt("id")).set("order_id", IdentityKit.uuid4()).set("totalprice", totalPrice).set("note", note).set("pay_style", payStyle).set("pay_status", "0").set("order_status", "0").set("create_dt", new Date()).set("cartdata", cartData).save();
+		ShopChargeHistory.dao.addHistory(String.valueOf(shopUser.getInt("id")), "-" + totalPrice, String.valueOf(StringKit.toFloat(shopUser.getStr("current_money")) - StringKit.toFloat(totalPrice)), "订单支付消费");
+		ShopUser.dao.changeMoney(String.valueOf(shopUser.getInt("id")), String.valueOf(StringKit.toFloat(shopUser.getStr("current_money")) - StringKit.toFloat(totalPrice)));
 	}
 
-	public int delOrder(String orderId) {
-		return Db.update("delete from shop_order where order_status = '0' and order_id = ?", orderId);
+	@Before(Tx.class)
+	public void delOrder(String orderId) {
+		ShopOrder shopOrder = ShopOrder.dao.findFirst("select * from shop_order where order_id = ?", orderId);
+		ShopUser shopUser = ShopUser.dao.findById(shopOrder.get("user_id"));
+		Db.update("delete from shop_order where order_status = '0' and order_id = ?", orderId);
+		ShopChargeHistory.dao.addHistory(shopOrder.getStr("user_id"), "+" + shopOrder.getStr("totalPrice"), String.valueOf(StringKit.toFloat(shopUser.getStr("current_money")) + StringKit.toFloat(shopOrder.getStr("totalPrice"))), "订单取消支付");
+		ShopUser.dao.changeMoney(String.valueOf(shopUser.getInt("id")), String.valueOf(StringKit.toFloat(shopUser.getStr("current_money")) + StringKit.toFloat(shopOrder.getStr("totalPrice"))));
 	}
 
 	public List<Record> getToDoOrders() {
