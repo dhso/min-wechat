@@ -131,9 +131,10 @@ $("#windowcenter").slideUp(500);
 }); 
 
 }); 
-function alert(title){  
-	$("#windowcenter").slideToggle("slow"); 
-	$("#txt").html(title);
+function alert(title,txt){  
+	$("#windowcenter").slideToggle("slow");
+	$("#title").html(title);
+	$("#txt").html(txt);
 	setTimeout('$("#windowcenter").slideUp(500)',8000);
 } 
 

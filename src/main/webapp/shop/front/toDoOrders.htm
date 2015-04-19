@@ -3,7 +3,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>未处理订单</title>
-	<link rel="stylesheet" type="text/css" href="${baseUrl}/shop/static/css/shop.css">
+	<link rel="stylesheet" type="text/css" href="${baseUrl}/shop/static/css/shop.css?time=20150419234200">
 	<script type="text/javascript">
 		var appurl = "${baseUrl}";
 	</script>
@@ -35,8 +35,9 @@
 				<#list toDoOrders as toDoOrder>
 				<table id="tb_${toDoOrder.ORDERID}" width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" style="border-radius: 10px;background-color: #fff;margin-bottom: 5px;">
 					<tbody id="orderlistinsert">
-						<tr style="line-height: 12px;"><td style="width:80px;"><b>客户：</b>${toDoOrder.USERNAME}</td><td><b>备注：</b>${toDoOrder.NOTE}</td></tr>
-						<#assign map = "${toDoOrder.CARTDATA}"?eval>
+						<tr style="line-height: 12px;"><td style="width:80px;"><b>客户：</b>${toDoOrder.USERNAME}</td><td><b>时间：</b>${toDoOrder.CREATEDT}</td></tr>
+						<tr style="line-height: 12px;"><td colspan="2"><b>备注：</b>${toDoOrder.ORDERNOTE}</td></tr>
+						<#assign map = "${toDoOrder.ORDERDATA}"?eval>
 						<#assign count = 0>
 						<#assign countall = 0>
 						<tr><td colspan="2">
@@ -60,6 +61,7 @@
 						</table></td></tr>
 						<tr style="line-height: 12px;"><td style="width:100px;"><b>总价：</b>${toDoOrder.TOTALPRICE}</td><td>
 						<em class="btn_del error" id="orderStatus_${toDoOrder.ORDERID}" onclick="closeOrder('${toDoOrder.ORDERID}');">关闭订单</em>
+						<#if toDoOrder.PAYSTATUS = '0'><em class="btn_del error" id="payStatus_${toDoOrder.ORDERID}" onclick="payOrder('${toDoOrder.ORDERID}','1');">未支付</em><#else><em class="btn_del no" id="payStatus_${toDoOrder.ORDERID}" onclick="payOrder('${toDoOrder.ORDERID}','0');">已支付</em></#if>
 						<#if toDoOrder.ORDERSTATUS = '0'><em class="btn_del error" id="dealStatus_${toDoOrder.ORDERID}" onclick="dealOrder('${toDoOrder.ORDERID}','1');">未处理</em><#else><em class="btn_del no" id="dealStatus_${toDoOrder.ORDERID}" onclick="dealOrder('${toDoOrder.ORDERID}','0');">已处理</em></#if>
 						</td></tr>
 					</tbody>
@@ -70,6 +72,7 @@
 	</div>
 	
 	<script src="${baseUrl}/static/js/jquery.min.js"></script>
-    <script src="${baseUrl}/shop/static/js/shop.js"></script>
+    <script src="${baseUrl}/shop/static/js/shop.js?time=20150419234200"></script>
+    <script src="${baseUrl}/shop/static/js/alert.js?time=20150419234200"></script>
 </body>
 </html>

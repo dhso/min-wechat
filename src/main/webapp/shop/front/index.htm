@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>${shop.name}</title>
-    <link rel="stylesheet" type="text/css" href="${baseUrl}/shop/static/css/shop.css">
+    <link rel="stylesheet" type="text/css" href="${baseUrl}/shop/static/css/shop.css?time=20150419234200">
     <script type="text/javascript">
     	var appurl = "${baseUrl}";
     </script>
@@ -16,7 +16,7 @@
 					<a href="javascript:void(0);">${shop.name}</a>
 					<ul>
 						<#list shop_menu as menu>
-							<li><a href="javascript:showProducts('${menu.id}')">${menu.name}</a></li>
+							<li><a href="javascript:showProducts('${menu.menu_id}')">${menu.name}</a></li>
 						</#list>
 						<li><a href="javascript:showAll()">所有商品</a></li>
 					</ul>
@@ -45,16 +45,16 @@
 				<dl>
 					<dt>列表</dt>
 					<div class="ccbg">
-						<#list shop_good as good>
-						<dd menu="${good.menu_id}">
+						<#list shop_goods as goods>
+						<dd menu="${goods.menu_id}">
 							<div class="tupian">
-								<img src="${good.image}" onclick="showDetail('${good.id}');">
-								<a href="javascript:doProduct('${good.id}','${good.name}','${good.price}');" class="add">
-								<p class="dish2">${good.name}</p>
-								<p class="price2">￥${good.price}</p>
-								<p><del>￥${good.old_price}</del></p></a>
+								<img src="${goods.image}" onclick="showDetail('${goods.goods_id}');">
+								<a href="javascript:doProduct('${goods.goods_id}','${goods.name}','${goods.price}');" class="add">
+								<p class="dish2">${goods.name}</p>
+								<p class="price2">￥${goods.price}</p>
+								<p><del>￥${goods.old_price}</del></p></a>
 							</div>
-							<a href="javascript:doProduct('${good.id}','${good.name}','${good.price}');" id="${good.id}" class="reduce" style="display: block;"><b class="ico_reduce">减一件</b></a>
+							<a href="javascript:doProduct('${goods.goods_id}','${goods.name}','${goods.price}');" id="${goods.goods_id}" class="reduce" style="display: block;"><b class="ico_reduce">减一件</b></a>
 						</dd>
 						</#list>
 					</div>
@@ -106,7 +106,7 @@
 				</div>
 			</div>
 
-			<form name="infoForm" id="infoForm" method="post" action="">
+			<form name="infoForm" id="infoForm">
 				<div class="contact-info">
 					<ul>
 						<li class="title">联系信息</li>
@@ -117,7 +117,7 @@
 										<td width="80px"><label for="name" class="ui-input-text">联系人：</label></td>
 										<td>
 											<div class="ui-input-text">
-												<input id="name" name="name" placeholder="联系人" value="<#if shop_user??&&shop_user.username??>${shop_user.username}</#if>" type="text" class="ui-input-text">
+												<input id="name" name="name" placeholder="联系人" value="<#if shop_user??&&shop_user.name??>${shop_user.name}</#if>" type="text" class="ui-input-text">
 											</div>
 										</td>
 									</tr>
@@ -131,9 +131,9 @@
 										</td>
 									</tr>
 									<tr>
-										<td width="80px"><label for="pay" class="ui-input-text">支付方式：</label></td>
+										<td width="80px"><label for="order_pay" class="ui-input-text">支付方式：</label></td>
 										<td colspan="2">
-											<select name="pay" class="selectstyle" id="select1">
+											<select name="order_pay" class="selectstyle" id="select1">
 													<option value="0">货到付款</option>
 													<!-- <if condition="$alipay eq 1"><option value="1">支付宝在线支付</option></if> -->
 											</select>
@@ -146,8 +146,8 @@
 										</td>
 									</tr>
 									<tr>
-										<td width="80px"><label for="note" class="ui-input-text">备注：</label></td>
-										<td><textarea name="note" placeholder="" class="ui-input-text"></textarea></td>
+										<td width="80px"><label for="order_note" class="ui-input-text">备注：</label></td>
+										<td><textarea name="order_note" placeholder="" class="ui-input-text"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -197,6 +197,7 @@
 			</div>
 
 			<ul class="round">
+				<p class="myInfo"><b>客户：</b><span id="my-name"><#if shop_user??&&shop_user.name??>${shop_user.name}<#else>匿名</#if></span>&nbsp;&nbsp;&nbsp;&nbsp;<b>余额：</b><span id="my-money"><#if shop_user??&&shop_user.money??>${shop_user.money}<#else>0</#if></span>元</p>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge">
 					<tr>
 						<th>订单编号</th>
@@ -231,7 +232,7 @@
 	
 	<script src="${baseUrl}/static/js/jquery.min.js"></script>
 	<script src="${baseUrl}/static/js/json2.js"></script>
-    <script src="${baseUrl}/shop/static/js/alert.js"></script>
-    <script src="${baseUrl}/shop/static/js/shop.js"></script>
+    <script src="${baseUrl}/shop/static/js/alert.js?time=20150419234200"></script>
+    <script src="${baseUrl}/shop/static/js/shop.js?time=20150419234200"></script>
 </body>
 </html>

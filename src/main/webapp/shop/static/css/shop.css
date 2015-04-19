@@ -2078,4 +2078,9 @@ p.title {
 	float: right;
 	line-height: 14px;
 	margin: 0 3px;
+	display: block;
+}
+p.myInfo{
+	padding: 2px 10px;
+	background-color: blanchedalmond;
 }

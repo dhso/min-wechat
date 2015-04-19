@@ -26,6 +26,12 @@ public class Shop implements Serializable {
 		this.notification = notification;
 	}
 
+	/**
+	 * Shop
+	 * 
+	 * @param name
+	 * @param notification
+	 */
 	public Shop(String name, String notification) {
 		this.name = name;
 		this.notification = notification;

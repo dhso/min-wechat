@@ -9,12 +9,25 @@ import com.jfinal.plugin.activerecord.Model;
 public class Config extends Model<Config> {
 	public static final Config dao = new Config();
 
+	/**
+	 * 获取配置
+	 * 
+	 * @param key
+	 * @return
+	 */
 	public String getValueByKey(String key) {
 		return Db.findFirst("select c.value from config c where c.key = ?", key).get("value", "");
 	}
 
-	public int setValueByKey(String key, String value) {
-		return Db.update("update config set value = ? where key = ?", value, key);
+	/**
+	 * 新建配置
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public int setValue(String key, String value) {
+		return Db.update("update config c set c.value = ? where c.key = ?", value, key);
 	}
 
 }

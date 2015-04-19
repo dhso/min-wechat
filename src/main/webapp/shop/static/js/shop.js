@@ -133,7 +133,7 @@ function doProduct (id , name , price) {
 //提交订单
 function submitOrder () {
 	if(!$('form').find('#name').val()){
-		alert('请输入联系人！');
+		alert('提示','请输入联系人！');
 		return false;
 	}
 	if(!$('form').find('#phone').val()){
@@ -141,7 +141,7 @@ function submitOrder () {
 		return false;
 	}
 	if(!$('form').find('#address').val()){
-		alert('请输入地址！');
+		alert('提示','请输入地址！');
 		return false;
 	}
 	var json = '';
@@ -154,7 +154,7 @@ function submitOrder () {
 	json = json.substring(0 , json.length-1);
 	
 	if(!json){
-		alert('请选择至少一种商品！');
+		alert('提示','请选择至少一种商品！');
 		return false;
 	}
 	
@@ -177,8 +177,9 @@ function submitOrder () {
 			$('#totalNum').html(0);
 			$('#cartN2').html( 0 );
 			$('#totalPrice').html(0);
-			if (response) {
-				window.open(response);
+			if (response && response.msgCode == '200') {
+				alert(response.msgType,response.msgDesc);
+				//window.open(response);
 			}
 		},
 		beforeSend : function(){
@@ -258,7 +259,7 @@ function getOrders(){
 					var pay = '';
 					var order = '';
 					var cart_html = '';
-					var cart_data = JSON.parse(value.CARTDATA);
+					var cart_data = JSON.parse(value.ORDER_DATA);
 					
 					if (value.ORDER_STATUS == '0'){
 						order_status = 'no';
@@ -266,6 +267,9 @@ function getOrders(){
 					}else if ( value.ORDER_STATUS == '1'){
 						order_status = 'ok';
 						order = '已处理';
+					}else if ( value.ORDER_STATUS == '2'){
+						order_status = 'ok';
+						order = '已完成';
 					}
 					
 					if (value.PAY_STATUS == '0'){
@@ -279,18 +283,20 @@ function getOrders(){
 						if(i == 0){
 							cart_html+='<tr id="orderDesc_'+value.ORDER_ID+'" style="display: none;"><td colspan="4"><table width="100%" border="1" cellpadding="0" cellspacing="0">';
 							cart_html+='<tr><th>名称</th><th class="cc">数量</th><th class="cc">单价</th></tr>';
+							$('#my-name').html(value.NAME);
+							$('#my-money').html(value.MONEY);
 						}
 						cart_html+='<tr><td>'+cart_data[i].name+'</td><td class="cc">'+cart_data[i].num+'</td><td class="cc">'+cart_data[i].price+'</td></tr>';
 						if(i == cart_data.length-1){
 							if(value.ORDER_STATUS == '0'){
-								cart_html+='<tr><td colspan="3">订单时间：'+value.CREATE_DT+' <em class="btn_del error" onclick="delOrder('+value.ORDER_ID+');">删除订单</em></td></tr>';
+								cart_html+='<tr><td colspan="3">备注：'+value.ORDER_NOTE+'</td></tr><tr><td colspan="3">订单时间：'+value.CREATE_DT+' <em class="btn_del error" onclick="delOrder('+value.ORDER_ID+');">删除订单</em></td></tr>';
 							}else{
-								cart_html+='<tr><td colspan="3">订单时间：'+value.CREATE_DT+' <em class="btn_del no">删除订单</em></td></tr>';
+								cart_html+='<tr><td colspan="3">备注：'+value.ORDER_NOTE+'</td></tr><tr><td colspan="3">订单时间：'+value.CREATE_DT+' <em class="btn_del no">删除订单</em></td></tr>';
 							}
 							cart_html+='</table></td><tr>';
 						}
 					}
-					html += '<tr id="orderTitle_'+value.ORDER_ID+'" onclick="showOrderDesc('+value.ORDER_ID+');"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTALPRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
+					html += '<tr id="orderTitle_'+value.ORDER_ID+'" onclick="showOrderDesc('+value.ORDER_ID+');"><td>'+value.ORDER_ID+'</td><td class="cc">'+value.TOTAL_PRICE+'元</td><td class="cc"><em class="'+pay_status+'">'+pay+'</em></td><td class="cc"><em class="'+order_status+'">'+order+'</em></td></tr>';
 					html += cart_html;
 				});
 				$('#orderlistinsert').empty();
@@ -362,16 +368,18 @@ function delOrder(orderId){
 			type : 'POST',
 			url : appurl+'/shop/order/delOrder',
 			data : {
-				uid : $_GET['uid'],
+				aid : $_GET['aid'],
 				orderId : orderId
 			},
 			success : function (response , status , xhr){
-				if(response && response == "success"){
-					$("#orderTitle_"+orderId).remove();
-					$("#orderDesc_"+orderId).remove();
+				if(response && response.msgType == "success"){
+					//$("#orderTitle_"+orderId).remove();
+					//$("#orderDesc_"+orderId).remove();
+					alert(response.msgTpye,response.msgDesc);
 				}else{
-					alert(response);
+					alert('error',response);
 				}
+				$('#user').click();
 			},
 			beforeSend : function(){
 				$('#page_tag_load').show();
@@ -384,7 +392,7 @@ function delOrder(orderId){
 }
 function closeOrder(orderId){
 	if($("#payStatus_"+orderId).html()=="未处理"){
-		alert("订单尚未处理,无法关闭订单！");
+		alert('error',"订单尚未处理,无法关闭订单！");
 		return false;
 	}
 	if(confirm("是否关闭订单 "+orderId+" ?")){
@@ -392,15 +400,14 @@ function closeOrder(orderId){
 			type : 'POST',
 			url : appurl+'/shop/order/closeOrder',
 			data : {
-				uid : $_GET['uid'],
+				aid : $_GET['aid'],
 				orderId : orderId
 			},
 			success : function (response , status , xhr){
-				if(response && response == "success"){
+				if(response && response.msgType == "success"){
 					$("#tb_"+orderId).remove();
-				}else{
-					alert(response);
 				}
+				alert(response.msgType,response.msgDesc);
 			},
 			beforeSend : function(){
 				$('#page_tag_load').show();
@@ -422,12 +429,12 @@ function payOrder(orderId,payStatus){
 			type : 'POST',
 			url : appurl+'/shop/order/payOrder',
 			data : {
-				uid : $_GET['uid'],
+				aid : $_GET['aid'],
 				orderId : orderId,
 				payStatus : payStatus
 			},
 			success : function (response , status , xhr){
-				if(response && response == "success"){
+				if(response && response.msgType == "success"){
 					if(payStatus =="0" ){
 						$("#payStatus_"+orderId).removeClass("no").addClass("error");
 						$("#payStatus_"+orderId).attr("onclick","payOrder('"+orderId+"','1');");
@@ -437,9 +444,8 @@ function payOrder(orderId,payStatus){
 						$("#payStatus_"+orderId).attr("onclick","payOrder('"+orderId+"','0');");
 						$("#payStatus_"+orderId).html("已支付");
 					}
-				}else{
-					alert(response);
 				}
+				alert(response.msgType,response.msgDesc);
 			},
 			beforeSend : function(){
 				$('#page_tag_load').show();
@@ -456,12 +462,12 @@ function dealOrder(orderId,orderStatus){
 		type : 'POST',
 		url : appurl+'/shop/order/dealOrder',
 		data : {
-			uid : $_GET['uid'],
+			aid : $_GET['aid'],
 			orderId : orderId,
 			orderStatus : orderStatus
 		},
 		success : function (response , status , xhr){
-			if(response && response == "success"){
+			if(response && response.msgType == "success"){
 				if(orderStatus =="0" ){
 					$("#dealStatus_"+orderId).removeClass("no").addClass("error");
 					$("#dealStatus_"+orderId).attr("onclick","dealOrder('"+orderId+"','1');");
@@ -471,9 +477,8 @@ function dealOrder(orderId,orderStatus){
 					$("#dealStatus_"+orderId).attr("onclick","dealOrder('"+orderId+"','0');");
 					$("#dealStatus_"+orderId).html("已处理");
 				}
-			}else{
-				alert(response);
 			}
+			alert(response.msgType,response.msgDesc);
 		},
 		beforeSend : function(){
 			$('#page_tag_load').show();
@@ -482,4 +487,78 @@ function dealOrder(orderId,orderStatus){
     		$('#page_tag_load').hide();
     	}
 	});
+}
+//添加money
+function addMoney(openId){
+	var aMoney = parseFloat($("#addMoney_"+openId).val());
+	var money = parseFloat($("#money_"+openId).html());
+	if(!aMoney){
+		alert("error","请输入金额！");
+		return false;
+	}
+	if(confirm("确认充值 ?")){
+		$.ajax({
+			type : 'POST',
+			url : appurl+'/shop/user/addMoney',
+			data : {
+				aid : $_GET['aid'],
+				targetOpenId : openId,
+				addMoney: aMoney
+			},
+			success : function (response , status , xhr){
+				if(response && response.msgType == "success"){
+					var cMoney = FloatAdd(aMoney,money);
+					$("#money_"+openId).html(String(cMoney));
+					$("#addMoney_"+openId).val('');
+				}
+				alert(response.msgType,response.msgDesc);
+			},
+			beforeSend : function(){
+				$('#page_tag_load').show();
+	    	},
+	    	complete : function(){
+	    		$('#page_tag_load').hide();
+	    	}
+		});
+	}
+}
+
+function FloatAdd(arg1,arg2){
+    var r1,r2,m;
+    try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+    try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+    m=Math.pow(10,Math.max(r1,r2));
+    return (arg1*m+arg2*m)/m;
+}
+
+//浮点数减法运算
+function FloatSub(arg1,arg2){
+    var r1,r2,m,n;
+    try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+    try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+    m=Math.pow(10,Math.max(r1,r2));
+    //动态控制精度长度
+    n=(r1>=r2)?r1:r2;
+    return ((arg1*m-arg2*m)/m).toFixed(n);
+}
+
+//浮点数乘法运算
+function FloatMul(arg1,arg2)
+{
+    var m=0,s1=arg1.toString(),s2=arg2.toString();
+    try{m+=s1.split(".")[1].length}catch(e){}
+    try{m+=s2.split(".")[1].length}catch(e){}
+    return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);
+}
+
+ //浮点数除法运算
+function FloatDiv(arg1,arg2){
+    var t1=0,t2=0,r1,r2;
+    try{t1=arg1.toString().split(".")[1].length}catch(e){}
+    try{t2=arg2.toString().split(".")[1].length}catch(e){}
+    with(Math){
+        r1=Number(arg1.toString().replace(".",""));
+        r2=Number(arg2.toString().replace(".",""));
+        return (r1/r2)*pow(10,t2-t1);
+    }
 }

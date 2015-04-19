@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>充值</title>
+	<link rel="stylesheet" type="text/css" href="${baseUrl}/shop/static/css/shop.css?time=20150419234200">
+	<script type="text/javascript">
+		var appurl = "${baseUrl}";
+	</script>
+</head>
+<body class="sanckbg mode_webapp">
+
+	<div id="toDoOrder-container">
+
+		<div class="menu_header">
+			<div class="menu_topbar">
+				<div id="menu" class="sort ">
+					<a href="">充值</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="cardexplain">
+			<div id="page_tag_load" hidefocus="true"
+				style="display: none; z-index: 10;">
+				<div class="btn-group"
+					style="position: fixed; font-size: 12px; width: 220px; bottom: 80px; left: 50%; margin-left: -110px; z-index: 999;">
+					<div class="del" style="font-size: 14px;">
+						<img src="${baseUrl}/shop/static/img/ajax-loader.gif" alt="loader">正在处理订单...
+					</div>
+				</div>
+			</div>
+
+			<ul class="round" style="background-color: #E9E9E9;">
+				<#list shop_user.list as shopUser>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" style="border-radius: 10px;background-color: #fff;margin-bottom: 5px;">
+					<tbody id="orderlistinsert">
+						<tr><td style="width:100px;"><b>客户：</b>${shopUser.NAME}</td><td><b>手机：</b>${shopUser.PHONE}</td></tr>
+						<tr><td style="width:100px;"><b>金额：</b><span id="money_${shopUser.OPEN_ID}">${shopUser.MONEY}</span></td><td><input type="text" id="addMoney_${shopUser.OPEN_ID}" style="width: 100px;border: 1px #ccc solid;"><em class="btn_del ok" onclick="addMoney('${shopUser.OPEN_ID}');">充值</em></td></tr>
+					</tbody>
+				</table>
+				</#list>
+			</ul>
+		</div>
+	</div>
+	
+	<script src="${baseUrl}/static/js/jquery.min.js"></script>
+    <script src="${baseUrl}/shop/static/js/shop.js?time=20150419234200"></script>
+    <script src="${baseUrl}/shop/static/js/alert.js?time=20150419234200"></script>
+</body>
+</html>

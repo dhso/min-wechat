@@ -58,7 +58,11 @@ public class WechatController extends WeixinController {
 			render(outMsg);
 		} else if (StringKit.hasObject(msgContent, "处理订单", "订单处理")) {
 			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-			outMsg.addNews("处理订单入口", "点击进入处理订单界面。", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_order_manage_url"));
+			outMsg.addNews("处理订单入口", "点击进入处理订单界面。", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_order_manage_url") + inTextMsg.getFromUserName());
+			render(outMsg);
+		} else if (StringKit.hasObject(msgContent, "充值")) {
+			OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
+			outMsg.addNews("充值入口", "点击进入充值界面。", "http://wcdn.u.qiniudn.com/pic/shopping.jpg", Config.dao.getValueByKey("shop_order_money_url") + inTextMsg.getFromUserName());
 			render(outMsg);
 		} else if (StringKit.containStr(msgContent, "天气预报", "天气", "温度", "下雨")) {
 			try {

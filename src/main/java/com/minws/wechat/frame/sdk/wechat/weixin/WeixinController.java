@@ -116,7 +116,7 @@ public abstract class WeixinController extends Controller {
 	 */
 	public void refreshMenu() {
 		String menus = getPara("menus", "");
-		Config.dao.setValueByKey("wechat_menu", menus);
+		Config.dao.setValue("wechat_menu", menus);
 		ApiResult apiResult = MenuApi.createMenu(menus);
 		if (apiResult.isSucceed())
 			renderText(apiResult.getJson());
