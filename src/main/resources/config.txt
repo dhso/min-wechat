@@ -3,12 +3,12 @@ wx.jdbcDriver = com.mysql.jdbc.Driver
 #wx.jdbcUrl = jdbc:mysql://rdszjqbmqrqy2in.mysql.rds.aliyuncs.com:3306/re4591m0i5dm04kj
 #wx.jdbcUser = mysql_admin
 #wx.jdbcPassword = 923389
-wx.jdbcUrl = jdbc:mysql://127.0.0.1:3306/tps
-wx.jdbcUser = root
-wx.jdbcPassword = 923389
-#wx.jdbcUrl = jdbc:mysql://192.168.3.110:3306/jfsys
+#wx.jdbcUrl = jdbc:mysql://127.0.0.1:3306/tps
 #wx.jdbcUser = root
 #wx.jdbcPassword = 923389
+wx.jdbcUrl = jdbc:mysql://192.168.3.110:3306/jfsys
+wx.jdbcUser = root
+wx.jdbcPassword = 923389
 wx.devMode = true
 
 #代理配置

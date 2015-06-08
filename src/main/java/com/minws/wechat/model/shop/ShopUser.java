@@ -45,8 +45,8 @@ public class ShopUser extends Model<ShopUser> {
 	 * @param money
 	 * @return
 	 */
-	public int addUser(String openId, String from, String name, String phone, String password, String address, String money) {
-		return Db.update("insert into shop_user(open_id,from,name,phone,password,address,money) values (?,?,?,?,?,?,?)", openId, from, name, phone, password, address, money);
+	public int addUser(String openId, String fromChannel, String name, String phone, String password, String address, String money) {
+		return Db.update("insert into shop_user(open_id,from_channel,name,phone,password,address,money) values (?,?,?,?,?,?,?)", openId, fromChannel, name, phone, password, address, money);
 	}
 
 	/**

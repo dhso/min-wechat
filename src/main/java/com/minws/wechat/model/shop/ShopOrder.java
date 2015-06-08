@@ -41,10 +41,10 @@ public class ShopOrder extends Model<ShopOrder> {
 	 * @param phone
 	 * @param address
 	 */
-	public void addOrder(String openId, String from, String totalPrice, String orderNote, String payStyle, String orderData, String name, String phone, String address) {
+	public void addOrder(String openId, String fromChannel, String totalPrice, String orderNote, String payStyle, String orderData, String name, String phone, String address) {
 		Record shopUser = ShopUser.dao.getUser(openId);
 		if (null == shopUser) {
-			ShopUser.dao.addUser(openId, from, name, phone, "", address, "0");
+			ShopUser.dao.addUser(openId, fromChannel, name, phone, "", address, "0");
 			shopUser = ShopUser.dao.getUser(openId);
 		} else if (!name.equals(shopUser.getStr("name")) || !phone.equals(shopUser.getStr("phone")) || !address.equals(shopUser.getStr("address"))) {
 			ShopUser.dao.updateUser(openId, name, phone, address);
